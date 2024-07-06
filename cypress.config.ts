@@ -6,8 +6,8 @@ module.exports = defineConfig({
   video: false,
   experimentalMemoryManagement: true,
   env: {
-    username: "cyberfang@starz.com",
-    password: "Engit@1234!",
+    username: "",
+    password: "",
     apiUrl: "https://conduit-api.bondaracademy.com"
   },
   retries: {
