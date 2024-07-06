@@ -2,7 +2,8 @@ FROM cypress/base:20.14.0
 
 RUN mkdir /app
 WORKDIR /app
-COPY . /app
+COPY . .
+COPY package.json .
 
 RUN npm install
 RUN npm install cypress --save-dev

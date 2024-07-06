@@ -12,7 +12,7 @@
     "mochawesome:merge": "npx mochawesome-merge 'cypress/results/mochawesome/*.json' > mochawesome.json && npx marge mochawesome.json",
     "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
     "dockerbuild:cypress": "docker build -t cypress .",
-    "dockercompose:cypress": "docker-compose up --remove-orphans"
+    "dockercompose:cypress": "docker compose up --remove-orphans"
   },
   "keywords": [
     "Cypress",
