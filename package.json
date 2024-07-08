@@ -11,7 +11,7 @@
     "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
     "mochawesome:merge": "npx mochawesome-merge 'cypress/results/mochawesome/*.json' > mochawesome.json && npx marge mochawesome.json",
     "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
-    "dockerbuild:cypress": "docker build -t cypress .",
+    "dockerbuild:cypress": "docker build -t cypress_temp .",
     "dockercompose:cypress": "docker compose up --remove-orphans"
   },
   "keywords": [

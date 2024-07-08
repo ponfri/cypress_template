@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2024-07-07T13:32:48.779Z",
-    "end": "2024-07-07T13:32:49.881Z",
-    "duration": 1102,
+    "start": "2024-07-08T13:04:18.140Z",
+    "end": "2024-07-08T13:04:19.083Z",
+    "duration": 943,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "dbb73cbc-b756-4706-ac8f-ce5b14de8960",
+      "uuid": "69003d4e-b63b-4c82-86da-88b8efb64867",
       "title": "",
       "fullFile": "cypress/e2e/visit.site.spec.ts",
       "file": "cypress/e2e/visit.site.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6a29a7bc-aeb1-482d-a285-0de365473246",
+          "uuid": "61160982-1e3d-4f10-8e9d-fc9c9498514b",
           "title": "Template Description here.",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Template Test here.",
               "fullTitle": "Template Description here. Template Test here.",
               "timedOut": null,
-              "duration": 1060,
+              "duration": 917,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "",
               "err": {},
-              "uuid": "9f26d0be-8a39-436b-a695-99a9b7866c2b",
-              "parentUUID": "6a29a7bc-aeb1-482d-a285-0de365473246",
+              "uuid": "94664e22-9214-4d27-a67a-efb1ef43ec7c",
+              "parentUUID": "61160982-1e3d-4f10-8e9d-fc9c9498514b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "9f26d0be-8a39-436b-a695-99a9b7866c2b"
+            "94664e22-9214-4d27-a67a-efb1ef43ec7c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1060,
+          "duration": 917,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
