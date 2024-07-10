@@ -13,4 +13,4 @@ RUN npx cypress verify
 
 COPY . /app
 
-CMD [ "npm", "run", "cypress:run"]
+#CMD [ "npm", "run", "cypress:run"]
