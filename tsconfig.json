@@ -5,7 +5,7 @@
   ],
   "compilerOptions": {
     "sourceMap": false,
-    "types": ["cypress"]
+    "types": ["cypress", "node"]
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,4 +1,4 @@
-const { defineConfig } = require('cypress')
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   viewportHeight: 1080,
@@ -27,6 +27,7 @@ module.exports = defineConfig({
     downloadsFolder: 'cypress/downloads',
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
+      require('@cypress/grep/src/plugin')(config);
       // implement node event listeners here
       on("before:browser:launch", (browser, launchOptions) => {
         if (["chrome", "edge"].includes(browser.name)) {
@@ -39,6 +40,7 @@ module.exports = defineConfig({
             }
            return launchOptions;
           });
+      return config;
     },
   },
 });

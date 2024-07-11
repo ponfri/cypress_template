@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM cypress/base:20.14.0
 
 RUN mkdir /app
@@ -12,5 +14,7 @@ RUN npm install
 RUN npx cypress verify
 
 COPY . /app
+
+ENTRYPOINT [ "npm" ]
 
 #CMD [ "npm", "run", "cypress:run"]

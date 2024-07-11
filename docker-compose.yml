@@ -7,4 +7,4 @@ services:
     volumes:
       - ./dockerReports/:/app/cypress/results
       - ./dockerReports/:/app/mochawesome-report
-    command: [ "npm", "run", "cypress:run"]
+    command: ["run", "cypress:run"]
