@@ -1,11 +1,15 @@
 {
   "extends": "./cypress/tsconfig.json",
-  "files": [
-    "./cypress.config.ts"
-  ],
   "compilerOptions": {
-    "sourceMap": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
     "types": ["cypress", "node"]
   },
-  "exclude": ["node_modules", "tmp"]
+  "include": [
+    "./cypress/**/*.ts",
+    "./cypress.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

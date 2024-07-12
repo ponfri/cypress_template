@@ -1,0 +1,125 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-07-11T21:45:51.273Z",
+    "end": "2024-07-11T21:45:52.214Z",
+    "duration": 941,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6c45df8f-7d02-465f-9006-cf0b3a175ddc",
+      "title": "",
+      "fullFile": "cypress/e2e/visit.site.spec.ts",
+      "file": "cypress/e2e/visit.site.spec.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e667d0a2-7b4c-4031-9374-6c2949fd6c8d",
+          "title": "Template Description here.",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Template Test here.",
+              "fullTitle": "Template Description here. Template Test here.",
+              "timedOut": null,
+              "duration": 704,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log('Running Smoke tests!');\nconsole.log('Running Smoke tests!');",
+              "err": {},
+              "uuid": "dab59218-700c-48e1-b6ff-eedf9711ecf7",
+              "parentUUID": "e667d0a2-7b4c-4031-9374-6c2949fd6c8d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Template Test here.",
+              "fullTitle": "Template Description here. Template Test here.",
+              "timedOut": null,
+              "duration": 171,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log('Running Regression tests!');\nconsole.log('Running Regression tests!');",
+              "err": {},
+              "uuid": "1b4afee5-dddd-4c95-8477-ea90c19da45d",
+              "parentUUID": "e667d0a2-7b4c-4031-9374-6c2949fd6c8d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "dab59218-700c-48e1-b6ff-eedf9711ecf7",
+            "1b4afee5-dddd-4c95-8477-ea90c19da45d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 875,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

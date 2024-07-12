@@ -12,7 +12,9 @@
     "mochawesome:merge": "npx mochawesome-merge 'cypress/results/mochawesome/*.json' > mochawesome.json && npx marge mochawesome.json",
     "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
     "dockerbuild:cypress": "docker build -t cypress_temp .",
-    "dockercompose:cypress": "docker compose up --remove-orphans"
+    "dockercompose:cypress": "docker compose up --remove-orphans",
+    "allure:open": "npx allure serve -h localhost -p 3000 ./allure-results",
+    "allure:generate": "npx allure generate -c"
   },
   "keywords": [
     "Cypress",
@@ -25,12 +27,15 @@
     "@cypress/grep": "^4.1.0",
     "@cypress/skip-test": "^2.6.1",
     "@types/cypress": "^1.1.3",
+    "allure-commandline": "^2.29.0",
+    "allure-cypress": "^3.0.0-beta.6",
     "bootstrap": "^5.3.3",
     "cypress": "^13.13.0",
     "cypress-iframe": "^1.0.1",
     "cypress-localstorage-commands": "^2.2.6",
     "cypress-multi-reporters": "^1.6.4",
     "cypress-wait-until": "^3.0.1",
+    "http-server": "^14.1.1",
     "junit-merge": "^2.0.0",
     "mocha-junit-reporter": "^2.2.1",
     "mochawesome": "^7.1.3",
@@ -42,8 +47,5 @@
     "typescript": "^5.5.3",
     "webpack": "^5.92.1",
     "webpack-bundle-analyzer": "^4.10.2"
-  },
-  "dependencies": {
-    "cypress-tags": "^1.2.2"
   }
 }

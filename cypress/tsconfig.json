@@ -5,7 +5,7 @@
     "lib": ["es5", "dom"],
     "baseUrl": "../node_modules",
     "types": [
-      "cypress", "node"
+      "cypress", "node", "@cypress/grep"
     ],
     "noEmit": true
   },

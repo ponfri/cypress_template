@@ -1,6 +1,7 @@
-const { defineConfig } = require('cypress');
+import { defineConfig } from 'cypress';
+const { allureCypress } = require("allure-cypress/reporter");
 
-module.exports = defineConfig({
+export default defineConfig({
   viewportHeight: 1080,
   viewportWidth: 1920,
   video: false,
@@ -8,15 +9,16 @@ module.exports = defineConfig({
   env: {
     username: "",
     password: "",
-    apiUrl: "https://conduit-api.bondaracademy.com"
+    apiUrl: "https://conduit-api.bondaracademy.com",
+    allure: true
   },
   retries: {
     runMode: 1,
     openMode: 1
   },
   reporter: 'cypress-multi-reporters',
-    reporterOptions: {
-      configFile: 'reporter-config.json',
+  reporterOptions: {
+    configFile: 'reporter-config.json',
   },
   e2e: {
     baseUrl: 'https://conduit.bondaracademy.com',
@@ -28,18 +30,25 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
       require('@cypress/grep/src/plugin')(config);
-      // implement node event listeners here
-      on("before:browser:launch", (browser, launchOptions) => {
-        if (["chrome", "edge"].includes(browser.name)) {
-            if (browser.isHeadless) {
-                launchOptions.args.push("--no-sandbox");
-                launchOptions.args.push("--disable-gl-drawing-for-tests");
-                launchOptions.args.push("--disable-gpu");
-             }
-                launchOptions.args.push("--js-flags=--max-old-space-size=3500");
-            }
-           return launchOptions;
-          });
+      allureCypress(on, {
+        resultsDir: "./allure-results",
+        links: [
+          { type: "issue", urlTemplate: "https://issues.example.com/%s" },
+          { type: "tms", urlTemplate: "https://tms.example.com/%s" },
+        ],
+      });
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (['chrome', 'edge'].includes(browser.name)) {
+          if (browser.isHeadless) {
+            launchOptions.args.push('--no-sandbox');
+            launchOptions.args.push('--disable-gl-drawing-for-tests');
+            launchOptions.args.push('--disable-gpu');
+          }
+          launchOptions.args.push('--js-flags=--max-old-space-size=3500');
+        }
+        return launchOptions;
+      });
+
       return config;
     },
   },

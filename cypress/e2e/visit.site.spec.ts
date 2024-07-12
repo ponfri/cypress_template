@@ -13,13 +13,12 @@ describe('Template Description here.', () => {
     cy.visit('/');
   });
 
-  // Tests here:
-  it('Template Test here.', { tags: ['@smoke', '@template'],}, () => {
+  it('Template Test 1 here.', { tags: ['@smoke', '@template'] }, () => {
     cy.log('Running Smoke tests!');
     console.log('Running Smoke tests!');
   });
 
-  it('Template Test here.', { tags: ['@regression', '@template'],}, () => {
+  it('Template Test 2 here.', { tags: ['@regression', '@template'] }, () => {
     cy.log('Running Regression tests!');
     console.log('Running Regression tests!');
   });
