@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <testsuites>
-<testsuite name="Root Suite" timestamp="2024-07-08T13:04:18" tests="0" file="cypress/e2e/visit.site.spec.ts" time="0.000" failures="0"></testsuite>
-<testsuite name="Template Description here." timestamp="2024-07-08T13:04:18" tests="1" time="0.939" failures="0">
+<testsuite name="Root Suite" timestamp="2024-07-12T14:25:05" tests="0" file="cypress/e2e/visit.site.spec.ts" time="0.000" failures="0"></testsuite>
+<testsuite name="Template Description here." timestamp="2024-07-12T14:25:05" tests="2" time="0.966" failures="0">
   
-  <testcase name="Template Description here. Template Test here." time="0.917" classname="Template Test here."></testcase>
+  <testcase name="Template Description here. Template Test 1 here." time="0.726" classname="Template Test 1 here."></testcase>
+  
+  <testcase name="Template Description here. Template Test 2 here." time="0.189" classname="Template Test 2 here."></testcase>
   
 </testsuite>
 
