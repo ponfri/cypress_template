@@ -13,6 +13,8 @@
     "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
     "dockerbuild:cypress": "docker build -t cypress_temp .",
     "dockercompose:cypress": "docker compose up --remove-orphans",
+    "docker:run": "docker run --rm --name cypress_template cypress_template:latest",
+    "docker:start": "docker start cypress_template",
     "allure:open": "npx allure serve -h localhost -p 3000 ./allure-results",
     "allure:generate": "npx allure generate -c"
   },

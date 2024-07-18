@@ -1,24 +1,24 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "testsRegistered": 1,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2024-07-06T18:33:07.502Z",
-    "end": "2024-07-06T18:33:10.557Z",
-    "duration": 3055
+    "start": "2024-07-18T22:34:20.054Z",
+    "end": "2024-07-18T22:34:23.196Z",
+    "duration": 3142
   },
   "results": [
     {
-      "uuid": "6020410c-82c2-47fe-b2dd-7c9d2ab5c13d",
+      "uuid": "ec0d6568-c9ad-4a41-bb7f-038245d2a2a9",
       "title": "",
       "fullFile": "cypress/e2e/visit.site.spec.ts",
       "file": "cypress/e2e/visit.site.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "415931ac-27c3-489d-837c-0eae3b35e7dc",
+          "uuid": "dd0f4528-5f46-4b1f-91a0-96db725e1fbd",
           "title": "Template Description here.",
           "fullFile": "",
           "file": "",
@@ -35,8 +35,8 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "Template Test here.",
-              "fullTitle": "Template Description here. Template Test here.",
+              "title": "Template Test 1 here.",
+              "fullTitle": "Template Description here. Template Test 1 here.",
               "timedOut": null,
               "duration": 2756,
               "state": "passed",
@@ -45,22 +45,41 @@
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "",
+              "code": "cy.log('Running Smoke tests!');\nconsole.log('Running Smoke tests!');",
               "err": {},
-              "uuid": "0b0cd211-5f4e-4c7f-ab79-7abd002f72ef",
-              "parentUUID": "415931ac-27c3-489d-837c-0eae3b35e7dc",
+              "uuid": "c5869f42-6c74-422f-8fee-138b13fbb2f2",
+              "parentUUID": "dd0f4528-5f46-4b1f-91a0-96db725e1fbd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Template Test 2 here.",
+              "fullTitle": "Template Description here. Template Test 2 here.",
+              "timedOut": null,
+              "duration": 256,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.log('Running Regression tests!');\nconsole.log('Running Regression tests!');",
+              "err": {},
+              "uuid": "224ff3f3-ff06-4380-8c9b-50f6840a2792",
+              "parentUUID": "dd0f4528-5f46-4b1f-91a0-96db725e1fbd",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "0b0cd211-5f4e-4c7f-ab79-7abd002f72ef"
+            "c5869f42-6c74-422f-8fee-138b13fbb2f2",
+            "224ff3f3-ff06-4380-8c9b-50f6840a2792"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2756,
+          "duration": 3012,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

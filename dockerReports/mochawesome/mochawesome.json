@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2024-07-12T14:25:05.787Z",
-    "end": "2024-07-12T14:25:06.809Z",
-    "duration": 1022,
+    "start": "2024-07-18T22:15:36.456Z",
+    "end": "2024-07-18T22:15:39.024Z",
+    "duration": 2568,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "d820dc95-d9a1-4c37-a5d1-630e1ba1bbcb",
+      "uuid": "9b965675-3e84-492f-baa8-e64af41fd75d",
       "title": "",
       "fullFile": "cypress/e2e/visit.site.spec.ts",
       "file": "cypress/e2e/visit.site.spec.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "227e8be1-350d-4586-8fe3-5eecd823829f",
+          "uuid": "3ce1f586-93dc-45e1-a86e-5049a83994c9",
           "title": "Template Description here.",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Template Test 1 here.",
               "fullTitle": "Template Description here. Template Test 1 here.",
               "timedOut": null,
-              "duration": 726,
+              "duration": 2060,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.log('Running Smoke tests!');\nconsole.log('Running Smoke tests!');",
               "err": {},
-              "uuid": "df5be37a-3685-41e6-8816-e1456a2721bf",
-              "parentUUID": "227e8be1-350d-4586-8fe3-5eecd823829f",
+              "uuid": "ec6995e9-89ce-488a-a69e-0016aeaea255",
+              "parentUUID": "3ce1f586-93dc-45e1-a86e-5049a83994c9",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "Template Test 2 here.",
               "fullTitle": "Template Description here. Template Test 2 here.",
               "timedOut": null,
-              "duration": 189,
+              "duration": 351,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.log('Running Regression tests!');\nconsole.log('Running Regression tests!');",
               "err": {},
-              "uuid": "b6514666-9a1a-443e-bac0-78a5adbadadf",
-              "parentUUID": "227e8be1-350d-4586-8fe3-5eecd823829f",
+              "uuid": "e7640035-17d0-499a-9c8d-77e9e987c472",
+              "parentUUID": "3ce1f586-93dc-45e1-a86e-5049a83994c9",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "df5be37a-3685-41e6-8816-e1456a2721bf",
-            "b6514666-9a1a-443e-bac0-78a5adbadadf"
+            "ec6995e9-89ce-488a-a69e-0016aeaea255",
+            "e7640035-17d0-499a-9c8d-77e9e987c472"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 915,
+          "duration": 2411,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
