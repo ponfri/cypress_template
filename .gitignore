@@ -1,5 +1,5 @@
+.DS_Store
 node_modules
-
 mochawesome-report
 allure-results
 cypress/results
