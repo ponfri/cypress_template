@@ -1,6 +1,6 @@
 services:
   cypress_test:
-    image: cypress_template
+    image: cypress_temp
     build:
       context: .
       dockerfile: ./Dockerfile
