@@ -1,1 +1,8 @@
 node_modules
+
+mochawesome-report
+allure-results
+cypress/results
+cypress/screenshots
+cypress/videos
+mochawesome.json
