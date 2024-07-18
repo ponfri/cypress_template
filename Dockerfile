@@ -12,6 +12,6 @@ RUN npx cypress verify
 
 COPY . /app
 
-ENTRYPOINT [ "npm" ]
+ENTRYPOINT [ "sh", "-c" ]
 
-#CMD ["run", "cypress:run"]
+CMD ["npm run cypress:run"]

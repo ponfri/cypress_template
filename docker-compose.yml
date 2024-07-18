@@ -1,6 +1,7 @@
 services:
-  cypress_test:
+  cypress_template:
     image: cypress_temp
+    container_name: cypress_template
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -8,4 +9,3 @@ services:
       - ./dockerReports/:/app/cypress/results
       - ./dockerReports/:/app/mochawesome-report
       - ./dockerReports/:/app/allure-results
-    command: ["run", "cypress:run"]

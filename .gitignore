@@ -2,6 +2,7 @@
 node_modules
 mochawesome-report
 allure-results
+dockerReports
 cypress/results
 cypress/screenshots
 cypress/videos
