@@ -6,6 +6,7 @@ export default defineConfig({
   viewportWidth: 1920,
   video: false,
   experimentalMemoryManagement: true,
+  experimentalWebKitSupport: true,
   env: {
     username: "",
     password: "",
