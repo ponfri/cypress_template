@@ -2,6 +2,7 @@ import { defineConfig } from 'cypress';
 const { allureCypress } = require("allure-cypress/reporter");
 
 export default defineConfig({
+  projectId: '86rthf',
   viewportHeight: 1080,
   viewportWidth: 1920,
   video: false,

@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:run": "npm run prereport && cypress run; npm run junit:merge; npm run mochawesome:merge",
+    "cypress:run_spec": "npx cypress run --spec './cypress/e2e/visit.site.spec.ts' --record --key 07597a08-0895-43e5-a9a4-1fce7923f75d",
+    "cypress:run_browsers": "npm run cypress:run_spec -- --browser chrome --group Chrome --ci-build-id 002 & npm run cypress:run_spec -- --browser electron --group Electron --ci-build-id 002",
     "delete:reports": "rm -r cypress/results || true && rm -r mochawesome-report || true",
     "prereport": "npm run delete:reports",
     "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
@@ -48,6 +50,7 @@
     "mochawesome-report-generator": "^6.2.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
+    "playwright-webkit": "^1.45.3",
     "start-server-and-test": "^2.0.4",
     "typescript": "^5.5.3",
     "webpack": "^5.92.1",
