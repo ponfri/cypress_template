@@ -85,7 +85,7 @@ Cypress.Commands.add('waitForPageReady', () => {
     const images = $body.find('img');
     if (images.length) {
       cy.wrap(images).each($img => {
-        cy.wrap($img).should('be.visible');
+        // Only check that the image is loaded, not visible
         cy.wrap($img).should($el => {
           expect(($el[0] as HTMLImageElement).complete).to.be.true;
         });

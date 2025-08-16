@@ -22,15 +22,15 @@ This file defines mandatory conventions for all Cypress test code in this projec
 
 ## Page Object Usage Policy
 *Purpose: Ensure all page object usage is consistent, maintainable, and easy to refactor.*
-- **Page object instantiation location**: Always instantiate page objects (e.g., `const utilitiesPage = new UtilitiesPage();`) at the top of the test file, directly under the import statements. Do not instantiate page objects inside test blocks or functions.
+- **Page object instantiation location (MANDATORY)**: You must instantiate all page objects (e.g., `const utilitiesPage = new UtilitiesPage();`) at the top of the test file, directly under the import statements. **Never instantiate page objects inside test blocks, functions, or within any describe/it hooks.** This rule is strictly enforced for maintainability and clarity. If you violate this rule, your code will be rejected or refactored.
 
-- **Always use page objects**: When writing or generating Cypress tests for this project, always use the page object classes in `cypress/e2e/pageObjects/*.po.ts` for all element interactions, navigation, and assertions.
-- **Do not use raw selectors**: Avoid using raw selectors (e.g., `cy.get`, `cy.contains`, etc.) directly in test files. Instead, use the public getters and interaction methods provided by the page object classes.
-- **Import convention**: Import page objects at the top of each test file. Use the correct `.po.ts` filename and instantiate with any required constructor arguments.
-- **Navigation**: Use navigation and workflow methods from the page objects for moving between pages or performing common actions.
-- **Element interaction**: Use interaction methods (e.g., `clickButton()`, `typeInField()`) from the page objects. If a new interaction is needed, add it to the relevant page object class first.
-- **Assertions**: Use assertion methods from page objects if available. If not, add them to the page object before using in tests.
-- **Extending page objects**: If a test requires a new element or workflow, update the corresponding page object class to include a getter or method for it before using in the test.
+**Navigation (MANDATORY)**: Always use menu navigation or page object workflow methods to move between pages (e.g., clicking navigation links/buttons). Only use direct `visit()` calls if explicitly specified in the test requirements. Do not use `cy.visit()` or pageObject.visit() for navigation unless instructed.
+
+
+
+
+## Formatting Requirements
+- **Import statements**: Do not add blank lines between import statements. Only add a single blank line above the first import and below the last import. This keeps the import block compact and readable.
 
 ## Example Test Structure
 
@@ -39,6 +39,7 @@ import { LandingPage } from '../pageObjects/LandingPage.po';
 
 const landingPage = new LandingPage('/');
 
+// All tests must be inside a describe block. Never place test code outside of describe.
 describe('Landing Page Tests', () => {
   beforeEach(() => {
     landingPage.visit();
@@ -68,6 +69,7 @@ describe('Landing Page Tests', () => {
 
 ## Example Custom Command Usage
 
+
 ```typescript
 // Usage in a test file
 cy.callSomething('Log in as admin and verify dashboard loads').then((response) => {
@@ -80,10 +82,9 @@ cy.callSomething('Log in as admin and verify dashboard loads').then((response) =
 
 ## Fixtures Usage Policy
 *Purpose: Organize and document the use of fixture data for reliable, maintainable tests.*
-
 - **Always use the fixtures folder for mocked data**: When writing or generating Cypress tests for this project, use files in `cypress/fixtures/` for any mocked data, API responses, or test data.
-- **Reference fixtures in tests**: Use `cy.fixture('filename')` to load fixture data, and reference it in your tests for assertions, intercepts, or setup.
-- **Keep fixtures organized**: Store JSON, text, or other fixture files in the `cypress/fixtures/` folder and name them clearly according to their purpose.
+- **Reference fixtures in tests**: Always use `cy.fixture('filename')` to load fixture data at the start of your test, and reference it in your tests for assertions, intercepts, or setup. Never instantiate or load fixtures inside test blocks or functions unless required for dynamic data.
+- **Keep fixtures organized**: Store JSON, text, or other fixture files in the `cypress/fixtures/` folder and name them clearly according to their purpose. Do not place fixture files in any other location.
 - **Update fixtures as needed**: If a test requires new or updated mocked data, add or modify the relevant fixture file before using it in the test.
 
 ## Example Fixture Usage
