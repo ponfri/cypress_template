@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "target": "es5",
+    "target": "es2020",
     "lib": ["es5", "dom"],
     "baseUrl": "../node_modules",
     "types": [
       "cypress", "node", "@cypress/grep"
     ],
-    "noEmit": true
+    "noEmit": true,
+    "moduleResolution": "nodenext",
+    "module": "NodeNext"
   },
   "include": [
     "**/*.*",
     "**/*.ts",
     "**/*.d.ts",
-    "**/*.json"
+    "**/*.json",
+    "cypress/support/customCommands.d.ts"
   ]
 }

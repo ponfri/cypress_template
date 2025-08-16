@@ -1,9 +1,11 @@
 {
   "extends": "./cypress/tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "types": ["cypress", "node"]
+  "sourceMap": true,
+  "esModuleInterop": true,
+  "types": ["cypress", "node"],
+  "moduleResolution": "nodenext",
+  "module": "NodeNext"
   },
   "include": [
     "./cypress/**/*.ts",

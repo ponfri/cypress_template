@@ -1,5 +1,8 @@
 import { defineConfig } from 'cypress';
 const { allureCypress } = require("allure-cypress/reporter");
+import * as dotenv from 'dotenv';
+
+dotenv.config(); // Load .env file
 
 export default defineConfig({
   projectId: '86rthf',
@@ -23,15 +26,19 @@ export default defineConfig({
     configFile: 'reporter-config.json',
   },
   e2e: {
-    baseUrl: 'https://conduit.bondaracademy.com',
+    baseUrl: 'https://example.cypress.io',
     excludeSpecPattern: ['**/1-getting-started', '**/2-advanced-examples'],
-    specPattern: 'cypress/e2e/**/*.spec.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/e2e/tests/**/*.{ts,js}',
     screenshotsFolder: 'cypress/screenshots',
     videosFolder: 'cypress/videos',
     downloadsFolder: 'cypress/downloads',
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
+
+      // Cypress grep plugin
       require('@cypress/grep/src/plugin')(config);
+
+      // Allure reporter plugin
       allureCypress(on, {
         resultsDir: "./allure-results",
         links: [
@@ -39,6 +46,8 @@ export default defineConfig({
           { type: "tms", urlTemplate: "https://tms.example.com/%s" },
         ],
       });
+
+      // Browser launch tweaks
       on('before:browser:launch', (browser, launchOptions) => {
         if (['chrome', 'edge'].includes(browser.name)) {
           if (browser.isHeadless) {
