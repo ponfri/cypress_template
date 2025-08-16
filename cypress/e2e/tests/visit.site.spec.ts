@@ -8,13 +8,13 @@
  * ['@regression', '@smoke', '@sanity', '@template'],
  */
 
-import { LandingPage } from '../pageObjects/LandingPage';
+import { LandingPage } from '../pageObjects/LandingPage.po';
 
-const landingPage = new LandingPage('/');
+const landingPage = new LandingPage();
 
 describe('Template Description here.', () => {
   beforeEach('Run before each test here.', () => {
-    landingPage.visit();
+  landingPage.visit('/');
   });
 
   // it('Template Test 1 here.', { tags: ['@smoke', '@template'] }, () => {

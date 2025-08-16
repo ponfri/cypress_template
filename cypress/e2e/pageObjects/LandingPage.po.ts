@@ -1,6 +1,9 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
 export class LandingPage extends BasePage {
+  constructor() {
+    super('/');
+  }
   // Private elements
   #elements = {
     header: () => cy.get('h1'),

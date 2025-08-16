@@ -86,7 +86,7 @@ export class BasePage {
   clickCommandsSpiesStubsClocks() { return this.#navElements.commandsSpiesStubsClocks().click() }
 
   // Utility: visit page
-  visit(url?: string) {
+  public visit(url?: string) {
     if (url) {
       cy.visit(url);
     } else {
