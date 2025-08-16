@@ -46,3 +46,50 @@ Cypress.Commands.add('callGrok', (prompt: string) => {
     return data.choices[0].message.content.trim(); // Cleaned-up code string
   });
 });
+
+// Custom command: Scroll page below the fold
+
+// Custom command: Scroll page below the fold (slower)
+Cypress.Commands.add('scrollBelowFold', () => {
+  cy.window().then(win => {
+    cy.scrollTo(0, win.innerHeight, { duration: 1200 }); // 1200ms for visible scroll
+  });
+});
+
+// Custom command: Scroll to the end of the page
+
+// Custom command: Scroll to the end of the page (slower)
+Cypress.Commands.add('scrollToEnd', () => {
+  cy.window().then(() => {
+    cy.scrollTo('bottom', { duration: 1200 });
+  });
+});
+
+// Custom command: Scroll to the top of the page
+
+// Custom command: Scroll to the top of the page (slower)
+Cypress.Commands.add('scrollToTop', () => {
+  cy.window().then(() => {
+    cy.scrollTo('top', { duration: 1200 });
+  });
+});
+
+// Custom command: Wait for page to be fully loaded and all elements in the DOM
+Cypress.Commands.add('waitForPageReady', () => {
+  // Wait for document.readyState to be 'complete'
+  cy.document().should(doc => {
+    expect(doc.readyState).to.eq('complete');
+  });
+  // Optionally, wait for all images to be loaded
+  cy.get('body').then($body => {
+    const images = $body.find('img');
+    if (images.length) {
+      cy.wrap(images).each($img => {
+        cy.wrap($img).should('be.visible');
+        cy.wrap($img).should($el => {
+          expect(($el[0] as HTMLImageElement).complete).to.be.true;
+        });
+      });
+    }
+  });
+});

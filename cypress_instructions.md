@@ -1,5 +1,15 @@
 
+
 # Cypress Project Instructions for GitHub Copilot
+
+## Mandatory TypeScript Usage
+*Purpose: Ensure all Cypress code is strictly typed and maintainable.*
+- **All Cypress test code, page objects, custom commands, and support files must be written in TypeScript (`.ts` or `.po.ts`).**
+- **Do not use JavaScript files (`.js`) for any new or updated code.**
+- **Type all function parameters, return values, and class properties.**
+- **Add or update TypeScript definitions for all custom commands in `customCommands.d.ts`.**
+- **Use strict typing and avoid use of `any` unless absolutely necessary.**
+- **Update existing files to TypeScript if you find legacy JavaScript.**
 
 ## Quick Reference
 - [Custom Commands Documentation](./ai_instructions/custom_commands.md)
