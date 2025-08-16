@@ -10,11 +10,11 @@
 
 import { LandingPage } from '../pageObjects/LandingPage.po';
 
-const landingPage = new LandingPage();
+const landingPage = new LandingPage('/');
 
 describe('Template Description here.', () => {
   beforeEach('Run before each test here.', () => {
-  landingPage.visit('/');
+  landingPage.visit('/'); // BasePage provides visit()
   });
 
   // it('Template Test 1 here.', { tags: ['@smoke', '@template'] }, () => {
@@ -26,5 +26,11 @@ describe('Template Description here.', () => {
   //   cy.log('Running Regression tests!');
   //   console.log('Running Regression tests!');
   // });
+
+  it('[ ] ', () => {
+  landingPage.Header.should('contain.text', 'Kitchen Sink');
+  landingPage.SubHeader.should('be.visible');
+    cy.url().should('include', '.cypress.io');
+  });
 
 });

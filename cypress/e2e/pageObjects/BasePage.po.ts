@@ -6,9 +6,13 @@ export class BasePage {
     this.path = path;
   }
 
-  // visit() {
-  //   cy.visit(this.path); // baseUrl from cypress.config.ts will be prepended
-  // }
+  public visit(url?: string) {
+    if (url) {
+      cy.visit(url);
+    } else {
+      cy.visit(this.path || '/');
+    }
+  }
 
   // Navigation menu elements
   #navElements = {
@@ -85,12 +89,5 @@ export class BasePage {
   clickCommandsCookies() { return this.#navElements.commandsCookies().click() }
   clickCommandsSpiesStubsClocks() { return this.#navElements.commandsSpiesStubsClocks().click() }
 
-  // Utility: visit page
-  public visit(url?: string) {
-    if (url) {
-      cy.visit(url);
-    } else {
-      cy.visit('/');
-    }
-  }
+  // ...existing code...
 }

@@ -1,8 +1,8 @@
 import { BasePage } from './BasePage.po';
 
 export class LandingPage extends BasePage {
-  constructor() {
-    super('/');
+  public visit(url?: string) {
+    super.visit(url);
   }
   // Private elements
   #elements = {
