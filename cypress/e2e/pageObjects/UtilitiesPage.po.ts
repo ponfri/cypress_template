@@ -1,4 +1,4 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
 export class UtilitiesPage extends BasePage {
 	constructor() {
