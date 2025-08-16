@@ -1,6 +1,7 @@
 # Cypress Project Instructions for GitHub Copilot
 
 ## Page Object Usage Policy
+- **Page object instantiation location**: Always instantiate page objects (e.g., `const utilitiesPage = new UtilitiesPage();`) at the top of the test file, directly under the import statements. Do not instantiate page objects inside test blocks or functions.
 
 - **Always use page objects**: When writing or generating Cypress tests for this project, always use the page object classes in `cypress/e2e/pageObjects/*.po.ts` for all element interactions, navigation, and assertions.
 - **Do not use raw selectors**: Avoid using raw selectors (e.g., `cy.get`, `cy.contains`, etc.) directly in test files. Instead, use the public getters and interaction methods provided by the page object classes.
@@ -76,7 +77,7 @@ cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData');
 - **Test template**: When creating a new test, always use the following format:
 
 ```typescript
-it('[ ] ', () => {
+it.only('[ ] ', { tags: ['@smoke', '@template'] }, () => {
   // Add test steps here
 });
 ```
