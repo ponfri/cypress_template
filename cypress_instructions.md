@@ -52,7 +52,26 @@ cy.callSomething('Log in as admin and verify dashboard loads').then((response) =
 ```
 
 
-## Test Template Format
+
+## Fixtures Usage Policy
+
+- **Always use the fixtures folder for mocked data**: When writing or generating Cypress tests for this project, use files in `cypress/fixtures/` for any mocked data, API responses, or test data.
+- **Reference fixtures in tests**: Use `cy.fixture('filename')` to load fixture data, and reference it in your tests for assertions, intercepts, or setup.
+- **Keep fixtures organized**: Store JSON, text, or other fixture files in the `cypress/fixtures/` folder and name them clearly according to their purpose.
+- **Update fixtures as needed**: If a test requires new or updated mocked data, add or modify the relevant fixture file before using it in the test.
+
+## Example Fixture Usage
+
+```typescript
+// Load fixture data in a test
+cy.fixture('example.json').then((data) => {
+  expect(data).to.have.property('name');
+});
+
+// Use fixture in an intercept
+cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData');
+```
+
 
 - **Test template**: When creating a new test, always use the following format:
 
