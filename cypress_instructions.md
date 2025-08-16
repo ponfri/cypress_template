@@ -100,7 +100,11 @@ cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData');
 ```
 
 
-- **Test template**: When creating a new test, always use the following format. Use `it.only` so only the new test runs during development. Remove `.only` when running the full suite.
+---
+**MANDATORY: All new tests must use `it.only` during development.**
+
+- When creating a new test, always use the following format. Use `it.only` so only the new test runs during development. Remove `.only` when running the full suite or before committing code.
+- If you do not use `it.only` for new tests, your code will be rejected or refactored. This is strictly enforced to prevent accidental execution of unrelated tests and to focus on the test under development.
 
 - **Test comments**: Always add a comment for each statement in your test to explain what is being done in each section. This improves readability and maintainability for all contributors.
 
