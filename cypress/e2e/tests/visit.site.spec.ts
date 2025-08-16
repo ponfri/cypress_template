@@ -8,14 +8,13 @@
  * ['@regression', '@smoke', '@sanity', '@template'],
  */
 
-import { LandingPage } from '../pageObjects/LandingPage.po';
-import { UtilitiesPage } from '../pageObjects/UtilitiesPage.po';
+import { LandingPage } from "../pageObjects/LandingPage.po";
 
-const landingPage = new LandingPage('/');
+const landingPage = new LandingPage("/");
 
-describe('Template Description here.', () => {
-  beforeEach('Run before each test here.', () => {
-  landingPage.visit('/'); // BasePage provides visit()
+describe("Template Description here.", () => {
+  beforeEach("Run before each test here.", () => {
+    landingPage.visit("/"); // BasePage provides visit()
   });
 
   // it('Template Test 1 here.', { tags: ['@smoke', '@template'] }, () => {
@@ -28,9 +27,13 @@ describe('Template Description here.', () => {
   //   console.log('Running Regression tests!');
   // });
 
-  it('[ ] Verify that the we are on landing page after page launch.', { tags: ['@smoke', '@template'] }, () => {
-  landingPage.Header.should('contain.text', 'Kitchen Sink');
-  landingPage.SubHeader.should('be.visible');
-    cy.url().should('include', '.cypress.io');
-  });
+  it(
+    "[ ] Verify that the we are on landing page after page launch.",
+    { tags: ["@smoke", "@template"] },
+    () => {
+      landingPage.Header.should("contain.text", "Kitchen Sink");
+      landingPage.SubHeader.should("be.visible");
+      cy.url().should("include", ".cypress.io");
+    }
+  );
 });

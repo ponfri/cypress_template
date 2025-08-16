@@ -1,6 +1,17 @@
+
 # Cypress Project Instructions for GitHub Copilot
 
+## Quick Reference
+- [Custom Commands Documentation](./ai_instructions/custom_commands.md)
+- [Page Objects Documentation](./ai_instructions/page_objects.md)
+- [Fixtures Documentation](./ai_instructions/fixtures.md)
+
+This file defines mandatory conventions for all Cypress test code in this project. All contributors and Copilot must follow these rules for consistency, maintainability, and clarity.
+
+
+
 ## Page Object Usage Policy
+*Purpose: Ensure all page object usage is consistent, maintainable, and easy to refactor.*
 - **Page object instantiation location**: Always instantiate page objects (e.g., `const utilitiesPage = new UtilitiesPage();`) at the top of the test file, directly under the import statements. Do not instantiate page objects inside test blocks or functions.
 
 - **Always use page objects**: When writing or generating Cypress tests for this project, always use the page object classes in `cypress/e2e/pageObjects/*.po.ts` for all element interactions, navigation, and assertions.
@@ -35,7 +46,9 @@ describe('Landing Page Tests', () => {
 ```
 
 
+
 ## Custom Commands Usage Policy
+*Purpose: Standardize the use and extension of custom Cypress commands for reusable workflows.*
 
 - **Always use custom commands**: When writing or generating Cypress tests for this project, use custom commands defined in `cypress/support/commands.ts` whenever they provide relevant functionality.
 - **Reference documentation**: For every custom command, refer to its documentation in `cypress/support/customCommands.d.ts` to understand its purpose, parameters, and return type.
@@ -54,7 +67,9 @@ cy.callSomething('Log in as admin and verify dashboard loads').then((response) =
 
 
 
+
 ## Fixtures Usage Policy
+*Purpose: Organize and document the use of fixture data for reliable, maintainable tests.*
 
 - **Always use the fixtures folder for mocked data**: When writing or generating Cypress tests for this project, use files in `cypress/fixtures/` for any mocked data, API responses, or test data.
 - **Reference fixtures in tests**: Use `cy.fixture('filename')` to load fixture data, and reference it in your tests for assertions, intercepts, or setup.
@@ -74,7 +89,11 @@ cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData');
 ```
 
 
-- **Test template**: When creating a new test, always use the following format:
+- **Test template**: When creating a new test, always use the following format. Use `it.only` so only the new test runs during development. Remove `.only` when running the full suite.
+
+- **Test comments**: Always add a comment for each statement in your test to explain what is being done in each section. This improves readability and maintainability for all contributors.
+
+- **Test spacing**: Always insert a blank line above each new test for readability and consistency.
 
 ```typescript
 it.only('[ ] ', { tags: ['@smoke', '@template'] }, () => {
@@ -84,7 +103,11 @@ it.only('[ ] ', { tags: ['@smoke', '@template'] }, () => {
 
 Do not add any text between the brackets `[ ]` in the test name. Add your test steps inside the block as needed.
 
+*Purpose: Enforce a clear, consistent test structure and make it easy to focus on new tests during development.*
+
+
 ## General Guidelines
+*Purpose: Keep the codebase maintainable, up to date, and easy for all contributors to understand.*
 
 - Keep page objects and custom commands up to date with the site structure and workflows.
 - Prefer workflow methods for multi-step actions.
