@@ -150,12 +150,12 @@ Cypress.Commands.add('mockApi', (method: Method, url: string, mockData: string |
 // =========================
 // Storage Commands
 // =========================
-Cypress.Commands.add('clearCookies', () => {
-  cy.clearCookies();
+Cypress.Commands.overwrite('clearCookies', (originalFn, ...args) => {
+  return originalFn(...args);
 });
 
-Cypress.Commands.add('clearLocalStorage', () => {
-  cy.clearLocalStorage();
+Cypress.Commands.overwrite('clearLocalStorage', (originalFn, ...args) => {
+  return originalFn(...args);
 });
 
 Cypress.Commands.add('clearSessionStorage', () => {
