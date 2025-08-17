@@ -33,6 +33,43 @@ Cypress.Commands.add('assertText', (selector: string, expected: string) => {
   cy.get(selector).should('have.text', expected);
 });
 
+Cypress.Commands.add('measureApiResponseTime', (method: string, url: string, threshold: number) => {
+  const start = Date.now();
+  cy.request({ method, url }).then((response) => {
+    const duration = Date.now() - start;
+    expect(duration).to.be.lessThan(threshold);
+  });
+});
+
+Cypress.Commands.add('measurePageLoadTime', (threshold: number) => {
+  cy.window().then((win) => {
+    const timing = win.performance.timing;
+    const loadTime = timing.loadEventEnd - timing.navigationStart;
+    expect(loadTime).to.be.lessThan(threshold);
+  });
+});
+
+Cypress.Commands.add('measureResourceLoad', (selector: string, threshold: number) => {
+  cy.get(selector).then(($el) => {
+    const resource = $el[0];
+    let src = '';
+    if (resource instanceof HTMLImageElement || resource instanceof HTMLScriptElement) {
+      src = resource.src;
+    }
+    if (src) {
+      cy.window().then((win) => {
+        const entries = win.performance.getEntriesByType('resource');
+        const entry = entries.find((e) => (e as PerformanceResourceTiming).name === src);
+        if (entry && 'responseEnd' in entry && 'startTime' in entry) {
+          const perfEntry = entry as PerformanceResourceTiming;
+          const duration = perfEntry.responseEnd - perfEntry.startTime;
+          expect(duration).to.be.lessThan(threshold);
+        }
+      });
+    }
+  });
+});
+
 Cypress.Commands.add('isNotCovered', (selector: string, blockingSelector?: string) => {
   cy.get(selector).then(($el) => {
     const elRect = $el[0].getBoundingClientRect();
