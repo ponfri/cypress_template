@@ -1,6 +1,52 @@
 import { BasePage } from './BasePage.po';
 
 export class LandingPage extends BasePage {
+  // Robust dropdown openers for parent menus
+  openCommandsDropdown() {
+    cy.contains('li.dropdown', 'Commands').trigger('mouseover');
+  }
+  openActionsDropdown() {
+    cy.contains('li.dropdown', 'Actions').trigger('mouseover');
+  }
+  openWindowDropdown() {
+    cy.contains('li.dropdown', 'Window').trigger('mouseover');
+  }
+  openAssertionsDropdown() {
+    cy.contains('li.dropdown', 'Assertions').trigger('mouseover');
+  }
+  openMiscDropdown() {
+    cy.contains('li.dropdown', 'Misc').trigger('mouseover');
+  }
+  openConnectorsDropdown() {
+    cy.contains('li.dropdown', 'Connectors').trigger('mouseover');
+  }
+  openAliasingDropdown() {
+    cy.contains('li.dropdown', 'Aliasing').trigger('mouseover');
+  }
+  openWaitingDropdown() {
+    cy.contains('li.dropdown', 'Waiting').trigger('mouseover');
+  }
+  openNetworkRequestsDropdown() {
+    cy.contains('li.dropdown', 'Network Requests').trigger('mouseover');
+  }
+  openFilesDropdown() {
+    cy.contains('li.dropdown', 'Files').trigger('mouseover');
+  }
+  openStorageDropdown() {
+    cy.contains('li.dropdown', 'Storage').trigger('mouseover');
+  }
+  openCookiesDropdown() {
+    cy.contains('li.dropdown', 'Cookies').trigger('mouseover');
+  }
+  openSpiesStubsClocksDropdown() {
+    cy.contains('li.dropdown', 'Spies, Stubs & Clocks').trigger('mouseover');
+  }
+  openUtilitiesDropdown() {
+    cy.contains('li.dropdown', 'Utilities').trigger('mouseover');
+  }
+  openCypressAPIDropdown() {
+    cy.contains('li.dropdown', 'Cypress API').trigger('mouseover');
+  }
   public visit(url?: string) {
     super.visit(url);
   }
