@@ -20,6 +20,7 @@
     "docker:run": "docker run --rm --name cypress_template cypress_temp",
     "docker:start": "docker start cypress_template",
     "allure:open": "npx allure open ./allure-results -p 3000",
+  "allure:cleanup": "rm -rf allure-report allure-results || true",
     "allure:run-open": "npm run cypress:run && npm run allure:open",
     "allure:generate": "npx allure generate -c",
     "kill:port": "lsof -ti :8080 | xargs kill -9"

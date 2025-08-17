@@ -1,3 +1,18 @@
+// Custom command to add Allure test description
+Cypress.Commands.add('allureStep', (stepName: string) => {
+  // @ts-ignore
+  if (typeof window !== 'undefined' && window.allure) {
+    // @ts-ignore
+    window.allure.step(stepName);
+  }
+});
+Cypress.Commands.add('allureDescription', (description: string) => {
+  // @ts-ignore
+  if (typeof window !== 'undefined' && window.allure) {
+    // @ts-ignore
+    window.allure.description(description);
+  }
+});
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite

@@ -1,8 +1,15 @@
 
+
 /// <reference types="cypress" />
 
 declare namespace Cypress {
   interface Chainable<Subject = any> {
+    /**
+     * Adds an Allure step annotation to the report.
+     * @param stepName The name of the step to add to the Allure report.
+     * @example cy.allureStep('Check if header exists')
+     */
+    allureStep(stepName: string): Chainable<void>;
     // =========================
     // Assertion Commands
     // =========================
@@ -12,6 +19,12 @@ declare namespace Cypress {
      * @param expected The expected text.
      */
     assertText(selector: string, expected: string): Chainable<JQuery<HTMLElement>>;
+  /**
+   * Adds a description to the Allure report for the current test.
+   * @param description The description text to add.
+   * @example cy.allureDescription('This test verifies the header.')
+   */
+  allureDescription(description: string): Chainable<void>;
   /**
    * Asserts that the element is visible.
    * @param selector The CSS selector.

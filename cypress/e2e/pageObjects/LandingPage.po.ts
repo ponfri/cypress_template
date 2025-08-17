@@ -9,7 +9,6 @@ export class LandingPage extends BasePage {
   #elements = {
     header: () => cy.get('h1'),
     subHeader: () => cy.get('h2'),
-    mainSection: () => cy.get('main'),
     linkDocs: () => cy.contains('a', 'docs.cypress.io'),
     linkCypressIO: () => cy.contains('a', 'cypress.io'),
     linkGitHub: () => cy.contains('a', 'GitHub'),
