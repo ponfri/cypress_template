@@ -41,6 +41,7 @@ description: Co-pilot instructions for our kitchen sink example web site.
 - [General Guidelines](#general-guidelines)
 - [Test Naming and Tagging](#test-naming-and-tagging)
 - [Assertions and Reliability](#assertions-and-reliability)
+- [Environment Data Usage Rule](#environment-data-usage-rule)
 
 ---
 
