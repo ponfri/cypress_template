@@ -24,32 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('callGrok', (prompt: string) => {
-  const apiKey = Cypress.env('GROK_API_KEY');
-  const fullPrompt = `Generate a Cypress test script in TypeScript to automate the following task on a test website: ${prompt}. Return only the raw Cypress commands, no explanations, no prose, just the code with proper syntax (e.g., cy.visit(), cy.get().type()). Use single quotes and semicolons.`;
-  return cy.request({
-    method: 'POST',
-    url: 'https://api.x.ai/v1/chat/completions',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: {
-      model: 'grok-2',
-      messages: [
-        { role: 'system', content: 'You are Grok, built by xAI. You are an expert in Cypress and TypeScript, tasked with generating test automation scripts.' },
-        { role: 'user', content: fullPrompt },
-      ],
-    },
-  }).then((response) => {
-    const data = response.body as { choices: { message: { content: string } }[] };
-    return data.choices[0].message.content.trim(); // Cleaned-up code string
-  });
-});
-
 // Custom command: Scroll page below the fold
-
-// Custom command: Scroll page below the fold (slower)
 Cypress.Commands.add('scrollBelowFold', () => {
   cy.window().then(win => {
     cy.scrollTo(0, win.innerHeight, { duration: 1200 }); // 1200ms for visible scroll
@@ -57,8 +32,6 @@ Cypress.Commands.add('scrollBelowFold', () => {
 });
 
 // Custom command: Scroll to the end of the page
-
-// Custom command: Scroll to the end of the page (slower)
 Cypress.Commands.add('scrollToEnd', () => {
   cy.window().then(() => {
     cy.scrollTo('bottom', { duration: 1200 });
@@ -66,8 +39,6 @@ Cypress.Commands.add('scrollToEnd', () => {
 });
 
 // Custom command: Scroll to the top of the page
-
-// Custom command: Scroll to the top of the page (slower)
 Cypress.Commands.add('scrollToTop', () => {
   cy.window().then(() => {
     cy.scrollTo('top', { duration: 1200 });

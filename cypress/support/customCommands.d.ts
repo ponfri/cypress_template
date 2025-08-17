@@ -3,29 +3,29 @@
 declare namespace Cypress {
   interface Chainable<Subject = any> {
     /**
-     * Calls the Grok API with a prompt and returns the response as a string.
-     * @param prompt The question or instruction to send to Grok
-     */
-    callGrok(prompt: string): Chainable<string>;
-
-    /**
      * Scrolls the page just below the visible fold (viewport).
+     * @returns Chainable<void>
+     * @example cy.scrollBelowFold()
      */
     scrollBelowFold(): Chainable<void>;
 
     /**
      * Scrolls to the end (bottom) of the page.
+     * @returns Chainable<void>
+     * @example cy.scrollToEnd()
      */
     scrollToEnd(): Chainable<void>;
 
     /**
-     * Custom command to scroll to the top of the page.
+     * Scrolls to the top of the page.
+     * @returns Chainable<void>
      * @example cy.scrollToTop()
      */
     scrollToTop(): Chainable<void>;
     
     /**
-     * Custom command to wait for the page to be fully loaded and all elements in the DOM.
+     * Waits for the page to be fully loaded and all elements in the DOM.
+     * @returns Chainable<void>
      * @example cy.waitForPageReady()
      */
     waitForPageReady(): Chainable<void>;
