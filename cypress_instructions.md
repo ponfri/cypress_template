@@ -1,4 +1,9 @@
-
+---
+title: Main instructions file.
+author: Phillip Onfri
+date: 2025-08-17
+description: Co-pilot instructions for our kitchen sink example web site.
+---
 
 # Cypress Project Instructions for GitHub Copilot
 
@@ -21,19 +26,21 @@
 
 ## Table of Contents
 
-1. [Mandatory TypeScript Usage](#mandatory-typescript-usage)
-2. [Quick Reference](#quick-reference)
+- [Mandatory TypeScript Usage](#mandatory-typescript-usage)
+- [Quick Reference](#quick-reference)
   - [Custom Commands Documentation](./ai_instructions/custom_commands.md)
   - [Page Objects Documentation](./ai_instructions/page_objects.md)
   - [Fixtures Documentation](./ai_instructions/fixtures.md)
-3. [Page Object Usage Policy](#page-object-usage-policy)
-4. [Formatting Requirements](#formatting-requirements)
-5. [Example Test Structure](#example-test-structure)
-6. [Custom Commands Usage Policy](#custom-commands-usage-policy)
-7. [Example Custom Command Usage](#example-custom-command-usage)
-8. [Fixtures Usage Policy](#fixtures-usage-policy)
-9. [Example Fixture Usage](#example-fixture-usage)
-10. [General Guidelines](#general-guidelines)
+- [Page Object Usage Policy](#page-object-usage-policy)
+- [Formatting Requirements](#formatting-requirements)
+- [Example Test Structure](#example-test-structure)
+- [Custom Commands Usage Policy](#custom-commands-usage-policy)
+- [Example Custom Command Usage](#example-custom-command-usage)
+- [Fixtures Usage Policy](#fixtures-usage-policy)
+- [Example Fixture Usage](#example-fixture-usage)
+- [General Guidelines](#general-guidelines)
+- [Test Naming and Tagging](#test-naming-and-tagging)
+- [Assertions and Reliability](#assertions-and-reliability)
 
 ---
 
@@ -58,19 +65,21 @@ This file defines mandatory conventions for all Cypress test code in this projec
 ```typescript
 import { LandingPage } from '../pageObjects/LandingPage.po';
 
-const landingPage = new LandingPage('/');
+const landingPage = new LandingPage('/'); // Instantiate page object at top
 
 // All tests must be inside a describe block. Never place test code outside of describe.
 describe('Landing Page Tests', () => {
   beforeEach(() => {
-    landingPage.visit();
+    landingPage.visit(); // Visit the landing page before each test
   });
 
   it('should display the Kitchen Sink header', () => {
+    // Assert that the header is visible
     landingPage.kitchenSinkHeader.should('be.visible');
   });
 
   it('should navigate to the Utilities page using the menu', () => {
+    // Use page object method to navigate
     landingPage.clickNavUtilities();
     // Use UtilitiesPage object for further actions
   });
@@ -90,10 +99,11 @@ describe('Landing Page Tests', () => {
 
 ## Example Custom Command Usage
 
-
 ```typescript
 // Usage in a test file
+// Call a custom command and check the response
 cy.callSomething('Log in as admin and verify dashboard loads').then((response) => {
+  // Assert that the response includes cy.visit
   expect(response).to.include('cy.visit');
 });
 ```
@@ -113,11 +123,12 @@ cy.callSomething('Log in as admin and verify dashboard loads').then((response) =
 ```typescript
 // Load fixture data in a test
 cy.fixture('example.json').then((data) => {
+  // Assert that the fixture data has a 'name' property
   expect(data).to.have.property('name');
 });
 
 // Use fixture in an intercept
-cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData');
+cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData'); // Mock API response with fixture
 ```
 
 
@@ -142,6 +153,30 @@ Do not add any text between the brackets `[ ]` in the test name. Add your test s
 *Purpose: Enforce a clear, consistent test structure and make it easy to focus on new tests during development.*
 
 
+## Test Naming and Tagging
+- **File Naming:** Use `.spec.ts` for all test files. Name files according to the feature or page tested (e.g., `login.spec.ts`, `files.spec.ts`).
+- **Test Naming:** Use descriptive names for `describe` and `it` blocks. Include tags for smoke, regression, etc.
+- **Example:**
+```typescript
+it.only('[Login] should allow admin to log in', { tags: ['@smoke', '@login'] }, () => {
+  // Test steps here
+});
+```
+
+
+## Assertions and Reliability
+- Prefer `.should('deep.equal', ...)` for object comparisons.
+- Use `.should('have.property', ...)` for property checks.
+- Always assert on network responses and UI changes.
+- Use `cy.waitForPageReady()` before assertions that depend on page load.
+
+
+## Reference
+- See `ai_instructions/page_objects.md` for workflow method documentation and advanced usage.
+- See `ai_instructions/custom_commands.md` for API command usage and error handling.
+- See `ai_instructions/fixtures.md` for advanced fixture usage and intercepts.
+
+
 ## General Guidelines
 *Purpose: Keep the codebase maintainable, up to date, and easy for all contributors to understand.*
 
@@ -149,6 +184,16 @@ Do not add any text between the brackets `[ ]` in the test name. Add your test s
 - Prefer workflow methods for multi-step actions.
 - Document any new page object or custom command methods in their class or .d.ts file.
 - If a test cannot be written using page objects or custom commands, update them first.
+
+---
+
+## Code Reuse Policy for Copilot
+
+- **Always reference existing test files and code before generating new tests or functions.**
+- **Do not duplicate logic or reinvent workflows that already exist in the project.**
+- **When implementing new features or tests, reuse and extend existing page objects, custom commands, and test patterns.**
+- **Only write new code for functionality or scenarios that are not already covered.**
+- **If unsure, search the codebase for similar tests or utilities and build upon them.**
 
 ---
 

@@ -1,3 +1,11 @@
+---
+title: Custom commands file.
+author: Phillip Onfri
+date: 2025-08-17
+description: Co-pilot instructions for our kitchen sink example web site.
+---
+
+
 # Custom Commands Documentation
 
 This file documents all custom Cypress commands used in this project. For each command, include its purpose, parameters, return type, and usage example.
@@ -14,10 +22,29 @@ This file documents all custom Cypress commands used in this project. For each c
 - **Returns:** Cypress chainable
 - **Usage:**
 ```typescript
+// Call the custom command and check the response
 cy.callSomething('Log in as admin and verify dashboard loads').then((response) => {
+  // Assert that the response includes cy.visit
   expect(response).to.include('cy.visit');
 });
 ```
+- **Best Practice:** Use for admin login workflows to keep tests DRY and readable.
+
+---
+
+### cy.apiRequest
+- **Purpose:** Make an authenticated API request and handle the response.
+- **Parameters:** `endpoint: string`, `options: object`
+- **Returns:** Cypress chainable (response)
+- **Usage:**
+```typescript
+cy.apiRequest('/api/data', { method: 'GET' }).then((response) => {
+  // Assert response status and body
+  expect(response.status).to.eq(200);
+  expect(response.body).to.have.property('data');
+});
+```
+- **Best Practice:** Always check for error responses and handle them in your tests.
 
 ---
 
@@ -27,8 +54,10 @@ cy.callSomething('Log in as admin and verify dashboard loads').then((response) =
 - **Returns:** Cypress chainable (void)
 - **Usage:**
 ```typescript
+// Scroll just below the fold
 cy.scrollBelowFold();
 ```
+- **Best Practice:** Use for visual regression or lazy-loaded content tests.
 
 ---
 
@@ -38,8 +67,10 @@ cy.scrollBelowFold();
 - **Returns:** Cypress chainable (void)
 - **Usage:**
 ```typescript
+// Scroll to the end of the page
 cy.scrollToEnd();
 ```
+- **Best Practice:** Use for infinite scroll or footer visibility tests.
 
 ---
 Add more custom commands below as you create them.
@@ -65,3 +96,12 @@ cy.waitForPageReady();
 ```typescript
 cy.scrollToTop();
 ```
+
+---
+
+## General Guidelines
+- Always document new custom commands here and in `customCommands.d.ts`.
+- Prefer custom commands for reusable workflows.
+- Add comments to code examples for clarity.
+- Keep command names descriptive and consistent.
+- Document API response handling and error checks for all API-related commands.
