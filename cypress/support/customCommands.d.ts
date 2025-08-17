@@ -36,5 +36,15 @@ declare namespace Cypress {
      * @example cy.waitForPageReady()
      */
     waitForPageReady(): Chainable<void>;
+
+    /**
+     * Makes an API request and returns the response payload.
+     * @param method HTTP method (e.g., 'GET', 'POST')
+     * @param url API endpoint URL
+     * @param options Optional cy.request options (body, headers, etc.)
+     * @returns Chainable<any> - The response payload
+     * @example cy.apiGetPayload('GET', '/api/data').then((payload) => { ... })
+     */
+    apiGetPayload(method: string, url: string, options?: Partial<Cypress.RequestOptions>): Chainable<any>;
   }
 }

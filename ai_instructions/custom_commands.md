@@ -105,3 +105,9 @@ cy.scrollToTop();
 - Add comments to code examples for clarity.
 - Keep command names descriptive and consistent.
 - Document API response handling and error checks for all API-related commands.
+
+## Documentation Instruction for Custom Commands
+
+- When creating custom Cypress commands, always document the function signature, parameters, return type, and usage example in `customCommands.d.ts`.
+- Only add a brief comment in `commands.ts` for each custom command implementation.
+- This ensures all contributors and Copilot can easily find and use custom commands with proper type safety and documentation.

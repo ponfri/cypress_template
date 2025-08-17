@@ -78,3 +78,8 @@ Cypress.Commands.add('waitForPageReady', () => {
     }
   });
 });
+
+// Custom command to make an API request and return the response payload
+Cypress.Commands.add('apiGetPayload', (method: string, url: string, options: Partial<Cypress.RequestOptions> = {}) => {
+  return cy.request({ method, url, ...options }).then((response) => response.body);
+});
