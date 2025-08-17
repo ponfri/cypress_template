@@ -25,23 +25,23 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 // Custom command: Scroll page below the fold
-Cypress.Commands.add('scrollBelowFold', () => {
+Cypress.Commands.add('scrollBelowFold', (duration: number = 1200) => {
   cy.window().then(win => {
-    cy.scrollTo(0, win.innerHeight, { duration: 1200 }); // 1200ms for visible scroll
+    cy.scrollTo(0, win.innerHeight, { duration }); // Correct usage for coordinates
   });
 });
 
 // Custom command: Scroll to the end of the page
-Cypress.Commands.add('scrollToEnd', () => {
+Cypress.Commands.add('scrollToEnd', (duration: number = 1200) => {
   cy.window().then(() => {
-    cy.scrollTo('bottom', { duration: 1200 });
+    cy.scrollTo('bottom', { duration }); // Correct usage for position string
   });
 });
 
 // Custom command: Scroll to the top of the page
-Cypress.Commands.add('scrollToTop', () => {
+Cypress.Commands.add('scrollToTop', (duration: number = 1200) => {
   cy.window().then(() => {
-    cy.scrollTo('top', { duration: 1200 });
+    cy.scrollTo('top', { duration }); // Correct usage for position string
   });
 });
 

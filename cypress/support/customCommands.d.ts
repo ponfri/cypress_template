@@ -4,24 +4,30 @@ declare namespace Cypress {
   interface Chainable<Subject = any> {
     /**
      * Scrolls the page just below the visible fold (viewport).
+     * @param duration Optional scroll animation duration in milliseconds. Default is 1200.
      * @returns Chainable<void>
-     * @example cy.scrollBelowFold()
+     * @example cy.scrollBelowFold() // uses default duration
+     * @example cy.scrollBelowFold(500) // uses custom duration
      */
-    scrollBelowFold(): Chainable<void>;
+    scrollBelowFold(duration?: number): Chainable<void>;
 
     /**
      * Scrolls to the end (bottom) of the page.
+     * @param duration Optional scroll animation duration in milliseconds. Default is 1200.
      * @returns Chainable<void>
-     * @example cy.scrollToEnd()
+     * @example cy.scrollToEnd() // uses default duration
+     * @example cy.scrollToEnd(500) // uses custom duration
      */
-    scrollToEnd(): Chainable<void>;
+    scrollToEnd(duration?: number): Chainable<void>;
 
     /**
      * Scrolls to the top of the page.
+     * @param duration Optional scroll animation duration in milliseconds. Default is 1200.
      * @returns Chainable<void>
-     * @example cy.scrollToTop()
+     * @example cy.scrollToTop() // uses default duration
+     * @example cy.scrollToTop(500) // uses custom duration
      */
-    scrollToTop(): Chainable<void>;
+    scrollToTop(duration?: number): Chainable<void>;
     
     /**
      * Waits for the page to be fully loaded and all elements in the DOM.
