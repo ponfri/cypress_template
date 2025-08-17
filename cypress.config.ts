@@ -38,9 +38,9 @@ export default defineConfig({
       // Cypress grep plugin
       require('@cypress/grep/src/plugin')(config);
 
-      // Allure reporter plugin
-      allureCypress(on, {
-        resultsDir: "./allure-results",
+      // Allure reporter plugin (correct usage)
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
         links: [
           { type: "issue", urlTemplate: "https://issues.example.com/%s" },
           { type: "tms", urlTemplate: "https://tms.example.com/%s" },

@@ -2,9 +2,11 @@
 node_modules
 mochawesome-report
 allure-results
+allure-report
 dockerReports
 cypress/results
 cypress/screenshots
 cypress/videos
 mochawesome.json
 .env
+landingPage.spec.ts

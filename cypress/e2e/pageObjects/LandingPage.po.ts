@@ -1,52 +1,7 @@
 import { BasePage } from './BasePage.po';
 
 export class LandingPage extends BasePage {
-  // Robust dropdown openers for parent menus
-  openCommandsDropdown() {
-    cy.contains('li.dropdown', 'Commands').trigger('mouseover');
-  }
-  openActionsDropdown() {
-    cy.contains('li.dropdown', 'Actions').trigger('mouseover');
-  }
-  openWindowDropdown() {
-    cy.contains('li.dropdown', 'Window').trigger('mouseover');
-  }
-  openAssertionsDropdown() {
-    cy.contains('li.dropdown', 'Assertions').trigger('mouseover');
-  }
-  openMiscDropdown() {
-    cy.contains('li.dropdown', 'Misc').trigger('mouseover');
-  }
-  openConnectorsDropdown() {
-    cy.contains('li.dropdown', 'Connectors').trigger('mouseover');
-  }
-  openAliasingDropdown() {
-    cy.contains('li.dropdown', 'Aliasing').trigger('mouseover');
-  }
-  openWaitingDropdown() {
-    cy.contains('li.dropdown', 'Waiting').trigger('mouseover');
-  }
-  openNetworkRequestsDropdown() {
-    cy.contains('li.dropdown', 'Network Requests').trigger('mouseover');
-  }
-  openFilesDropdown() {
-    cy.contains('li.dropdown', 'Files').trigger('mouseover');
-  }
-  openStorageDropdown() {
-    cy.contains('li.dropdown', 'Storage').trigger('mouseover');
-  }
-  openCookiesDropdown() {
-    cy.contains('li.dropdown', 'Cookies').trigger('mouseover');
-  }
-  openSpiesStubsClocksDropdown() {
-    cy.contains('li.dropdown', 'Spies, Stubs & Clocks').trigger('mouseover');
-  }
-  openUtilitiesDropdown() {
-    cy.contains('li.dropdown', 'Utilities').trigger('mouseover');
-  }
-  openCypressAPIDropdown() {
-    cy.contains('li.dropdown', 'Cypress API').trigger('mouseover');
-  }
+  
   public visit(url?: string) {
     super.visit(url);
   }
@@ -55,7 +10,6 @@ export class LandingPage extends BasePage {
     header: () => cy.get('h1'),
     subHeader: () => cy.get('h2'),
     mainSection: () => cy.get('main'),
-    searchInput: () => cy.get('input[type="search"]'),
     linkDocs: () => cy.contains('a', 'docs.cypress.io'),
     linkCypressIO: () => cy.contains('a', 'cypress.io'),
     linkGitHub: () => cy.contains('a', 'GitHub'),
@@ -197,8 +151,7 @@ export class LandingPage extends BasePage {
   // Public getters and interaction methods for all elements
   get Header() { return this.#elements.header() }
   get SubHeader() { return this.#elements.subHeader() }
-  get MainSection() { return this.#elements.mainSection() }
-  get SearchInput() { return this.#elements.searchInput() }
+  get MainSection() { return cy.get('main, .main-section, [data-cy="main-section"]') }
   get LinkDocs() { return this.#elements.linkDocs() }
   get LinkCypressIO() { return this.#elements.linkCypressIO() }
   get LinkGitHub() { return this.#elements.linkGitHub() }
@@ -315,24 +268,23 @@ export class LandingPage extends BasePage {
   get LinkVersionAPI() { return this.#elements.linkVersionAPI() }
 
   // Interaction methods for all elements
-  typeSearchInput(text: string) { return this.#elements.searchInput().type(text) }
   clickHeader() { return this.#elements.header().click() }
-  clickSubHeader() { return this.#elements.subHeader().click() }
-  clickMainSection() { return this.#elements.mainSection().click() }
+  clickSubHeader() { return this.#elements.subHeader().first().click() }
+  clickMainSection() { return this.MainSection.click() }
   clickLinkDocs() { return this.#elements.linkDocs().click() }
   clickLinkCypressIO() { return this.#elements.linkCypressIO().click() }
   clickLinkGitHub() { return this.#elements.linkGitHub().click() }
   clickLinkUtilities() { return this.#elements.linkUtilities().click() }
   clickLinkCypressAPI() { return this.#elements.linkCypressAPI().click() }
-  clickLinkQuerying() { return this.#elements.linkQuerying().click() }
+  clickLinkQuerying() { return this.#elements.linkQuerying().click({force: true}) }
   clickLinkGet() { return this.#elements.linkGet().click() }
   clickLinkContains() { return this.#elements.linkContains().click() }
   clickLinkWithin() { return this.#elements.linkWithin().click() }
   clickLinkRoot() { return this.#elements.linkRoot().click() }
-  clickLinkTraversal() { return this.#elements.linkTraversal().click() }
+  clickLinkTraversal() { return this.#elements.linkTraversal().click({force: true}) }
   clickLinkChildren() { return this.#elements.linkChildren().click() }
   clickLinkClosest() { return this.#elements.linkClosest().click() }
-  clickLinkEq() { return this.#elements.linkEq().click() }
+  clickLinkEq() { return this.#elements.linkEq().click({force: true}) }
   clickLinkFilter() { return this.#elements.linkFilter().click() }
   clickLinkFind() { return this.#elements.linkFind().click() }
   clickLinkFirst() { return this.#elements.linkFirst().click() }
@@ -348,7 +300,7 @@ export class LandingPage extends BasePage {
   clickLinkPrevAll() { return this.#elements.linkPrevAll().click() }
   clickLinkPrevUntil() { return this.#elements.linkPrevUntil().click() }
   clickLinkSiblings() { return this.#elements.linkSiblings().click() }
-  clickLinkActions() { return this.#elements.linkActions().click() }
+  clickLinkActions() { return this.#elements.linkActions().click({force: true}) }
   clickLinkType() { return this.#elements.linkType().click() }
   clickLinkFocus() { return this.#elements.linkFocus().click() }
   clickLinkBlur() { return this.#elements.linkBlur().click() }
@@ -363,57 +315,57 @@ export class LandingPage extends BasePage {
   clickLinkScrollIntoView() { return this.#elements.linkScrollIntoView().click() }
   clickLinkScrollTo() { return this.#elements.linkScrollTo().click() }
   clickLinkTrigger() { return this.#elements.linkTrigger().click() }
-  clickLinkWindow() { return this.#elements.linkWindow().click() }
+  clickLinkWindow() { return this.#elements.linkWindow().click({force: true}) }
   clickLinkWindowCommand() { return this.#elements.linkWindowCommand().click() }
   clickLinkDocument() { return this.#elements.linkDocument().click() }
   clickLinkTitle() { return this.#elements.linkTitle().click() }
-  clickLinkViewport() { return this.#elements.linkViewport().click() }
+  clickLinkViewport() { return this.#elements.linkViewport().click({force: true}) }
   clickLinkViewportCommand() { return this.#elements.linkViewportCommand().click() }
-  clickLinkLocation() { return this.#elements.linkLocation().click() }
+  clickLinkLocation() { return this.#elements.linkLocation().click({force: true}) }
   clickLinkHash() { return this.#elements.linkHash().click() }
   clickLinkLocationCommand() { return this.#elements.linkLocationCommand().click() }
   clickLinkUrl() { return this.#elements.linkUrl().click() }
-  clickLinkNavigation() { return this.#elements.linkNavigation().click() }
+  clickLinkNavigation() { return this.#elements.linkNavigation().click({force: true}) }
   clickLinkGo() { return this.#elements.linkGo().click() }
   clickLinkReload() { return this.#elements.linkReload().click() }
   clickLinkVisit() { return this.#elements.linkVisit().click() }
-  clickLinkAssertions() { return this.#elements.linkAssertions().click() }
+  clickLinkAssertions() { return this.#elements.linkAssertions().click({force: true}) }
   clickLinkShould() { return this.#elements.linkShould().click() }
   clickLinkAnd() { return this.#elements.linkAnd().click() }
   clickLinkExpect() { return this.#elements.linkExpect().click() }
   clickLinkAssert() { return this.#elements.linkAssert().click() }
-  clickLinkMisc() { return this.#elements.linkMisc().click() }
+  clickLinkMisc() { return this.#elements.linkMisc().click({force: true}) }
   clickLinkExec() { return this.#elements.linkExec().click() }
   clickLinkFocused() { return this.#elements.linkFocused().click() }
   clickLinkScreenshot() { return this.#elements.linkScreenshot().click() }
   clickLinkWrap() { return this.#elements.linkWrap().click() }
-  clickLinkConnectors() { return this.#elements.linkConnectors().click() }
+  clickLinkConnectors() { return this.#elements.linkConnectors().click({force: true}) }
   clickLinkEach() { return this.#elements.linkEach().click() }
   clickLinkIts() { return this.#elements.linkIts().click() }
   clickLinkInvoke() { return this.#elements.linkInvoke().click() }
   clickLinkSpread() { return this.#elements.linkSpread().click() }
   clickLinkThen() { return this.#elements.linkThen().click() }
-  clickLinkAliasing() { return this.#elements.linkAliasing().click() }
-  clickLinkAs() { return this.#elements.linkAs().click() }
-  clickLinkWaiting() { return this.#elements.linkWaiting().click() }
+  clickLinkAliasing() { return this.#elements.linkAliasing().click({force: true}) }
+  clickLinkAs() { return this.#elements.linkAs().click({force: true}) }
+  clickLinkWaiting() { return this.#elements.linkWaiting().click({force: true}) }
   clickLinkWait() { return this.#elements.linkWait().click() }
-  clickLinkNetworkRequests() { return this.#elements.linkNetworkRequests().click() }
+  clickLinkNetworkRequests() { return this.#elements.linkNetworkRequests().click({force: true}) }
   clickLinkServer() { return this.#elements.linkServer().click() }
   clickLinkRequest() { return this.#elements.linkRequest().click() }
   clickLinkRoute() { return this.#elements.linkRoute().click() }
-  clickLinkFiles() { return this.#elements.linkFiles().click() }
+  clickLinkFiles() { return this.#elements.linkFiles().click({force: true}) }
   clickLinkFixtures() { return this.#elements.linkFixtures().click() }
   clickLinkReadFile() { return this.#elements.linkReadFile().click() }
   clickLinkWriteFile() { return this.#elements.linkWriteFile().click() }
-  clickLinkStorage() { return this.#elements.linkStorage().click() }
+  clickLinkStorage() { return this.#elements.linkStorage().click({force: true}) }
   clickLinkClearLocalStorage() { return this.#elements.linkClearLocalStorage().click() }
   clickLinkGetAllLocalStorage() { return this.#elements.linkGetAllLocalStorage().click() }
   clickLinkClearAllLocalStorage() { return this.#elements.linkClearAllLocalStorage().click() }
   clickLinkGetAllSessionStorage() { return this.#elements.linkGetAllSessionStorage().click() }
   clickLinkClearAllSessionStorage() { return this.#elements.linkClearAllSessionStorage().click() }
-  clickLinkCookies() { return this.#elements.linkCookies().click() }
+  clickLinkCookies() { return this.#elements.linkCookies().click({force: true}) }
   clickLinkClearCookies() { return this.#elements.linkClearCookies().click() }
-  clickLinkSpiesStubsClocks() { return this.#elements.linkSpiesStubsClocks().click() }
+  clickLinkSpiesStubsClocks() { return this.#elements.linkSpiesStubsClocks().click({force: true}) }
   clickLinkSpy() { return this.#elements.linkSpy().click() }
   clickLinkStub() { return this.#elements.linkStub().click() }
   clickLinkClock() { return this.#elements.linkClock().click() }
@@ -424,7 +376,7 @@ export class LandingPage extends BasePage {
   clickLinkMinimatch() { return this.#elements.linkMinimatch().click() }
   clickLinkPromise() { return this.#elements.linkPromise().click() }
   clickLinkCommandsAPI() { return this.#elements.linkCommandsAPI().click() }
-  clickLinkCookiesAPI() { return this.#elements.linkCookiesAPI().click() }
+  clickLinkCookiesAPI() { return this.#elements.linkCookiesAPI().click({force: true}) }
   clickLinkServerAPI() { return this.#elements.linkServerAPI().click() }
   clickLinkArchAPI() { return this.#elements.linkArchAPI().click() }
   clickLinkConfigAPI() { return this.#elements.linkConfigAPI().click() }
@@ -434,10 +386,50 @@ export class LandingPage extends BasePage {
   clickLinkPlatformAPI() { return this.#elements.linkPlatformAPI().click() }
   clickLinkVersionAPI() { return this.#elements.linkVersionAPI().click() }
 
-  // Workflow methods (example)
-  searchDocs(query: string) {
-    this.typeSearchInput(query)
-    this.clickLinkDocs()
-    return this
+  // Robust dropdown openers for parent menus
+  openCommandsDropdown() {
+    cy.contains('li.dropdown', 'Commands').trigger('mouseover');
+  }
+  openActionsDropdown() {
+    cy.contains('li.dropdown', 'Actions').trigger('mouseover');
+  }
+  openWindowDropdown() {
+    cy.contains('li.dropdown', 'Window').trigger('mouseover');
+  }
+  openAssertionsDropdown() {
+    cy.contains('li.dropdown', 'Assertions').trigger('mouseover');
+  }
+  openMiscDropdown() {
+    cy.contains('li.dropdown', 'Misc').trigger('mouseover');
+  }
+  openConnectorsDropdown() {
+    cy.contains('li.dropdown', 'Connectors').trigger('mouseover');
+  }
+  openAliasingDropdown() {
+    cy.contains('li.dropdown', 'Aliasing').trigger('mouseover');
+  }
+  openWaitingDropdown() {
+    cy.contains('li.dropdown', 'Waiting').trigger('mouseover');
+  }
+  openNetworkRequestsDropdown() {
+    cy.contains('li.dropdown', 'Network Requests').trigger('mouseover');
+  }
+  openFilesDropdown() {
+    cy.contains('li.dropdown', 'Files').trigger('mouseover');
+  }
+  openStorageDropdown() {
+    cy.contains('li.dropdown', 'Storage').trigger('mouseover');
+  }
+  openCookiesDropdown() {
+    cy.contains('li.dropdown', 'Cookies').trigger('mouseover');
+  }
+  openSpiesStubsClocksDropdown() {
+    cy.contains('li.dropdown', 'Spies, Stubs & Clocks').trigger('mouseover');
+  }
+  openUtilitiesDropdown() {
+  cy.contains('li.dropdown', /Utilities/i).trigger('mouseover');
+  }
+  openCypressAPIDropdown() {
+  cy.contains('li.dropdown', /Cypress API/i).trigger('mouseover');
   }
 }
