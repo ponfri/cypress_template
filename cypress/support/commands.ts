@@ -33,6 +33,67 @@ Cypress.Commands.add('assertText', (selector: string, expected: string) => {
   cy.get(selector).should('have.text', expected);
 });
 
+Cypress.Commands.add('isNotCovered', (selector: string, blockingSelector?: string) => {
+  cy.get(selector).then(($el) => {
+    const elRect = $el[0].getBoundingClientRect();
+    if (blockingSelector) {
+      cy.get(blockingSelector).then(($block) => {
+        const blockRect = $block[0].getBoundingClientRect();
+        const isCovered =
+          blockRect.left < elRect.right &&
+          blockRect.right > elRect.left &&
+          blockRect.top < elRect.bottom &&
+          blockRect.bottom > elRect.top;
+        expect(isCovered).to.be.false;
+      });
+    } else {
+      // No blockingSelector: check if element is at top layer
+      cy.document().then((doc) => {
+        const elAtPoint = doc.elementFromPoint(elRect.left + 1, elRect.top + 1);
+        expect(elAtPoint).to.equal($el[0]);
+      });
+    }
+  });
+});
+
+Cypress.Commands.add('isInteractable', (selector: string) => {
+  cy.get(selector)
+    .should('be.visible')
+    .should('not.be.disabled')
+    .then(($el) => {
+      const elRect = $el[0].getBoundingClientRect();
+      cy.document().then((doc) => {
+        const elAtPoint = doc.elementFromPoint(elRect.left + 1, elRect.top + 1);
+        expect(elAtPoint).to.equal($el[0]);
+      });
+      expect($el).to.have.css('pointer-events', 'auto');
+    });
+});
+
+Cypress.Commands.add('hasPointerEvents', (selector: string, value: string = 'auto') => {
+  cy.get(selector).should('have.css', 'pointer-events', value);
+});
+
+Cypress.Commands.add('hasCss', (selector: string, property: string, value: string) => {
+  cy.get(selector).should('have.css', property, value);
+});
+
+Cypress.Commands.add('hasClass', (selector: string, className: string) => {
+  cy.get(selector).should('have.class', className);
+});
+
+Cypress.Commands.add('notHasClass', (selector: string, className: string) => {
+  cy.get(selector).should('not.have.class', className);
+});
+
+Cypress.Commands.add('hasStyle', (selector: string, style: Partial<CSSStyleDeclaration>) => {
+  cy.get(selector).should(($el) => {
+    for (const [prop, val] of Object.entries(style)) {
+      expect($el).to.have.css(prop, val as string);
+    }
+  });
+});
+
 Cypress.Commands.add('assertVisible', (selector: string) => {
   cy.get(selector).should('be.visible');
 });
@@ -181,6 +242,7 @@ Cypress.Commands.add('waitForPageReady', () => {
 });
 
 
+// =========================
 // Utility Commands
 // =========================
 Cypress.Commands.add('logout', () => {

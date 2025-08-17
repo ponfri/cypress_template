@@ -17,6 +17,48 @@ declare namespace Cypress {
      * @param selector The CSS selector.
      */
     assertVisible(selector: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element is not visually covered by another element.
+       * @param selector The CSS selector for the target element.
+       * @param blockingSelector Optional CSS selector for the blocking element.
+       */
+      isNotCovered(selector: string, blockingSelector?: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element is interactable (visible, enabled, not covered).
+       * @param selector The CSS selector.
+       */
+      isInteractable(selector: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element has the expected pointer-events CSS property value.
+       * @param selector The CSS selector.
+       * @param value The expected pointer-events value (default 'auto').
+       */
+      hasPointerEvents(selector: string, value?: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element has a specific CSS property value.
+       * @param selector The CSS selector.
+       * @param property The CSS property name.
+       * @param value The expected value.
+       */
+      hasCss(selector: string, property: string, value: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element has a specific class.
+       * @param selector The CSS selector.
+       * @param className The class name to check for.
+       */
+      hasClass(selector: string, className: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element does not have a specific class.
+       * @param selector The CSS selector.
+       * @param className The class name to check for.
+       */
+      notHasClass(selector: string, className: string): Chainable<JQuery<HTMLElement>>;
+      /**
+       * Asserts that the element has multiple CSS property values.
+       * @param selector The CSS selector.
+       * @param style An object of CSS property-value pairs.
+       */
+      hasStyle(selector: string, style: Partial<CSSStyleDeclaration>): Chainable<JQuery<HTMLElement>>;
 
     // =========================
     // API Commands
