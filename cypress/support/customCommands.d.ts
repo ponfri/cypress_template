@@ -69,6 +69,18 @@ declare namespace Cypress {
      * @param testId The value of the data-testid attribute.
      */
     getByTestId(testId: string): Chainable<JQuery<HTMLElement>>;
+
+      /**
+       * Selects an element by class name.
+       * @param className The class name of the element (without dot).
+       */
+      getByClass(className: string): Chainable<JQuery<HTMLElement>>;
+
+      /**
+       * Selects an element by ID.
+       * @param id The ID of the element (without hash).
+       */
+      getById(id: string): Chainable<JQuery<HTMLElement>>;
     /**
      * Scrolls the page just below the visible fold (viewport).
      * @param duration Optional scroll animation duration in milliseconds. Default is 1200.
@@ -123,6 +135,79 @@ declare namespace Cypress {
      * @example cy.waitForPageReady()
      */
     waitForPageReady(): Chainable<void>;
+
+        /**
+     * Selects an element by ARIA role.
+     * @param role The ARIA role of the element.
+     */
+    getByRole(role: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Selects an input element by its placeholder text.
+     * @param placeholder The placeholder text.
+     */
+    getByPlaceholder(placeholder: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Selects an element by its associated label text.
+     * @param labelText The label text.
+     */
+    getByLabelText(labelText: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Selects an element containing specific text.
+     * @param text The text content to match.
+     */
+    getByText(text: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Clicks an element even if it is not visible or covered.
+     * @param selector The CSS selector.
+     */
+    forceClick(selector: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Types into an input and presses Enter.
+     * @param selector The CSS selector for the input.
+     * @param text The text to type.
+     */
+    typeAndEnter(selector: string, text: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Selects a dropdown option by value.
+     * @param selector The CSS selector for the dropdown.
+     * @param value The value to select.
+     */
+    selectDropdownByValue(selector: string, value: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Asserts that the element is visible.
+     * @param selector The CSS selector.
+     */
+    isVisible(selector: string): Chainable<JQuery<HTMLElement>>;
+
+    /**
+     * Asserts that the element is hidden.
+     * @param selector The CSS selector.
+     */
+    isHidden(selector: string): Chainable<JQuery<HTMLElement>>;
+
+    // =========================
+    // Network & Navigation Helpers
+    // =========================
+
+    /**
+     * Waits until there are no active network requests.
+     * @param timeout Optional timeout in ms (default 10000).
+     */
+    waitForNetworkIdle(timeout?: number): Chainable<void>;
+
+    /**
+     * Waits until the URL matches a specific value or pattern.
+     * @param url The expected URL or pattern.
+     * @param timeout Optional timeout in ms (default 10000).
+     */
+    waitForUrl(url: string | RegExp, timeout?: number): Chainable<void>;
 
     // =========================
     // Utility Commands

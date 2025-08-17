@@ -72,6 +72,51 @@ Cypress.Commands.add('clearSessionStorage', () => {
 Cypress.Commands.add('getByTestId', (testId: string) => {
   return cy.get(`[data-testid="${testId}"]`);
 });
+Cypress.Commands.add('getByRole', (role: string) => {
+  return cy.get(`[role="${role}"]`);
+});
+
+Cypress.Commands.add('getByPlaceholder', (placeholder: string) => {
+  return cy.get(`[placeholder="${placeholder}"]`);
+});
+
+Cypress.Commands.add('getByLabelText', (labelText: string) => {
+  return cy.contains('label', labelText).invoke('attr', 'for').then((id) => {
+    return cy.get(`#${id}`);
+  });
+});
+
+Cypress.Commands.add('getByText', (text: string) => {
+  return cy.contains(text);
+});
+
+Cypress.Commands.add('forceClick', (selector: string) => {
+  return cy.get(selector).click({ force: true });
+});
+
+Cypress.Commands.add('typeAndEnter', (selector: string, text: string) => {
+  return cy.get(selector).type(text).type('{enter}');
+});
+
+Cypress.Commands.add('selectDropdownByValue', (selector: string, value: string) => {
+  return cy.get(selector).select(value);
+});
+
+Cypress.Commands.add('isVisible', (selector: string) => {
+  return cy.get(selector).should('be.visible');
+});
+
+Cypress.Commands.add('isHidden', (selector: string) => {
+  return cy.get(selector).should('not.be.visible');
+});
+
+Cypress.Commands.add('getByClass', (className: string) => {
+  return cy.get(`.${className}`);
+});
+
+Cypress.Commands.add('getById', (id: string) => {
+  return cy.get(`#${id}`);
+});
 
 Cypress.Commands.add('scrollBelowFold', (duration: number = 1200) => {
   cy.window().then(win => {
@@ -142,4 +187,32 @@ Cypress.Commands.add('logout', () => {
   cy.clearCookies();
   cy.clearLocalStorage();
   cy.visit('/');
+});
+
+// =========================
+// Network & Navigation Helpers
+// =========================
+Cypress.Commands.add('waitForNetworkIdle', (timeout: number = 10000) => {
+  cy.window().then((win) => {
+    const performance = win.performance;
+    const checkIdle = () => {
+      const entries = performance.getEntriesByType('resource');
+      const now = Date.now();
+      const active = entries.filter((e: any) => e.responseEnd > now - 100);
+      return active.length === 0;
+    };
+    return new Cypress.Promise((resolve, reject) => {
+      const start = Date.now();
+      const poll = () => {
+        if (checkIdle()) return resolve();
+        if (Date.now() - start > timeout) return reject('Network idle timeout');
+        setTimeout(poll, 100);
+      };
+      poll();
+    });
+  });
+});
+
+Cypress.Commands.add('waitForUrl', (url: string | RegExp, timeout: number = 10000) => {
+  cy.url({ timeout }).should(typeof url === 'string' ? 'eq' : 'match', url);
 });
