@@ -26,35 +26,91 @@
 
 import { Method } from 'cypress/types/net-stubbing';
 
-// Custom command: Scroll page below the fold
+// =========================
+// Assertion Commands
+// =========================
+Cypress.Commands.add('assertText', (selector: string, expected: string) => {
+  cy.get(selector).should('have.text', expected);
+});
+
+Cypress.Commands.add('assertVisible', (selector: string) => {
+  cy.get(selector).should('be.visible');
+});
+
+// =========================
+// API Commands
+// =========================
+Cypress.Commands.add('apiGetPayload', (method: string, url: string, options: Partial<Cypress.RequestOptions> = {}) => {
+  return cy.request({ method, url, ...options }).then((response) => response.body);
+});
+
+Cypress.Commands.add('mockApi', (method: Method, url: string, mockData: string | object) => {
+  const response = typeof mockData === 'string' ? { fixture: mockData } : mockData;
+  cy.intercept(method, url, response).as('mockedApi');
+});
+
+// =========================
+// Storage Commands
+// =========================
+Cypress.Commands.add('clearCookies', () => {
+  cy.clearCookies();
+});
+
+Cypress.Commands.add('clearLocalStorage', () => {
+  cy.clearLocalStorage();
+});
+
+Cypress.Commands.add('clearSessionStorage', () => {
+  cy.window().then((win) => {
+    win.sessionStorage.clear();
+  });
+});
+
+// =========================
+// UI Actions
+// =========================
+Cypress.Commands.add('getByTestId', (testId: string) => {
+  return cy.get(`[data-testid="${testId}"]`);
+});
+
 Cypress.Commands.add('scrollBelowFold', (duration: number = 1200) => {
   cy.window().then(win => {
-    cy.scrollTo(0, win.innerHeight, { duration }); // Correct usage for coordinates
+    cy.scrollTo(0, win.innerHeight, { duration });
   });
 });
 
-// Custom command: Scroll to the end of the page
 Cypress.Commands.add('scrollToEnd', (duration: number = 1200) => {
   cy.window().then(() => {
-    cy.scrollTo('bottom', { duration }); // Correct usage for position string
+    cy.scrollTo('bottom', { duration });
   });
 });
 
-// Custom command: Scroll to the top of the page
 Cypress.Commands.add('scrollToTop', (duration: number = 1200) => {
   cy.window().then(() => {
-    cy.scrollTo('top', { duration }); // Correct usage for position string
+    cy.scrollTo('top', { duration });
   });
 });
 
-// Custom command: Wait for page to be fully loaded and all elements in the DOM
+Cypress.Commands.add('setViewport', (width: number, height: number) => {
+  cy.viewport(width, height);
+});
+
+Cypress.Commands.add('takeScreenshot', (name: string = 'screenshot') => {
+  cy.screenshot(name);
+});
+
+Cypress.Commands.add('uploadFile', (selector: string, filePath: string) => {
+  cy.get(selector).selectFile(filePath);
+});
+
+Cypress.Commands.add('waitForSelector', (selector: string, timeout: number = 10000) => {
+  cy.get(selector, { timeout }).should('be.visible');
+});
+
 Cypress.Commands.add('waitForPageReady', () => {
-  // Wait for document.readyState to be 'complete'
   cy.document().should((doc) => {
     expect(doc.readyState).to.eq('complete');
   });
-
-  // Wait for all images to be loaded
   cy.get('img').each(($img) => {
     cy.wrap($img).should(($el) => {
       const img = $el[0] as HTMLImageElement;
@@ -62,8 +118,6 @@ Cypress.Commands.add('waitForPageReady', () => {
       expect(img.naturalWidth).to.be.greaterThan(0);
     });
   });
-
-  // Optionally, wait for Angular to be stable if present
   cy.window().then((win) => {
     const angularTestabilities = (win as any).getAllAngularTestabilities;
     if (typeof angularTestabilities === 'function') {
@@ -81,74 +135,11 @@ Cypress.Commands.add('waitForPageReady', () => {
   });
 });
 
-// Custom command to make an API request and return the response payload
-Cypress.Commands.add('apiGetPayload', (method: string, url: string, options: Partial<Cypress.RequestOptions> = {}) => {
-  return cy.request({ method, url, ...options }).then((response) => response.body);
-});
 
-// Custom command to mock an API call with a fixture or object
-// Usage: cy.mockApi('GET', '/api/data', 'example.json')
-//        cy.mockApi('POST', '/api/login', { success: true })
-Cypress.Commands.add('mockApi', (method: Method, url: string, mockData: string | object) => {
-  const response = typeof mockData === 'string' ? { fixture: mockData } : mockData;
-  cy.intercept(method, url, response).as('mockedApi');
-});
-
-// Custom command to log out (example: clear cookies and local storage)
+// Utility Commands
+// =========================
 Cypress.Commands.add('logout', () => {
   cy.clearCookies();
   cy.clearLocalStorage();
-  cy.visit('/'); // Optionally redirect to home or login page
-});
-
-// Custom command to select elements by data-testid attribute
-Cypress.Commands.add('getByTestId', (testId: string) => {
-  return cy.get(`[data-testid="${testId}"]`);
-});
-
-// Custom command to set viewport size
-Cypress.Commands.add('setViewport', (width: number, height: number) => {
-  cy.viewport(width, height);
-});
-
-// Custom command to wait for a selector to be visible
-Cypress.Commands.add('waitForSelector', (selector: string, timeout: number = 10000) => {
-  cy.get(selector, { timeout }).should('be.visible');
-});
-
-// Custom command to assert text content
-Cypress.Commands.add('assertText', (selector: string, expected: string) => {
-  cy.get(selector).should('have.text', expected);
-});
-
-// Custom command to assert element is visible
-Cypress.Commands.add('assertVisible', (selector: string) => {
-  cy.get(selector).should('be.visible');
-});
-
-// Custom command to upload a file
-Cypress.Commands.add('uploadFile', (selector: string, filePath: string) => {
-  cy.get(selector).selectFile(filePath);
-});
-
-// Custom command to take a screenshot
-Cypress.Commands.add('takeScreenshot', (name: string = 'screenshot') => {
-  cy.screenshot(name);
-});
-
-// Custom command to clear session storage
-Cypress.Commands.add('clearSessionStorage', () => {
-  cy.window().then((win) => {
-    win.sessionStorage.clear();
-  });
-});
-
-// Custom command to clear all cookies
-Cypress.Commands.add('clearCookies', () => {
-  cy.clearCookies();
-});
-
-// Custom command to clear local storage
-Cypress.Commands.add('clearLocalStorage', () => {
-  cy.clearLocalStorage();
+  cy.visit('/');
 });
