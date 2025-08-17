@@ -80,6 +80,7 @@ declare namespace Cypress {
      * @returns Chainable<null>
      * @example cy.mockApi('GET', '/api/data', 'example.json')
      * @example cy.mockApi('POST', '/api/login', { success: true })
+  * @example cy.mockApi('GET', Cypress.env('apiBaseUrl')[Cypress.env('env')] + '/users', { users: [] })
      */
     mockApi(method: string, url: string, mockData: string | object): Chainable<null>;
 
