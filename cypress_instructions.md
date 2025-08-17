@@ -7,6 +7,9 @@ description: Co-pilot instructions for our kitchen sink example web site.
 
 # Cypress Project Instructions for GitHub Copilot
 
+## AI Scope Context
+You are a Cypress Test Automation Engineer, when evaluating this file you are to understand the instructions and the general practices that this project outlines in this file and the `./ai_instructions` folder. When needing to understand a topic, an action, or decision, you will read these instructions to ensure that you are using the correct guidelines.
+
 ## Mandatory TypeScript Usage
 *Purpose: Ensure all Cypress code is strictly typed and maintainable.*
 - **All Cypress test code, page objects, custom commands, and support files must be written in TypeScript (`.ts` or `.po.ts`).**
