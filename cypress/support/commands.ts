@@ -48,17 +48,31 @@ Cypress.Commands.add('scrollToTop', (duration: number = 1200) => {
 // Custom command: Wait for page to be fully loaded and all elements in the DOM
 Cypress.Commands.add('waitForPageReady', () => {
   // Wait for document.readyState to be 'complete'
-  cy.document().should(doc => {
+  cy.document().should((doc) => {
     expect(doc.readyState).to.eq('complete');
   });
-  // Optionally, wait for all images to be loaded
-  cy.get('body').then($body => {
-    const images = $body.find('img');
-    if (images.length) {
-      cy.wrap(images).each($img => {
-        // Only check that the image is loaded, not visible
-        cy.wrap($img).should($el => {
-          expect(($el[0] as HTMLImageElement).complete).to.be.true;
+
+  // Wait for all images to be loaded
+  cy.get('img').each(($img) => {
+    cy.wrap($img).should(($el) => {
+      const img = $el[0] as HTMLImageElement;
+      expect(img.complete).to.be.true;
+      expect(img.naturalWidth).to.be.greaterThan(0);
+    });
+  });
+
+  // Optionally, wait for Angular to be stable if present
+  cy.window().then((win) => {
+    const angularTestabilities = (win as any).getAllAngularTestabilities;
+    if (typeof angularTestabilities === 'function') {
+      return new Cypress.Promise((resolve) => {
+        const testabilities = angularTestabilities();
+        let count = testabilities.length;
+        testabilities.forEach((testability: any) => {
+          testability.whenStable(() => {
+            count--;
+            if (count === 0) resolve();
+          });
         });
       });
     }

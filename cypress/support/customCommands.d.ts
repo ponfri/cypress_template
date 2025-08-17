@@ -30,7 +30,8 @@ declare namespace Cypress {
     scrollToTop(duration?: number): Chainable<void>;
     
     /**
-     * Waits for the page to be fully loaded and all elements in the DOM.
+     * Waits for the page to be fully loaded, all images to be loaded, and (if Angular is present) for the app to be stable.
+     * Checks document readiness, image loading, and optionally Angular stability.
      * @returns Chainable<void>
      * @example cy.waitForPageReady()
      */
