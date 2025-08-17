@@ -16,6 +16,27 @@
 - [Page Objects Documentation](./ai_instructions/page_objects.md)
 - [Fixtures Documentation](./ai_instructions/fixtures.md)
 
+
+---
+
+## Table of Contents
+
+1. [Mandatory TypeScript Usage](#mandatory-typescript-usage)
+2. [Quick Reference](#quick-reference)
+  - [Custom Commands Documentation](./ai_instructions/custom_commands.md)
+  - [Page Objects Documentation](./ai_instructions/page_objects.md)
+  - [Fixtures Documentation](./ai_instructions/fixtures.md)
+3. [Page Object Usage Policy](#page-object-usage-policy)
+4. [Formatting Requirements](#formatting-requirements)
+5. [Example Test Structure](#example-test-structure)
+6. [Custom Commands Usage Policy](#custom-commands-usage-policy)
+7. [Example Custom Command Usage](#example-custom-command-usage)
+8. [Fixtures Usage Policy](#fixtures-usage-policy)
+9. [Example Fixture Usage](#example-fixture-usage)
+10. [General Guidelines](#general-guidelines)
+
+---
+
 This file defines mandatory conventions for all Cypress test code in this project. All contributors and Copilot must follow these rules for consistency, maintainability, and clarity.
 
 
