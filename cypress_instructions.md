@@ -209,3 +209,15 @@ it.only('[Login] should allow admin to log in', { tags: ['@smoke', '@login'] }, 
 ---
 
 **Copilot: Always follow these instructions when generating Cypress tests for this project.**
+
+## Describe Block Policy
+*Purpose: Enforce a single test suite per spec for clarity and maintainability.*
+- **Each spec file must contain only one `describe` block. All tests must be inside this block unless explicitly specified otherwise.**
+- If multiple `describe` blocks are needed, document the reason in the test file and update instructions accordingly.
+- This rule applies to all contributors and AI agents (Copilot, MCP, etc.).
+
+
+## Test Formatting and Readability
+*Purpose: Ensure all tests are easy to read and maintain.*
+- **Always insert a blank line between each statement in your test blocks.**
+- This improves readability and makes it easier for contributors and AI agents to follow the test logic.
