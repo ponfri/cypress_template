@@ -9,7 +9,8 @@
   },
   "include": [
     "./cypress/**/*.ts",
-    "./cypress.config.ts"
+    "./cypress.config.ts",
+    "./cypress/support/index.d.ts"
   ],
   "exclude": [
     "node_modules"

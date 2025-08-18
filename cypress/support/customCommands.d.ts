@@ -5,6 +5,78 @@
 declare namespace Cypress {
   interface Chainable<Subject = any> {
     /**
+     * Waits for an element to be removed from the DOM.
+     * @param selector The CSS selector.
+     * @param timeout Optional timeout in ms (default 10000).
+     * @example cy.waitForElementToDisappear('.modal', 5000)
+     */
+    waitForElementToDisappear(selector: string, timeout?: number): Chainable<void>;
+
+    /**
+     * Asserts the number of elements matching a selector.
+     * @param selector The CSS selector.
+     * @param count The expected number of elements.
+     * @example cy.assertElementCount('.item', 5)
+     */
+    assertElementCount(selector: string, count: number): Chainable<void>;
+
+    /**
+     * Asserts that an element has a specific attribute value.
+     * @param selector The CSS selector.
+     * @param attr The attribute name.
+     * @param value The expected value.
+     * @example cy.assertAttribute('input', 'type', 'text')
+     */
+    assertAttribute(selector: string, attr: string, value: string): Chainable<void>;
+
+    /**
+     * Asserts that the current URL contains a specific string.
+     * @param text The string to check for in the URL.
+     * @example cy.assertUrlContains('dashboard')
+     */
+    assertUrlContains(text: string): Chainable<void>;
+
+    /**
+     * Retries an action or assertion until a condition is met or timeout.
+     * @param fn The function to retry.
+     * @param condition The condition to check.
+     * @param options Optional retries and delay.
+     * @example cy.retryUntil(() => cy.get('.item'), el => el.length > 0)
+     */
+    retryUntil(fn: () => Cypress.Chainable, condition: (result: any) => boolean, options?: { retries?: number, delay?: number }): Chainable<any>;
+
+    /**
+     * Intercepts a network request and asserts on its payload or status.
+     * @param method HTTP method (e.g., 'GET', 'POST')
+     * @param url API endpoint URL or RegExp
+     * @param assertFn Function to assert on interception
+     * @example cy.interceptAndAssert('GET', '/api/data', (interception) => { expect(interception.response.statusCode).to.eq(200); })
+     */
+    interceptAndAssert(method: string, url: string | RegExp, assertFn: (interception: any) => void): Chainable<void>;
+
+    /**
+     * Simulates drag-and-drop between elements.
+     * @param sourceSelector The CSS selector for the source element.
+     * @param targetSelector The CSS selector for the target element.
+     * @example cy.dragAndDrop('.item', '.dropzone')
+     */
+    dragAndDrop(sourceSelector: string, targetSelector: string): Chainable<void>;
+
+    /**
+     * Waits for CSS transitions or animations to complete.
+     * @param selector The CSS selector.
+     * @param timeout Optional timeout in ms (default 10000).
+     * @example cy.waitForAnimationEnd('.animated')
+     */
+    waitForAnimationEnd(selector: string, timeout?: number): Chainable<void>;
+
+    /**
+     * Runs accessibility checks using axe-core.
+     * @param options Optional axe-core options.
+     * @example cy.assertAccessibility()
+     */
+    assertAccessibility(options?: object): Chainable<void>;
+    /**
      * Adds an Allure step annotation to the report.
      * @param stepName The name of the step to add to the Allure report.
      * @example cy.allureStep('Check if header exists')
