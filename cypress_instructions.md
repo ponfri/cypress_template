@@ -146,8 +146,12 @@ cy.intercept('GET', '/api/data', { fixture: 'example.json' }).as('getData'); // 
 ---
 **MANDATORY: All new tests must use `it.only` during development.**
 
-- When creating a new test, always use the following format. Use `it.only` so only the new test runs during development. Remove `.only` when running the full suite or before committing code.
-- If you do not use `it.only` for new tests, your code will be rejected or refactored. This is strictly enforced to prevent accidental execution of unrelated tests and to focus on the test under development.
+**When adding a single new test during development, always use `it.only` so only the new test runs. Remove `.only` before committing or running the full suite.**
+
+**Do NOT use `.only` when adding or refactoring multiple tests in bulk.**
+This ensures that only the intended new test is focused during development, and prevents accidental exclusion of other tests when making bulk changes.
+
+If you do not use `it.only` for a single new test, your code will be rejected or refactored. This is strictly enforced to prevent accidental execution of unrelated tests and to focus on the test under development.
 
 - **Test comments**: Always add a comment for each statement in your test to explain what is being done in each section. This improves readability and maintainability for all contributors.
 
