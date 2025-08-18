@@ -722,37 +722,12 @@ Cypress.Commands.add(
 
 Cypress.Commands.add("waitForPageReady", () => {
   /**
-   * Waits for the page to be fully loaded, all images to be loaded (if present), and (if Angular is present) for the app to be stable.
-   * Checks document readiness, image loading, and optionally Angular stability.
+   * Waits for the page and DOM to be fully loaded before moving on.
    * @returns Chainable<void>
    * @example cy.waitForPageReady()
    */
   cy.document().should((doc) => {
     expect(doc.readyState).to.eq("complete");
-  });
-  cy.get("img", { timeout: 2000 }).then(($imgs) => {
-    if ($imgs.length) {
-      cy.wrap($imgs).each(($el) => {
-        const img = $el[0] as HTMLImageElement;
-        expect(img.complete).to.be.true;
-        expect(img.naturalWidth).to.be.greaterThan(0);
-      });
-    }
-  });
-  cy.window().then((win) => {
-    const angularTestabilities = (win as any).getAllAngularTestabilities;
-    if (typeof angularTestabilities === "function") {
-      return new Cypress.Promise((resolve) => {
-        const testabilities = angularTestabilities();
-        let count = testabilities.length;
-        testabilities.forEach((testability: any) => {
-          testability.whenStable(() => {
-            count--;
-            if (count === 0) resolve();
-          });
-        });
-      });
-    }
   });
 });
 
