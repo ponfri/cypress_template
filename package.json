@@ -20,7 +20,7 @@
     "docker:run": "docker run --rm --name cypress_template cypress_temp",
     "docker:start": "docker start cypress_template",
     "allure:open": "npx allure open ./allure-results -p 3000",
-  "allure:cleanup": "rm -rf allure-report allure-results || true",
+    "allure:cleanup": "rm -rf allure-report allure-results || true",
     "allure:run-open": "npm run cypress:run && npm run allure:open",
     "allure:generate": "npx allure generate -c",
     "kill:port": "lsof -ti :8080 | xargs kill -9"
@@ -40,6 +40,7 @@
     "allure-cypress": "^3.3.3",
     "bootstrap": "^5.3.7",
     "cypress": "^14.5.4",
+    "cypress-axe": "^1.6.0",
     "cypress-iframe": "^1.0.1",
     "cypress-localstorage-commands": "^2.2.8",
     "cypress-multi-reporters": "^2.0.5",

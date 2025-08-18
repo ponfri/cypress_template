@@ -233,13 +233,6 @@ declare global {
       dragAndDrop(sourceSelector: string, targetSelector: string): Chainable;
       waitForAnimationEnd(selector: string, timeout?: number): Chainable;
       assertAccessibility(options?: object): Chainable;
-      injectAxe(): Chainable;
-      checkA11y(
-        context?: any,
-        options?: any,
-        violationCallback?: any,
-        skipFailures?: boolean
-      ): Chainable;
     }
   }
 }
