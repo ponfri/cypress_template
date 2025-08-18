@@ -1,97 +1,140 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
-export class QueryingPage extends BasePage {
-  // Private elements
+class QueryingPage extends BasePage {
   #elements = {
-    header: () => cy.get('h1'), // "Querying"
-    subHeaderGet: () => cy.contains('h4', 'cy.get()'),
-    subHeaderContains: () => cy.contains('h4', 'cy.contains()'),
-    subHeaderWithin: () => cy.contains('h4', '.within()'),
-    subHeaderRoot: () => cy.contains('h4', 'cy.root()'),
-    subHeaderBestPractices: () => cy.contains('h4', 'Best Practices: Selecting elements'),
+    pageHeader: 'h1',
+    pageDesc: '.banner p',
+    queryingSection: '.home-list a[href="/commands/querying"]',
+    getLink: 'a[href="/commands/querying"]',
+    containsLink: 'a[href="/commands/querying"]',
+    withinLink: 'a[href="/commands/querying"]',
+    rootLink: 'a[href="/commands/querying"]',
+    inputName: '#inputName',
+    inputEmail: '#inputEmail',
+    inputPassword: '#inputPassword',
+    saveFormButton: '.query-button .btn',
+    submitButton: '[data-cy="submit"]',
+    dataTestExample: '[data-test-id="test-example"]',
+    queryList: '.query-list',
+    queryListItems: '.query-list li',
+    queryUl: '.query-ul',
+    queryUlItems: '.query-ul li',
+    bestPracticesWell: '[data-cy="best-practices-selecting-elements"]',
+  };
 
-    // Buttons and examples
-    queryBtnById: () => cy.get('#query-btn'),
-    queryBtnByClass: () => cy.get('.query-btn'),
-    queryBtnFirst: () => cy.get('#querying .well>button:first'),
-    queryDivDataTest: () => cy.get('[data-test-id="test-example"]'),
-    queryList: () => cy.get('.query-list'),
-    queryListApples: () => cy.get('.query-list').contains('apples'),
-    queryListOranges: () => cy.get('.query-list').contains('oranges'),
-    queryListBananas: () => cy.get('.query-list').contains('bananas'),
-    queryListMoreApples: () => cy.get('.query-list').contains('more apples'),
-    queryButtonSaveForm: () => cy.get('.query-button').contains('Save Form'),
-
-    // Form example
-    queryForm: () => cy.get('.query-form'),
-    queryFormEmailInput: () => cy.get('.query-form input:first'),
-    queryFormPasswordInput: () => cy.get('.query-form input:last'),
-
-    // UL example
-    queryUl: () => cy.get('.query-ul'),
-    queryUlOne: () => cy.get('.query-ul').contains('One'),
-    queryUlTwo: () => cy.get('.query-ul').contains('Two'),
-    queryUlBuckle: () => cy.get('.query-ul').contains('Buckle my shoe'),
-
-    // Best practices example
-    bestPracticeButton: () => cy.get('[data-cy=submit]'),
-
-    // Additional links
-    linkDocs: () => cy.contains('a', 'docs.cypress.io'),
-    linkCypressIO: () => cy.contains('a', 'cypress.io'),
-    linkGitHub: () => cy.contains('a', 'GitHub'),
-    linkUtilities: () => cy.contains('a', 'Utilities'),
-    linkCypressAPI: () => cy.contains('a', 'Cypress API'),
+  constructor() {
+    super('/commands/querying');
   }
 
-  // Public getters
-  get Header() { return this.#elements.header() }
-  get SubHeaderGet() { return this.#elements.subHeaderGet() }
-  get SubHeaderContains() { return this.#elements.subHeaderContains() }
-  get SubHeaderWithin() { return this.#elements.subHeaderWithin() }
-  get SubHeaderRoot() { return this.#elements.subHeaderRoot() }
-  get SubHeaderBestPractices() { return this.#elements.subHeaderBestPractices() }
-  get QueryBtnById() { return this.#elements.queryBtnById() }
-  get QueryBtnByClass() { return this.#elements.queryBtnByClass() }
-  get QueryBtnFirst() { return this.#elements.queryBtnFirst() }
-  get QueryDivDataTest() { return this.#elements.queryDivDataTest() }
-  get QueryList() { return this.#elements.queryList() }
-  get QueryListApples() { return this.#elements.queryListApples() }
-  get QueryListOranges() { return this.#elements.queryListOranges() }
-  get QueryListBananas() { return this.#elements.queryListBananas() }
-  get QueryListMoreApples() { return this.#elements.queryListMoreApples() }
-  get QueryButtonSaveForm() { return this.#elements.queryButtonSaveForm() }
-  get QueryForm() { return this.#elements.queryForm() }
-  get QueryFormEmailInput() { return this.#elements.queryFormEmailInput() }
-  get QueryFormPasswordInput() { return this.#elements.queryFormPasswordInput() }
-  get QueryUl() { return this.#elements.queryUl() }
-  get QueryUlOne() { return this.#elements.queryUlOne() }
-  get QueryUlTwo() { return this.#elements.queryUlTwo() }
-  get QueryUlBuckle() { return this.#elements.queryUlBuckle() }
-  get BestPracticeButton() { return this.#elements.bestPracticeButton() }
-  get LinkDocs() { return this.#elements.linkDocs() }
-  get LinkCypressIO() { return this.#elements.linkCypressIO() }
-  get LinkGitHub() { return this.#elements.linkGitHub() }
-  get LinkUtilities() { return this.#elements.linkUtilities() }
-  get LinkCypressAPI() { return this.#elements.linkCypressAPI() }
+  // Getters for elements
+  get pageHeader() { return cy.get(this.#elements.pageHeader); }
+  get pageDesc() { return cy.get(this.#elements.pageDesc); }
+  get queryingSection() { return cy.get(this.#elements.queryingSection); }
+  get getLink() { return cy.get(this.#elements.getLink); }
+  get containsLink() { return cy.get(this.#elements.containsLink); }
+  get withinLink() { return cy.get(this.#elements.withinLink); }
+  get rootLink() { return cy.get(this.#elements.rootLink); }
 
-  // Interaction methods
-  clickQueryBtnById() { return this.#elements.queryBtnById().click() }
-  clickQueryBtnByClass() { return this.#elements.queryBtnByClass().click() }
-  clickQueryBtnFirst() { return this.#elements.queryBtnFirst().click() }
-  clickQueryButtonSaveForm() { return this.#elements.queryButtonSaveForm().click() }
-  clickBestPracticeButton() { return this.#elements.bestPracticeButton().click() }
-  clickLinkDocs() { return this.#elements.linkDocs().click() }
-  clickLinkCypressIO() { return this.#elements.linkCypressIO().click() }
-  clickLinkGitHub() { return this.#elements.linkGitHub().click() }
-  clickLinkUtilities() { return this.#elements.linkUtilities().click() }
-  clickLinkCypressAPI() { return this.#elements.linkCypressAPI().click() }
+  // Click methods for all links
+  clickGetLink() { return this.getLink.click(); }
+  clickContainsLink() { return this.containsLink.click(); }
+  clickWithinLink() { return this.withinLink.click(); }
+  clickRootLink() { return this.rootLink.click(); }
 
-  // Example workflow
-  fillQueryForm(email: string, password: string) {
-    this.#elements.queryFormEmailInput().type(email)
-    this.#elements.queryFormPasswordInput().type(password)
-    this.clickQueryButtonSaveForm()
-    return this
+  // Input box workflow methods
+  typeInputName(value: string) {
+    cy.get(this.#elements.inputName).type(value);
+  }
+  clearInputName() {
+    cy.get(this.#elements.inputName).clear();
+  }
+  getInputNameValue() {
+    return cy.get(this.#elements.inputName).invoke('val');
+  }
+
+  typeInputEmail(value: string) {
+    cy.get(this.#elements.inputEmail).type(value);
+  }
+  clearInputEmail() {
+    cy.get(this.#elements.inputEmail).clear();
+  }
+  getInputEmailValue() {
+    return cy.get(this.#elements.inputEmail).invoke('val');
+  }
+
+  typeInputPassword(value: string) {
+    cy.get(this.#elements.inputPassword).type(value);
+  }
+  clearInputPassword() {
+    cy.get(this.#elements.inputPassword).clear();
+  }
+  getInputPasswordValue() {
+    return cy.get(this.#elements.inputPassword).invoke('val');
+  }
+
+  // Button workflow methods
+  clickSaveFormButton() {
+    cy.get(this.#elements.saveFormButton).click();
+  }
+  clickSubmitButton() {
+    cy.get(this.#elements.submitButton).click();
+  }
+
+  // Data attribute workflow methods
+  getDataTestExampleAttr(attr: string) {
+    return cy.get(this.#elements.dataTestExample).invoke('attr', attr);
+  }
+  getDataTestExampleCss(property: string) {
+    return cy.get(this.#elements.dataTestExample).invoke('css', property);
+  }
+
+  // List item workflow methods
+  getQueryListItems() {
+    return cy.get(this.#elements.queryListItems);
+  }
+  clickQueryListItemByText(text: string) {
+    cy.get(this.#elements.queryListItems).contains(text).click();
+  }
+  getQueryUlItems() {
+    return cy.get(this.#elements.queryUlItems);
+  }
+  clickQueryUlItemByText(text: string) {
+    cy.get(this.#elements.queryUlItems).contains(text).click();
+  }
+
+  // Best practices well
+  getBestPracticesWell() {
+    return cy.get(this.#elements.bestPracticesWell);
+  }
+
+  // Generic workflow methods
+  getText(selector: string) {
+    return cy.get(this.#elements[selector]).invoke('text');
+  }
+  getCss(selector: string, cssProp: string) {
+    return cy.get(this.#elements[selector]).invoke('css', cssProp);
+  }
+  isVisible(selector: string) {
+    return cy.get(this.#elements[selector]).should('be.visible');
+  }
+  isEnabled(selector: string) {
+    return cy.get(this.#elements[selector]).should('not.be.disabled');
+  }
+  typeInput(selector: string, value: string) {
+    return cy.get(this.#elements[selector]).type(value);
+  }
+  clearInput(selector: string) {
+    return cy.get(this.#elements[selector]).clear();
+  }
+  check(selector: string) {
+    return cy.get(this.#elements[selector]).check();
+  }
+  uncheck(selector: string) {
+    return cy.get(this.#elements[selector]).uncheck();
+  }
+  selectOption(selector: string, value: string) {
+    return cy.get(this.#elements[selector]).select(value);
   }
 }
+
+export default QueryingPage;

@@ -1,76 +1,143 @@
-import { BasePage } from './BasePage';
 
-export class AssertionsPage extends BasePage {
-  // Private elements
-  #elements = {
-    header: () => cy.get('h1'), // "Assertions"
-    subHeaderShould: () => cy.contains('h4', '.should()'),
-    subHeaderAnd: () => cy.contains('h4', '.and()'),
-    subHeaderExpect: () => cy.contains('h4', 'expect'),
-    subHeaderAssert: () => cy.contains('h4', 'assert'),
+import { BasePage } from './BasePage.po';
 
-    // Table and link examples
-    assertionTable: () => cy.get('.assertion-table'),
-    assertionTableLastRow: () => cy.get('.assertion-table').find('tbody tr:last'),
-    assertionTableLastRowTd: () => cy.get('.assertion-table').find('tbody tr:last').find('td').first(),
-    assertionsLink: () => cy.get('.assertions-link'),
-    assertionsP: () => cy.get('.assertions-p').find('p'),
-    docsHeaderDiv: () => cy.get('.docs-header').find('div'),
-    twoElementsFirst: () => cy.get('.two-elements').find('.first'),
-    twoElementsSecond: () => cy.get('.two-elements').find('.second'),
-    randomNumber: () => cy.get('#random-number'),
+/**
+ * Page Object for the Assertions page in Cypress Kitchen Sink
+ * Covers all workflows for implicit and explicit assertions, including .should(), .and(), expect, assert, and callback function examples
+ */
+export default class AssertionsPage extends BasePage {
+	// Private selectors for all relevant elements
+	#elements = {
+		navbar: '#navbar',
+		navbarToggle: '.navbar-toggle',
+		navLinks: '.nav a',
+		assertionsSection: '#assertions',
+		assertionTable: '.assertion-table',
+		assertionTableRows: '.assertion-table tbody tr',
+		assertionTableLastRow: '.assertion-table tbody tr:last',
+		assertionTableSuccessRow: '.assertion-table tbody tr.success',
+		assertionTableCells: '.assertion-table td',
+		assertionsLink: '.assertions-link',
+		assertionsLinkActive: '.assertions-link.active',
+		assertionsP: '.assertions-p',
+		assertionsPParagraphs: '.assertions-p p',
+		docsHeader: '.docs-header',
+		docsHeaderDiv: '.docs-header div',
+		twoElements: '.two-elements',
+		twoElementsFirst: '.two-elements .first',
+		twoElementsSecond: '.two-elements .second',
+		randomNumber: '#random-number',
+		randomNumberExample: '.random-number-example',
+		shouldHeader: "h4#should a[href='https://on.cypress.io/should']",
+		andHeader: "h4#and a[href='https://on.cypress.io/and']",
+		expectHeader: "h4#expect",
+		assertHeader: "h4#assert",
+		shouldCallbackHeader: "h3 a[href='https://on.cypress.io/should#Function']",
+	};
 
-    // Additional links
-    linkDocs: () => cy.contains('a', 'docs.cypress.io'),
-    linkCypressIO: () => cy.contains('a', 'cypress.io'),
-    linkGitHub: () => cy.contains('a', 'GitHub'),
-    linkUtilities: () => cy.contains('a', 'Utilities'),
-    linkCypressAPI: () => cy.contains('a', 'Cypress API'),
-  }
+	// Getters for elements
+	getNavbar() { return cy.get(this.#elements.navbar); }
+	getNavbarToggle() { return cy.get(this.#elements.navbarToggle); }
+	getNavLinks() { return cy.get(this.#elements.navLinks); }
+	getAssertionsSection() { return cy.get(this.#elements.assertionsSection); }
+	getAssertionTable() { return cy.get(this.#elements.assertionTable); }
+	getAssertionTableRows() { return cy.get(this.#elements.assertionTableRows); }
+	getAssertionTableLastRow() { return cy.get(this.#elements.assertionTableLastRow); }
+	getAssertionTableSuccessRow() { return cy.get(this.#elements.assertionTableSuccessRow); }
+	getAssertionTableCells() { return cy.get(this.#elements.assertionTableCells); }
+	getAssertionsLink() { return cy.get(this.#elements.assertionsLink); }
+	getAssertionsLinkActive() { return cy.get(this.#elements.assertionsLinkActive); }
+	getAssertionsP() { return cy.get(this.#elements.assertionsP); }
+	getAssertionsPParagraphs() { return cy.get(this.#elements.assertionsPParagraphs); }
+	getDocsHeader() { return cy.get(this.#elements.docsHeader); }
+	getDocsHeaderDiv() { return cy.get(this.#elements.docsHeaderDiv); }
+	getTwoElements() { return cy.get(this.#elements.twoElements); }
+	getTwoElementsFirst() { return cy.get(this.#elements.twoElementsFirst); }
+	getTwoElementsSecond() { return cy.get(this.#elements.twoElementsSecond); }
+	getRandomNumber() { return cy.get(this.#elements.randomNumber); }
+	getRandomNumberExample() { return cy.get(this.#elements.randomNumberExample); }
+	getShouldHeader() { return cy.get(this.#elements.shouldHeader); }
+	getAndHeader() { return cy.get(this.#elements.andHeader); }
+	getExpectHeader() { return cy.get(this.#elements.expectHeader); }
+	getAssertHeader() { return cy.get(this.#elements.assertHeader); }
+	getShouldCallbackHeader() { return cy.get(this.#elements.shouldCallbackHeader); }
 
-  // Public getters
-  get Header() { return this.#elements.header() }
-  get SubHeaderShould() { return this.#elements.subHeaderShould() }
-  get SubHeaderAnd() { return this.#elements.subHeaderAnd() }
-  get SubHeaderExpect() { return this.#elements.subHeaderExpect() }
-  get SubHeaderAssert() { return this.#elements.subHeaderAssert() }
-  get AssertionTable() { return this.#elements.assertionTable() }
-  get AssertionTableLastRow() { return this.#elements.assertionTableLastRow() }
-  get AssertionTableLastRowTd() { return this.#elements.assertionTableLastRowTd() }
-  get AssertionsLink() { return this.#elements.assertionsLink() }
-  get AssertionsP() { return this.#elements.assertionsP() }
-  get DocsHeaderDiv() { return this.#elements.docsHeaderDiv() }
-  get TwoElementsFirst() { return this.#elements.twoElementsFirst() }
-  get TwoElementsSecond() { return this.#elements.twoElementsSecond() }
-  get RandomNumber() { return this.#elements.randomNumber() }
-  get LinkDocs() { return this.#elements.linkDocs() }
-  get LinkCypressIO() { return this.#elements.linkCypressIO() }
-  get LinkGitHub() { return this.#elements.linkGitHub() }
-  get LinkUtilities() { return this.#elements.linkUtilities() }
-  get LinkCypressAPI() { return this.#elements.linkCypressAPI() }
+	// Workflow methods for assertions
+	assertTableLastRowHasClassSuccess() {
+		this.getAssertionTableLastRow().should('have.class', 'success');
+	}
+	assertTableCellText(cellSelector: string, text: string) {
+		cy.get(cellSelector).should('have.text', text);
+	}
+	assertTableCellContains(cellSelector: string, text: string) {
+		cy.get(cellSelector).should('contain', text);
+	}
+	assertTableCellHtml(cellSelector: string, html: string) {
+		cy.get(cellSelector).should('have.html', html);
+	}
+	assertTableCellMatches(cellSelector: string, selector: string) {
+		cy.get(cellSelector).should('match', selector);
+	}
+	assertTableCellTextMatches(cellSelector: string, regex: RegExp) {
+		cy.get(cellSelector).invoke('text').should('match', regex);
+	}
+	assertTableContainsTextWithRegex(text: RegExp) {
+		this.getAssertionTableLastRow().contains('td', text).should('be.visible');
+	}
+	assertAssertionsLinkActive() {
+		this.getAssertionsLinkActive().should('have.class', 'active');
+		this.getAssertionsLinkActive().should('have.attr', 'href');
+		this.getAssertionsLinkActive().should('include.text', 'cypress.io');
+	}
+	assertAssertionsPParagraphsLength(length: number) {
+		this.getAssertionsPParagraphs().should('have.length', length);
+	}
+	assertAssertionsPParagraphsText(expected: string[]) {
+		this.getAssertionsPParagraphs().then(($p) => {
+			const texts = $p.map((i, el) => Cypress.$(el).text()).get();
+			expect(texts).to.deep.eq(expected);
+		});
+	}
+	assertDocsHeaderDivHasClassHeading() {
+		this.getDocsHeaderDiv().should(($div) => {
+			expect($div).to.have.length(1);
+			const className = $div[0].className;
+			expect(className).to.match(/heading-/);
+		});
+	}
+	assertDocsHeaderDivText(text: string) {
+		this.getDocsHeaderDiv().then(($div) => {
+			expect($div).to.have.text(text);
+		});
+	}
+	assertTwoElementsTextMatch() {
+		let text = '';
+		const normalizeText = (s: string) => s.replace(/\s/g, '').toLowerCase();
+		this.getTwoElementsFirst().then(($first) => {
+			text = normalizeText($first.text());
+			this.getTwoElementsSecond().should(($div) => {
+				const secondText = normalizeText($div.text());
+				expect(secondText).to.equal(text);
+			});
+		});
+	}
+	assertRandomNumberInRange(min: number, max: number) {
+		this.getRandomNumber().should(($div) => {
+			const n = parseFloat($div.text());
+			expect(n).to.be.gte(min).and.be.lte(max);
+		});
+	}
 
-  // Interaction methods
-  clickAssertionsLink() { return this.#elements.assertionsLink().click() }
-  clickLinkDocs() { return this.#elements.linkDocs().click() }
-  clickLinkCypressIO() { return this.#elements.linkCypressIO().click() }
-  clickLinkGitHub() { return this.#elements.linkGitHub().click() }
-  clickLinkUtilities() { return this.#elements.linkUtilities().click() }
-  clickLinkCypressAPI() { return this.#elements.linkCypressAPI().click() }
+	// Navbar workflows
+	assertNavbarVisible() { this.getNavbar().should('be.visible'); }
+	assertNavbarNotVisible() { this.getNavbar().should('not.be.visible'); }
+	clickNavbarToggle() { this.getNavbarToggle().should('be.visible').click(); }
+	assertNavLinksVisible() { this.getNavLinks().should('be.visible'); }
 
-  // Example assertion methods
-  assertTableLastRowHasClassSuccess() {
-    return this.#elements.assertionTableLastRow().should('have.class', 'success');
-  }
-  assertTableLastRowTdHasText(text: string) {
-    return this.#elements.assertionTableLastRowTd().should('have.text', text);
-  }
-  assertAssertionsLinkActive() {
-    return this.#elements.assertionsLink().should('have.class', 'active');
-  }
-  assertRandomNumberInRange(min: number, max: number) {
-    return this.#elements.randomNumber().should(($div) => {
-      const n = parseFloat($div.text());
-      expect(n).to.be.gte(min).and.be.lte(max);
-    });
-  }
+	// Assertions for headers
+	assertShouldHeaderVisible() { this.getShouldHeader().should('be.visible'); }
+	assertAndHeaderVisible() { this.getAndHeader().should('be.visible'); }
+	assertExpectHeaderVisible() { this.getExpectHeader().should('be.visible'); }
+	assertAssertHeaderVisible() { this.getAssertHeader().should('be.visible'); }
+	assertShouldCallbackHeaderVisible() { this.getShouldCallbackHeader().should('be.visible'); }
 }

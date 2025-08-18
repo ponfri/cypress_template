@@ -1,58 +1,70 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
-export class MiscPage extends BasePage {
-  // Private elements
+/**
+ * Page Object for the Misc page in Cypress Kitchen Sink
+ * Covers all workflows for miscellaneous commands, navbar, toggle, navigation links, and all interactive elements
+ */
+export default class MiscPage extends BasePage {
+  // Private selectors for all relevant elements
   #elements = {
-    header: () => cy.get('h1'), // "Misc"
-    subHeaderEnd: () => cy.contains('h4', '.end()'),
-    subHeaderExec: () => cy.contains('h4', 'cy.exec()'),
-    subHeaderFocused: () => cy.contains('h4', 'cy.focused()'),
-    subHeaderScreenshot: () => cy.contains('h4', 'cy.screenshot()'),
-    subHeaderWrap: () => cy.contains('h4', 'cy.wrap()'),
+    navbar: '#navbar',
+    navbarToggle: '.navbar-toggle',
+    navLinks: '.nav a',
+    miscSection: '#misc',
+    miscHeader: "h4:has(a[href='https://on.cypress.io/misc'])",
+    miscCode: "pre code.javascript.hljs",
+    miscExample: '.misc-example',
+    miscButton: '.misc-btn',
+    miscInput: '.misc-input',
+    miscCheckbox: '.misc-checkbox',
+    miscSelect: '.misc-select',
+    miscListItems: '.misc-list li',
+    miscParagraphs: '.misc-p p',
+    miscTable: '.misc-table',
+    miscTableRows: '.misc-table tbody tr',
+    miscTableCells: '.misc-table td',
+  };
 
-    miscTable: () => cy.get('.misc-table'),
-    miscForm: () => cy.get('.misc-form'),
-    miscFormName: () => cy.get('.misc-form').find('#name'),
-    miscFormDescription: () => cy.get('.misc-form').find('#description'),
+  // Getters for elements
+  getNavbar() { return cy.get(this.#elements.navbar); }
+  getNavbarToggle() { return cy.get(this.#elements.navbarToggle); }
+  getNavLinks() { return cy.get(this.#elements.navLinks); }
+  getMiscSection() { return cy.get(this.#elements.miscSection); }
+  getMiscHeader() { return cy.get(this.#elements.miscHeader); }
+  getMiscCode() { return cy.get(this.#elements.miscCode); }
+  getMiscExample() { return cy.get(this.#elements.miscExample); }
+  getMiscButton() { return cy.get(this.#elements.miscButton); }
+  getMiscInput() { return cy.get(this.#elements.miscInput); }
+  getMiscCheckbox() { return cy.get(this.#elements.miscCheckbox); }
+  getMiscSelect() { return cy.get(this.#elements.miscSelect); }
+  getMiscListItems() { return cy.get(this.#elements.miscListItems); }
+  getMiscParagraphs() { return cy.get(this.#elements.miscParagraphs); }
+  getMiscTable() { return cy.get(this.#elements.miscTable); }
+  getMiscTableRows() { return cy.get(this.#elements.miscTableRows); }
+  getMiscTableCells() { return cy.get(this.#elements.miscTableCells); }
 
-    // Additional links
-    linkDocs: () => cy.contains('a', 'docs.cypress.io'),
-    linkCypressIO: () => cy.contains('a', 'cypress.io'),
-    linkGitHub: () => cy.contains('a', 'GitHub'),
-    linkUtilities: () => cy.contains('a', 'Utilities'),
-    linkCypressAPI: () => cy.contains('a', 'Cypress API'),
-  }
+  // Workflow methods for interactive elements
+  clickMiscButton() { this.getMiscButton().click(); }
+  typeMiscInput(value: string) { this.getMiscInput().clear().type(value); }
+  checkMiscCheckbox() { this.getMiscCheckbox().check(); }
+  uncheckMiscCheckbox() { this.getMiscCheckbox().uncheck(); }
+  selectMiscOption(option: string) { this.getMiscSelect().select(option); }
+  clickMiscListItemByText(text: string) { this.getMiscListItems().contains(text).click(); }
+  getMiscParagraphText(index: number) { return this.getMiscParagraphs().eq(index).invoke('text'); }
+  getMiscTableCellText(row: number, cell: number) { return this.getMiscTableRows().eq(row).find('td').eq(cell).invoke('text'); }
 
-  // Public getters
-  get Header() { return this.#elements.header() }
-  get SubHeaderEnd() { return this.#elements.subHeaderEnd() }
-  get SubHeaderExec() { return this.#elements.subHeaderExec() }
-  get SubHeaderFocused() { return this.#elements.subHeaderFocused() }
-  get SubHeaderScreenshot() { return this.#elements.subHeaderScreenshot() }
-  get SubHeaderWrap() { return this.#elements.subHeaderWrap() }
-  get MiscTable() { return this.#elements.miscTable() }
-  get MiscForm() { return this.#elements.miscForm() }
-  get MiscFormName() { return this.#elements.miscFormName() }
-  get MiscFormDescription() { return this.#elements.miscFormDescription() }
-  get LinkDocs() { return this.#elements.linkDocs() }
-  get LinkCypressIO() { return this.#elements.linkCypressIO() }
-  get LinkGitHub() { return this.#elements.linkGitHub() }
-  get LinkUtilities() { return this.#elements.linkUtilities() }
-  get LinkCypressAPI() { return this.#elements.linkCypressAPI() }
+  // Navbar workflows
+  assertNavbarVisible() { this.getNavbar().should('be.visible'); }
+  assertNavbarNotVisible() { this.getNavbar().should('not.be.visible'); }
+  clickNavbarToggle() { this.getNavbarToggle().should('be.visible').click(); }
+  assertNavLinksVisible() { this.getNavLinks().should('be.visible'); }
 
-  // Interaction methods
-  clickMiscFormName() { return this.#elements.miscFormName().click() }
-  clickMiscFormDescription() { return this.#elements.miscFormDescription().click() }
-  clickLinkDocs() { return this.#elements.linkDocs().click() }
-  clickLinkCypressIO() { return this.#elements.linkCypressIO().click() }
-  clickLinkGitHub() { return this.#elements.linkGitHub().click() }
-  clickLinkUtilities() { return this.#elements.linkUtilities().click() }
-  clickLinkCypressAPI() { return this.#elements.linkCypressAPI().click() }
-
-  // Cypress command wrappers
-  endChain() { return cy.end(); }
-  execCommand(command: string) { return cy.exec(command); }
-  getFocused() { return cy.focused(); }
-  takeScreenshot(name?: string) { return cy.screenshot(name); }
-  wrapObject<T>(obj: T) { return cy.wrap(obj); }
+  // Assertions for headers and code blocks
+  assertMiscHeaderVisible() { this.getMiscHeader().should('be.visible'); }
+  assertMiscCodeVisible() { this.getMiscCode().should('be.visible'); }
+  assertMiscSelectValue(value: string) { this.getMiscSelect().should('have.value', value); }
+  assertMiscListItemsLength(length: number) { this.getMiscListItems().should('have.length', length); }
+  assertMiscParagraphsLength(length: number) { this.getMiscParagraphs().should('have.length', length); }
+  assertMiscTableRowsLength(length: number) { this.getMiscTableRows().should('have.length', length); }
+  assertMiscTableCellContains(row: number, cell: number, text: string) { this.getMiscTableRows().eq(row).find('td').eq(cell).should('contain', text); }
 }

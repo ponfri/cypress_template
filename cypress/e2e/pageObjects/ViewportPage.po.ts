@@ -1,56 +1,89 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
-export type ViewportPreset =
-  | 'macbook-15' | 'macbook-13' | 'macbook-11'
-  | 'ipad-2' | 'ipad-mini'
-  | 'iphone-6+' | 'iphone-6' | 'iphone-5' | 'iphone-4' | 'iphone-3';
+/**
+ * Page Object for the Viewport page in Cypress Kitchen Sink
+ * Covers all workflows for viewport commands, navbar, toggle, and navigation links
+ */
+export default class ViewportPage extends BasePage {
+	// Private selectors for all relevant elements
+	#elements = {
+		viewportSection: '#viewport',
+		cyViewportHeader: "h4:has(a[href='https://on.cypress.io/viewport'])",
+		cyViewportCode: "pre code.javascript.hljs",
+	};
 
-export type ViewportOrientation = 'portrait' | 'landscape';
+	// Getters for elements
+	// ...menu and navigation handled by BasePage...
+	getViewportSection() {
+		return cy.get(this.#elements.viewportSection);
+	}
+	getCyViewportHeader() {
+		return cy.get(this.#elements.cyViewportHeader);
+	}
+	getCyViewportCode() {
+		return cy.get(this.#elements.cyViewportCode);
+	}
 
-export class ViewportPage extends BasePage {
-  // Private elements
-  #elements = {
-    header: () => cy.get('h1'), // "Viewport"
-    subHeaderViewport: () => cy.contains('h4', 'cy.viewport()'),
-    navbar: () => cy.get('#navbar'),
-    navbarToggle: () => cy.get('.navbar-toggle'),
-    navLinks: () => cy.get('.nav').find('a'),
+	// Workflow methods
+	// ...menu and navigation handled by BasePage...
 
-    // Additional links
-    linkDocs: () => cy.contains('a', 'docs.cypress.io'),
-    linkCypressIO: () => cy.contains('a', 'cypress.io'),
-    linkGitHub: () => cy.contains('a', 'GitHub'),
-    linkUtilities: () => cy.contains('a', 'Utilities'),
-    linkCypressAPI: () => cy.contains('a', 'Cypress API'),
-  }
+	/**
+	 * Set viewport to custom width and height
+	 * @param width number
+	 * @param height number
+	 */
+	setViewportSize(width: number, height: number) {
+		cy.viewport(width, height);
+	}
 
-  // Public getters
-  get Header() { return this.#elements.header() }
-  get SubHeaderViewport() { return this.#elements.subHeaderViewport() }
-  get Navbar() { return this.#elements.navbar() }
-  get NavbarToggle() { return this.#elements.navbarToggle() }
-  get NavLinks() { return this.#elements.navLinks() }
-  get LinkDocs() { return this.#elements.linkDocs() }
-  get LinkCypressIO() { return this.#elements.linkCypressIO() }
-  get LinkGitHub() { return this.#elements.linkGitHub() }
-  get LinkUtilities() { return this.#elements.linkUtilities() }
-  get LinkCypressAPI() { return this.#elements.linkCypressAPI() }
+	/**
+	 * Set viewport to a preset device
+	 * @param preset string (e.g. 'macbook-15', 'ipad-2', 'iphone-6+')
+	 * @param orientation string ('portrait' | 'landscape')
+	 */
+		setViewportPreset(preset: Cypress.ViewportPreset, orientation?: Cypress.ViewportOrientation) {
+			if (orientation) {
+				cy.viewport(preset, orientation);
+			} else {
+				cy.viewport(preset);
+			}
+		}
 
-  // Interaction methods
-  clickNavbarToggle() { return this.#elements.navbarToggle().click() }
-  clickNavLink(index: number) { return this.#elements.navLinks().eq(index).click() }
-  clickLinkDocs() { return this.#elements.linkDocs().click() }
-  clickLinkCypressIO() { return this.#elements.linkCypressIO().click() }
-  clickLinkGitHub() { return this.#elements.linkGitHub().click() }
-  clickLinkUtilities() { return this.#elements.linkUtilities().click() }
-  clickLinkCypressAPI() { return this.#elements.linkCypressAPI().click() }
+	/**
+	 * Wait for a given ms (used between viewport changes)
+	 */
+	wait(ms: number) {
+		cy.wait(ms);
+	}
 
-  // Workflow methods
-  setViewport(size: ViewportPreset | [number, number], orientation?: ViewportOrientation) {
-    if (typeof size === 'string') {
-      cy.viewport(size as ViewportPreset, orientation);
-    } else {
-      cy.viewport(size[0], size[1]);
-    }
-  }
+	// Full workflow for all viewport examples
+	runAllViewportWorkflows() {
+	// Set to small viewport
+	this.setViewportSize(320, 480);
+	// Set to large viewport
+	this.setViewportSize(2999, 2999);
+		// Preset devices
+			const presets: Cypress.ViewportPreset[] = [
+				'macbook-15', 'macbook-13', 'macbook-11',
+				'ipad-2', 'ipad-mini', 'iphone-6+', 'iphone-6',
+				'iphone-5', 'iphone-4', 'iphone-3'
+			];
+			presets.forEach((preset: Cypress.ViewportPreset) => {
+				this.setViewportPreset(preset);
+				this.wait(200);
+			});
+		// Orientation examples
+		this.setViewportPreset('ipad-2', 'portrait');
+		this.wait(200);
+		this.setViewportPreset('iphone-4', 'landscape');
+		this.wait(200);
+	}
+
+	// Assertion for cy.viewport() header and code block
+	assertCyViewportHeaderVisible() {
+		this.getCyViewportHeader().should('be.visible');
+	}
+	assertCyViewportCodeVisible() {
+		this.getCyViewportCode().should('be.visible');
+	}
 }

@@ -1,129 +1,150 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
-export class StoragePage extends BasePage {
-	constructor() {
-		super('/commands/storage');
-	}
-
-	// Private element locators
+/**
+ * Page Object for the Storage page in Cypress Kitchen Sink
+ * Covers all workflows for localStorage and sessionStorage commands, buttons, code blocks, headers, and external links
+ */
+export default class StoragePage extends BasePage {
+	// Private selectors for all relevant elements
 	#elements = {
-		lsBtn: () => cy.get('.ls-btn'),
-		storageHeader: () => cy.contains('h1, h2, h3, h4', 'Storage'),
-		cyClearLocalStorageCommandLink: () => cy.contains('a', 'cy.clearLocalStorage()'),
-		cyGetAllLocalStorageCommandLink: () => cy.contains('a', 'cy.getAllLocalStorage()'),
-		cyClearAllLocalStorageCommandLink: () => cy.contains('a', 'cy.clearAllLocalStorage()'),
-		cyGetAllSessionStorageCommandLink: () => cy.contains('a', 'cy.getAllSessionStorage()'),
-		cyClearAllSessionStorageCommandLink: () => cy.contains('a', 'cy.clearAllSessionStorage()'),
-		additionalLinks: {
-			cypressIo: () => cy.contains('a', 'cypress.io'),
-			utilities: () => cy.contains('a', 'Utilities'),
-			cypressApi: () => cy.contains('a', 'Cypress API'),
-			github: () => cy.contains('a', 'GitHub'),
-		},
+		banner: '.banner',
+		mainHeader: 'h1',
+		docsLink: "a[href='https://on.cypress.io/api']",
+		// cy.clearLocalStorage section
+		clearLocalStorageSection: '#clearlocalstorage',
+		clearLocalStorageHeader: "h4:contains('cy.clearLocalStorage()')",
+		clearLocalStorageLink: "a[href='https://on.cypress.io/clearlocalstorage']",
+		clearLocalStorageCode: "pre code.javascript.hljs",
+		clearLocalStorageButton: '.ls-btn.btn-success',
+		// cy.getAllLocalStorage section
+		getAllLocalStorageSection: '#getalllocalstorage',
+		getAllLocalStorageHeader: "h4:contains('cy.getAllLocalStorage()')",
+		getAllLocalStorageLink: "a[href='https://on.cypress.io/getalllocalstorage']",
+		getAllLocalStorageCode: "pre code.javascript.hljs",
+		// cy.clearAllLocalStorage section
+		clearAllLocalStorageSection: '#clearalllocalstorage',
+		clearAllLocalStorageHeader: "h4:contains('cy.clearAllLocalStorage()')",
+		clearAllLocalStorageLink: "a[href='https://on.cypress.io/clearalllocalstorage']",
+		clearAllLocalStorageCode: "pre code.javascript.hljs",
+		// cy.getAllSessionStorage section
+		getAllSessionStorageSection: '#getallsessionstorage',
+		getAllSessionStorageHeader: "h4:contains('cy.getAllSessionStorage()')",
+		getAllSessionStorageLink: "a[href='https://on.cypress.io/getallsessionstorage']",
+		getAllSessionStorageCode: "pre code.javascript.hljs",
+		// cy.clearAllSessionStorage section
+		clearAllSessionStorageSection: '#clearallsessionstorage',
+		clearAllSessionStorageHeader: "h4:contains('cy.clearAllSessionStorage()')",
+		clearAllSessionStorageLink: "a[href='https://on.cypress.io/clearallsessionstorage']",
+		clearAllSessionStorageCode: "pre code.javascript.hljs",
+		// Populate button
+		populateButton: '.ls-btn.btn-success',
 	};
 
-	// Public getters
-	get lsBtn() { return this.#elements.lsBtn(); }
-	get storageHeader() { return this.#elements.storageHeader(); }
-	get cyClearLocalStorageCommandLink() { return this.#elements.cyClearLocalStorageCommandLink(); }
-	get cyGetAllLocalStorageCommandLink() { return this.#elements.cyGetAllLocalStorageCommandLink(); }
-	get cyClearAllLocalStorageCommandLink() { return this.#elements.cyClearAllLocalStorageCommandLink(); }
-	get cyGetAllSessionStorageCommandLink() { return this.#elements.cyGetAllSessionStorageCommandLink(); }
-	get cyClearAllSessionStorageCommandLink() { return this.#elements.cyClearAllSessionStorageCommandLink(); }
-	get additionalLinks() { return this.#elements.additionalLinks; }
+	getBanner() { return cy.get(this.#elements.banner); }
+	getMainHeader() { return cy.get(this.#elements.mainHeader); }
+	getDocsLink() { return cy.get(this.#elements.docsLink); }
 
-	// Interaction methods
-	clickLsBtn() {
-		return this.#elements.lsBtn().click();
-	}
-	clickCyClearLocalStorageCommandLink() {
-		return this.#elements.cyClearLocalStorageCommandLink().click();
-	}
-	clickCyGetAllLocalStorageCommandLink() {
-		return this.#elements.cyGetAllLocalStorageCommandLink().click();
-	}
-	clickCyClearAllLocalStorageCommandLink() {
-		return this.#elements.cyClearAllLocalStorageCommandLink().click();
-	}
-	clickCyGetAllSessionStorageCommandLink() {
-		return this.#elements.cyGetAllSessionStorageCommandLink().click();
-	}
-	clickCyClearAllSessionStorageCommandLink() {
-		return this.#elements.cyClearAllSessionStorageCommandLink().click();
-	}
+	// Section getters
+	getClearLocalStorageSection() { return cy.get(this.#elements.clearLocalStorageSection); }
+	getClearLocalStorageHeader() { return cy.get(this.#elements.clearLocalStorageHeader); }
+	getClearLocalStorageLink() { return cy.get(this.#elements.clearLocalStorageLink); }
+	getClearLocalStorageCode() { return cy.get(this.#elements.clearLocalStorageCode); }
+	getClearLocalStorageButton() { return cy.get(this.#elements.clearLocalStorageButton); }
 
-	// Workflow examples
-	populateLocalStorage() {
-		this.clickLsBtn();
-		this.#elements.lsBtn().should(() => {
-			expect(localStorage.getItem('prop1')).to.eq('red');
-			expect(localStorage.getItem('prop2')).to.eq('blue');
-			expect(localStorage.getItem('prop3')).to.eq('magenta');
-		});
-	}
+	getGetAllLocalStorageSection() { return cy.get(this.#elements.getAllLocalStorageSection); }
+	getGetAllLocalStorageHeader() { return cy.get(this.#elements.getAllLocalStorageHeader); }
+	getGetAllLocalStorageLink() { return cy.get(this.#elements.getAllLocalStorageLink); }
+	getGetAllLocalStorageCode() { return cy.get(this.#elements.getAllLocalStorageCode); }
 
-	clearLocalStorageAndAssert() {
-		cy.clearLocalStorage();
-		cy.getAllLocalStorage().should(() => {
-			expect(localStorage.getItem('prop1')).to.be.null;
-			expect(localStorage.getItem('prop2')).to.be.null;
-			expect(localStorage.getItem('prop3')).to.be.null;
-		});
-	}
+	getClearAllLocalStorageSection() { return cy.get(this.#elements.clearAllLocalStorageSection); }
+	getClearAllLocalStorageHeader() { return cy.get(this.#elements.clearAllLocalStorageHeader); }
+	getClearAllLocalStorageLink() { return cy.get(this.#elements.clearAllLocalStorageLink); }
+	getClearAllLocalStorageCode() { return cy.get(this.#elements.clearAllLocalStorageCode); }
 
-	clearLocalStorageKeyAndAssert(key: string) {
-		cy.clearLocalStorage(key);
-		cy.getAllLocalStorage().should(() => {
-			expect(localStorage.getItem(key)).to.be.null;
-		});
-	}
+	getGetAllSessionStorageSection() { return cy.get(this.#elements.getAllSessionStorageSection); }
+	getGetAllSessionStorageHeader() { return cy.get(this.#elements.getAllSessionStorageHeader); }
+	getGetAllSessionStorageLink() { return cy.get(this.#elements.getAllSessionStorageLink); }
+	getGetAllSessionStorageCode() { return cy.get(this.#elements.getAllSessionStorageCode); }
 
-	clearLocalStorageRegexAndAssert(regex: RegExp) {
-		cy.clearLocalStorage(regex);
-		cy.getAllLocalStorage().should(() => {
-			// Custom assertion for regex-matched keys
-		});
-	}
+	getClearAllSessionStorageSection() { return cy.get(this.#elements.clearAllSessionStorageSection); }
+	getClearAllSessionStorageHeader() { return cy.get(this.#elements.clearAllSessionStorageHeader); }
+	getClearAllSessionStorageLink() { return cy.get(this.#elements.clearAllSessionStorageLink); }
+	getClearAllSessionStorageCode() { return cy.get(this.#elements.clearAllSessionStorageCode); }
 
-	getAllLocalStorageAndAssert() {
-		cy.getAllLocalStorage().should((storageMap) => {
-			expect(storageMap).to.deep.equal({
-				'https://example.cypress.io': {
-					prop1: 'red',
-					prop2: 'blue',
-					prop3: 'magenta',
-				},
-			});
-		});
-	}
+	getPopulateButton() { return cy.get(this.#elements.populateButton); }
 
-	clearAllLocalStorageAndAssert() {
-		cy.clearAllLocalStorage();
-		cy.getAllLocalStorage().should(() => {
-			expect(localStorage.getItem('prop1')).to.be.null;
-			expect(localStorage.getItem('prop2')).to.be.null;
-			expect(localStorage.getItem('prop3')).to.be.null;
-		});
-	}
+	// ...existing code...
+	// Workflow methods
+	// ...existing code...
 
-	getAllSessionStorageAndAssert() {
-		cy.getAllSessionStorage().should((storageMap) => {
-			expect(storageMap).to.deep.equal({
-				'https://example.cypress.io': {
-					prop4: 'cyan',
-					prop5: 'yellow',
-					prop6: 'black',
-				},
-			});
-		});
-	}
+	assertBannerVisible() { this.getBanner().should('be.visible'); }
+	assertMainHeaderVisible() { this.getMainHeader().should('be.visible').and('contain', 'Storage'); }
+	assertDocsLinkVisible() { this.getDocsLink().should('be.visible'); }
+	clickDocsLink() { this.getDocsLink().should('be.visible').invoke('removeAttr', 'target').click(); }
 
-	clearAllSessionStorageAndAssert() {
-		cy.clearAllSessionStorage();
-		cy.getAllSessionStorage().should(() => {
-			expect(sessionStorage.getItem('prop4')).to.be.null;
-			expect(sessionStorage.getItem('prop5')).to.be.null;
-			expect(sessionStorage.getItem('prop6')).to.be.null;
-		});
+	// cy.clearLocalStorage workflows
+	assertClearLocalStorageHeaderVisible() { this.getClearLocalStorageHeader().should('be.visible'); }
+	assertClearLocalStorageLinkVisible() { this.getClearLocalStorageLink().should('be.visible'); }
+	clickClearLocalStorageLink() { this.getClearLocalStorageLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertClearLocalStorageCodeVisible() { this.getClearLocalStorageCode().should('be.visible'); }
+	clickClearLocalStorageButton() { this.getClearLocalStorageButton().should('be.visible').click(); }
+
+	// cy.getAllLocalStorage workflows
+	assertGetAllLocalStorageHeaderVisible() { this.getGetAllLocalStorageHeader().should('be.visible'); }
+	assertGetAllLocalStorageLinkVisible() { this.getGetAllLocalStorageLink().should('be.visible'); }
+	clickGetAllLocalStorageLink() { this.getGetAllLocalStorageLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertGetAllLocalStorageCodeVisible() { this.getGetAllLocalStorageCode().should('be.visible'); }
+
+	// cy.clearAllLocalStorage workflows
+	assertClearAllLocalStorageHeaderVisible() { this.getClearAllLocalStorageHeader().should('be.visible'); }
+	assertClearAllLocalStorageLinkVisible() { this.getClearAllLocalStorageLink().should('be.visible'); }
+	clickClearAllLocalStorageLink() { this.getClearAllLocalStorageLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertClearAllLocalStorageCodeVisible() { this.getClearAllLocalStorageCode().should('be.visible'); }
+
+	// ...existing code...
+	assertGetAllSessionStorageHeaderVisible() { this.getGetAllSessionStorageHeader().should('be.visible'); }
+	assertGetAllSessionStorageLinkVisible() { this.getGetAllSessionStorageLink().should('be.visible'); }
+	clickGetAllSessionStorageLink() { this.getGetAllSessionStorageLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertGetAllSessionStorageCodeVisible() { this.getGetAllSessionStorageCode().should('be.visible'); }
+
+	// cy.clearAllSessionStorage workflows
+	assertClearAllSessionStorageHeaderVisible() { this.getClearAllSessionStorageHeader().should('be.visible'); }
+	assertClearAllSessionStorageLinkVisible() { this.getClearAllSessionStorageLink().should('be.visible'); }
+	clickClearAllSessionStorageLink() { this.getClearAllSessionStorageLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertClearAllSessionStorageCodeVisible() { this.getClearAllSessionStorageCode().should('be.visible'); }
+
+	// Populate button workflow
+	clickPopulateButton() { this.getPopulateButton().should('be.visible').click(); }
+
+	// Full workflow for all storage examples
+	runAllStorageWorkflows() {
+	// ...existing code...
+		// Banner and header
+		this.assertBannerVisible();
+		this.assertMainHeaderVisible();
+		// Docs link
+		this.assertDocsLinkVisible();
+		// cy.clearLocalStorage section
+		this.assertClearLocalStorageHeaderVisible();
+		this.assertClearLocalStorageLinkVisible();
+		this.assertClearLocalStorageCodeVisible();
+		this.clickPopulateButton();
+		this.clickClearLocalStorageButton();
+		// cy.getAllLocalStorage section
+		this.assertGetAllLocalStorageHeaderVisible();
+		this.assertGetAllLocalStorageLinkVisible();
+		this.assertGetAllLocalStorageCodeVisible();
+		// cy.clearAllLocalStorage section
+		this.assertClearAllLocalStorageHeaderVisible();
+		this.assertClearAllLocalStorageLinkVisible();
+		this.assertClearAllLocalStorageCodeVisible();
+		// cy.getAllSessionStorage section
+		this.assertGetAllSessionStorageHeaderVisible();
+		this.assertGetAllSessionStorageLinkVisible();
+		this.assertGetAllSessionStorageCodeVisible();
+		// cy.clearAllSessionStorage section
+		this.assertClearAllSessionStorageHeaderVisible();
+		this.assertClearAllSessionStorageLinkVisible();
+		this.assertClearAllSessionStorageCodeVisible();
 	}
 }

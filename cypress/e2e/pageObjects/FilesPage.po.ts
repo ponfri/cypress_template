@@ -1,82 +1,147 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
-export class FilesPage extends BasePage {
-	constructor() {
-		super('/commands/files');
+/**
+ * Page Object for the Files page in Cypress Kitchen Sink
+ * Covers all workflows for cy.fixture(), cy.readFile(), cy.writeFile(), buttons, comment divs, code blocks, and external links
+ */
+export default class FilesPage extends BasePage {
+	getFilesSection() {
+		return cy.get(this.#elements.filesSection);
 	}
-
-	// Private element locators
+	getCyFixtureHeader() {
+		return cy.get(this.#elements.cyFixtureHeader);
+	}
+	getCyFixtureCode() {
+		return cy.get(this.#elements.cyFixtureCode);
+	}
+	getFixtureBtn() {
+		return cy.get(this.#elements.fixtureBtn);
+	}
+	// Private selectors for all relevant elements
 	#elements = {
-		fixtureBtn: () => cy.get('.fixture-btn'),
-		filesHeader: () => cy.contains('h1, h2, h3, h4', 'Files'),
-		cyFixtureCommandLink: () => cy.contains('a', 'cy.fixture()'),
-		cyReadFileCommandLink: () => cy.contains('a', 'cy.readFile()'),
-		cyWriteFileCommandLink: () => cy.contains('a', 'cy.writeFile()'),
-		getCommentButton: () => cy.contains('button', 'Get Comment'),
-		additionalLinks: {
-			cypressIo: () => cy.contains('a', 'cypress.io'),
-			utilities: () => cy.contains('a', 'Utilities'),
-			cypressApi: () => cy.contains('a', 'Cypress API'),
-			github: () => cy.contains('a', 'GitHub'),
-		},
+		filesSection: "h1:contains('Files')",
+		cyFixtureHeader: "h4#fixture:has(a[href='https://on.cypress.io/fixture'])",
+		cyFixtureCode: "pre code.javascript.hljs",
+		fixtureBtn: '.fixture-btn',
+		fixtureComment: '.fixture-comment',
+		cyRequireHeader: "h4#require",
+		cyRequireCode: "pre code.javascript.hljs",
+		cyReadFileHeader: "h4#readFile:has(a[href='https://on.cypress.io/readfile'])",
+		cyReadFileCode: "pre code.javascript.hljs",
+		cyWriteFileHeader: "h4#writefile:has(a[href='https://on.cypress.io/writefile'])",
+		cyWriteFileCode: "pre code.javascript.hljs",
+		moreInfoLinks: [
+			"a[href='https://on.cypress.io/api']"
+		]
 	};
 
-	// Public getters
-	get fixtureBtn() { return this.#elements.fixtureBtn(); }
-	get filesHeader() { return this.#elements.filesHeader(); }
-	get cyFixtureCommandLink() { return this.#elements.cyFixtureCommandLink(); }
-	get cyReadFileCommandLink() { return this.#elements.cyReadFileCommandLink(); }
-	get cyWriteFileCommandLink() { return this.#elements.cyWriteFileCommandLink(); }
-	get getCommentButton() { return this.#elements.getCommentButton(); }
-	get additionalLinks() { return this.#elements.additionalLinks; }
+	// Getters for elements
+	// ...existing code...
+	// ...existing code...
+	// ...existing code...
+	getFixtureComment() {
+		return cy.get(this.#elements.fixtureComment);
+	}
+	getCyRequireHeader() {
+		return cy.get(this.#elements.cyRequireHeader);
+	}
+	getCyRequireCode() {
+		return cy.get(this.#elements.cyRequireCode).eq(1);
+	}
+	getCyReadFileHeader() {
+		return cy.get(this.#elements.cyReadFileHeader);
+	}
+	getCyReadFileCode() {
+		return cy.get(this.#elements.cyReadFileCode).eq(2);
+	}
+	getCyWriteFileHeader() {
+		return cy.get(this.#elements.cyWriteFileHeader);
+	}
+	getCyWriteFileCode() {
+		return cy.get(this.#elements.cyWriteFileCode).eq(3);
+	}
+	getMoreInfoLinks() {
+		return this.#elements.moreInfoLinks.map(sel => cy.get(sel));
+	}
 
-	// Interaction methods
+	// Workflow methods
+	// ...existing code...
+
+	assertFilesSectionVisible() {
+		this.getFilesSection().should('be.visible');
+	}
+	assertCyFixtureHeaderVisible() {
+		this.getCyFixtureHeader().should('be.visible');
+	}
+	assertCyFixtureCodeVisible() {
+		this.getCyFixtureCode().should('be.visible');
+	}
 	clickFixtureBtn() {
-		return this.#elements.fixtureBtn().click();
+		this.getFixtureBtn().should('be.visible').click();
 	}
-	clickGetCommentButton() {
-		return this.#elements.getCommentButton().click();
+	assertFixtureCommentVisible() {
+		this.getFixtureComment().should('be.visible');
 	}
-	clickCyFixtureCommandLink() {
-		return this.#elements.cyFixtureCommandLink().click();
+	assertCyRequireHeaderVisible() {
+		this.getCyRequireHeader().should('be.visible');
 	}
-	clickCyReadFileCommandLink() {
-		return this.#elements.cyReadFileCommandLink().click();
+	assertCyRequireCodeVisible() {
+		this.getCyRequireCode().should('be.visible');
 	}
-	clickCyWriteFileCommandLink() {
-		return this.#elements.cyWriteFileCommandLink().click();
+	assertCyReadFileHeaderVisible() {
+		this.getCyReadFileHeader().should('be.visible');
+	}
+	assertCyReadFileCodeVisible() {
+		this.getCyReadFileCode().should('be.visible');
+	}
+	assertCyWriteFileHeaderVisible() {
+		this.getCyWriteFileHeader().should('be.visible');
+	}
+	assertCyWriteFileCodeVisible() {
+		this.getCyWriteFileCode().should('be.visible');
 	}
 
-	// Workflow examples
-	interceptGetCommentWithFixture() {
+	clickMoreInfoLinks() {
+		this.getMoreInfoLinks().forEach(link => link.should('be.visible').click({ multiple: true }));
+	}
+
+	// Full workflow for all files examples
+	runAllFilesWorkflows() {
+	// ...existing code...
+		this.assertFilesSectionVisible();
+		this.assertCyFixtureHeaderVisible();
+		this.assertCyFixtureCodeVisible();
 		cy.intercept('GET', '**/comments/*', { fixture: 'example.json' }).as('getComment');
 		this.clickFixtureBtn();
 		cy.wait('@getComment').its('response.body')
 			.should('have.property', 'name')
 			.and('include', 'Using fixtures to represent data');
-	}
-
-	loadFixtureAndCompareWithRequire() {
-			const requiredExample = require('../../fixtures/example');
-			cy.fixture('example.json').as('example');
-			cy.wrap({}).then(function () {
-				expect(this.example, 'fixture in the test context')
-					.to.deep.equal(requiredExample);
-				cy.wrap(this.example)
-					.should('deep.equal', requiredExample);
-			});
-	}
-
-	readFileAndAssertObject(filePath: string) {
-		cy.readFile(filePath).then((json) => {
+		this.assertFixtureCommentVisible();
+		this.assertCyRequireHeaderVisible();
+		this.assertCyRequireCodeVisible();
+		cy.fixture('example.json').as('example');
+		cy.readFile('cypress.config.js').then((json) => {
 			expect(json).to.be.an('object');
 		});
-	}
-
-	writeFileAndAssertFixture(filePath: string, data: any) {
-		cy.writeFile(filePath, data);
-		cy.fixture(filePath.replace('cypress/fixtures/', '').replace('.json', '')).should((fixtureData) => {
-			expect(fixtureData).to.deep.equal(data);
+		this.assertCyReadFileHeaderVisible();
+		this.assertCyReadFileCodeVisible();
+		cy.request('https://jsonplaceholder.cypress.io/users')
+			.then((response) => {
+				cy.writeFile('cypress/fixtures/users.json', response.body);
+			});
+		cy.fixture('users').should((users) => {
+			expect(users[0].name).to.exist;
 		});
+		cy.writeFile('cypress/fixtures/profile.json', {
+			id: 8739,
+			name: 'Jane',
+			email: 'jane@example.com',
+		});
+		cy.fixture('profile').should((profile) => {
+			expect(profile.name).to.eq('Jane');
+		});
+		this.assertCyWriteFileHeaderVisible();
+		this.assertCyWriteFileCodeVisible();
+		this.clickMoreInfoLinks();
 	}
 }

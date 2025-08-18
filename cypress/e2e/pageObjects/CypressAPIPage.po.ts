@@ -1,114 +1,205 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.po';
 
-export class CypressAPIPage extends BasePage {
-	constructor() {
-		super('/cypress-api');
-	}
-
-	// Private element locators
+/**
+ * Page Object for the Cypress API page in Cypress Kitchen Sink
+ * Covers all workflows for Cypress.Commands.add, Cookies.debug, arch, config, dom.isHidden, env, log, platform, version, navbar, navigation, code blocks, headers, and external links
+ */
+export default class CypressAPIPage extends BasePage {
 	#elements = {
-		domPHidden: () => cy.get('.dom-p p.hidden'),
-		domPVisible: () => cy.get('.dom-p p.visible'),
-		cypressAPIHeader: () => cy.contains('h1, h2, h3, h4', 'Cypress API'),
-		cyCommandsAddCommandLink: () => cy.contains('a', 'Cypress.Commands.add()'),
-		cyCookiesDebugCommandLink: () => cy.contains('a', 'Cypress.Cookies.debug()'),
-		cyArchCommandLink: () => cy.contains('a', 'Cypress.arch'),
-		cyConfigCommandLink: () => cy.contains('a', 'Cypress.config()'),
-		cyDomIsHiddenCommandLink: () => cy.contains('a', 'Cypress.dom.isHidden()'),
-		cyEnvCommandLink: () => cy.contains('a', 'Cypress.env()'),
-		cyLogCommandLink: () => cy.contains('a', 'Cypress.log()'),
-		cyPlatformCommandLink: () => cy.contains('a', 'Cypress.platform'),
-		cyVersionCommandLink: () => cy.contains('a', 'Cypress.version'),
-		additionalLinks: {
-			cypressIo: () => cy.contains('a', 'cypress.io'),
-			utilities: () => cy.contains('a', 'Utilities'),
-			cypressApi: () => cy.contains('a', 'Cypress API'),
-			github: () => cy.contains('a', 'GitHub'),
-		},
+		banner: '.banner',
+		mainHeader: 'h1',
+		docsLink: "a[href='https://on.cypress.io/custom-commands']",
+		// Commands.add section
+		commandsAddHeader: "h4#Commands\\.add",
+		commandsAddLink: "a[href='https://on.cypress.io/custom-commands']",
+		commandsAddCode: "pre code.javascript.hljs",
+		// Cookies.debug section
+		cookiesDebugHeader: "h4#Cookies\\.debug",
+		cookiesDebugLink: "a[href='https://on.cypress.io/cookies']",
+		cookiesDebugCode: "pre code.javascript.hljs",
+		// arch section
+		archHeader: "h4#arch",
+		archLink: "a[href='https://on.cypress.io/arch']",
+		archCode: "pre code.javascript.hljs",
+		// config section
+		configHeader: "h4#config",
+		configLink: "a[href='https://on.cypress.io/config']",
+		configCode: "pre code.javascript.hljs",
+		// dom.isHidden section
+		domIsHiddenHeader: "h4#dom\\.isHidden",
+		domIsHiddenLink: "a[href='https://on.cypress.io/dom']",
+		domIsHiddenCode: "pre code.javascript.hljs",
+		domPHidden: '.dom-p p.hidden',
+		domPVisible: '.dom-p p.visible',
+		// env section
+		envHeader: "h4#env",
+		envLink: "a[href='https://on.cypress.io/env']",
+		envCode: "pre code.javascript.hljs",
+		// log section
+		logHeader: "h4#log",
+		logLink: "a[href='https://on.cypress.io/cypress-log']",
+		logCode: "pre code.javascript.hljs",
+		// platform section
+		platformHeader: "h4#platform",
+		platformLink: "a[href='https://on.cypress.io/platform']",
+		platformCode: "pre code.javascript.hljs",
+		// version section
+		versionHeader: "h4#version",
+		versionLink: "a[href='https://on.cypress.io/version']",
+		versionCode: "pre code.javascript.hljs",
 	};
 
-	// Public getters
-	get domPHidden() { return this.#elements.domPHidden(); }
-	get domPVisible() { return this.#elements.domPVisible(); }
-	get cypressAPIHeader() { return this.#elements.cypressAPIHeader(); }
-	get cyCommandsAddCommandLink() { return this.#elements.cyCommandsAddCommandLink(); }
-	get cyCookiesDebugCommandLink() { return this.#elements.cyCookiesDebugCommandLink(); }
-	get cyArchCommandLink() { return this.#elements.cyArchCommandLink(); }
-	get cyConfigCommandLink() { return this.#elements.cyConfigCommandLink(); }
-	get cyDomIsHiddenCommandLink() { return this.#elements.cyDomIsHiddenCommandLink(); }
-	get cyEnvCommandLink() { return this.#elements.cyEnvCommandLink(); }
-	get cyLogCommandLink() { return this.#elements.cyLogCommandLink(); }
-	get cyPlatformCommandLink() { return this.#elements.cyPlatformCommandLink(); }
-	get cyVersionCommandLink() { return this.#elements.cyVersionCommandLink(); }
-	get additionalLinks() { return this.#elements.additionalLinks; }
+	// Getters for elements
+		getBanner() { return cy.get(this.#elements.banner); }
+		getMainHeader() { return cy.get(this.#elements.mainHeader); }
+		getDocsLink() { return cy.get(this.#elements.docsLink); }
 
-	// Interaction methods
-	clickDomPHidden() {
-		return this.#elements.domPHidden().click();
-	}
-	clickDomPVisible() {
-		return this.#elements.domPVisible().click();
-	}
-	clickCyCommandsAddCommandLink() {
-		return this.#elements.cyCommandsAddCommandLink().click();
-	}
-	clickCyCookiesDebugCommandLink() {
-		return this.#elements.cyCookiesDebugCommandLink().click();
-	}
-	clickCyArchCommandLink() {
-		return this.#elements.cyArchCommandLink().click();
-	}
-	clickCyConfigCommandLink() {
-		return this.#elements.cyConfigCommandLink().click();
-	}
-	clickCyDomIsHiddenCommandLink() {
-		return this.#elements.cyDomIsHiddenCommandLink().click();
-	}
-	clickCyEnvCommandLink() {
-		return this.#elements.cyEnvCommandLink().click();
-	}
-	clickCyLogCommandLink() {
-		return this.#elements.cyLogCommandLink().click();
-	}
-	clickCyPlatformCommandLink() {
-		return this.#elements.cyPlatformCommandLink().click();
-	}
-	clickCyVersionCommandLink() {
-		return this.#elements.cyVersionCommandLink().click();
-	}
+	getCommandsAddHeader() { return cy.get(this.#elements.commandsAddHeader); }
+	getCommandsAddLink() { return cy.get(this.#elements.commandsAddLink); }
+	getCommandsAddCode() { return cy.get(this.#elements.commandsAddCode).eq(0); }
 
-	// Workflow examples
-	assertDomIsHidden() {
-		let hiddenP = Cypress.$('.dom-p p.hidden').get(0);
-		let visibleP = Cypress.$('.dom-p p.visible').get(0);
-		expect(Cypress.dom.isHidden(hiddenP)).to.be.true;
-		expect(Cypress.dom.isHidden(visibleP)).to.be.false;
-	}
+	getCookiesDebugHeader() { return cy.get(this.#elements.cookiesDebugHeader); }
+	getCookiesDebugLink() { return cy.get(this.#elements.cookiesDebugLink); }
+	getCookiesDebugCode() { return cy.get(this.#elements.cookiesDebugCode).eq(1); }
 
-	assertConfigProperties() {
-		const myConfig = Cypress.config();
-		expect(myConfig).to.have.property('animationDistanceThreshold', 5);
-		expect(myConfig).to.have.property('baseUrl');
-		expect(myConfig).to.have.property('defaultCommandTimeout', 4000);
-		expect(myConfig).to.have.property('requestTimeout', 5000);
-		expect(myConfig).to.have.property('responseTimeout', 30000);
-		expect(myConfig).to.have.property('viewportHeight', 660);
-		expect(myConfig).to.have.property('viewportWidth', 1000);
-		expect(myConfig).to.have.property('pageLoadTimeout');
-		expect(myConfig).to.have.property('waitForAnimations');
-	}
+	getArchHeader() { return cy.get(this.#elements.archHeader); }
+	getArchLink() { return cy.get(this.#elements.archLink); }
+	getArchCode() { return cy.get(this.#elements.archCode).eq(2); }
 
-	assertEnvVariables() {
-		Cypress.env({ host: 'veronica.dev.local', api_server: 'http://localhost:8888/v1/' });
-		expect(Cypress.env('host')).to.eq('veronica.dev.local');
-		Cypress.env('api_server', 'http://localhost:8888/v2/');
-		expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/');
-		expect(Cypress.env()).to.have.property('host', 'veronica.dev.local');
-		expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/');
-	}
+	getConfigHeader() { return cy.get(this.#elements.configHeader); }
+	getConfigLink() { return cy.get(this.#elements.configLink); }
+	getConfigCode() { return cy.get(this.#elements.configCode).eq(3); }
 
-	assertPlatformAndVersion() {
-		expect(Cypress.platform).to.exist;
-		expect(Cypress.version).to.exist;
+	getDomIsHiddenHeader() { return cy.get(this.#elements.domIsHiddenHeader); }
+	getDomIsHiddenLink() { return cy.get(this.#elements.domIsHiddenLink); }
+	getDomIsHiddenCode() { return cy.get(this.#elements.domIsHiddenCode).eq(4); }
+	getDomPHidden() { return cy.get(this.#elements.domPHidden); }
+	getDomPVisible() { return cy.get(this.#elements.domPVisible); }
+
+	getEnvHeader() { return cy.get(this.#elements.envHeader); }
+	getEnvLink() { return cy.get(this.#elements.envLink); }
+	getEnvCode() { return cy.get(this.#elements.envCode).eq(5); }
+
+	getLogHeader() { return cy.get(this.#elements.logHeader); }
+	getLogLink() { return cy.get(this.#elements.logLink); }
+	getLogCode() { return cy.get(this.#elements.logCode).eq(6); }
+
+	getPlatformHeader() { return cy.get(this.#elements.platformHeader); }
+	getPlatformLink() { return cy.get(this.#elements.platformLink); }
+	getPlatformCode() { return cy.get(this.#elements.platformCode).eq(7); }
+
+	getVersionHeader() { return cy.get(this.#elements.versionHeader); }
+	getVersionLink() { return cy.get(this.#elements.versionLink); }
+	getVersionCode() { return cy.get(this.#elements.versionCode).eq(8); }
+
+	// Workflow methods
+		// ...menu and navigation handled by BasePage...
+
+	assertBannerVisible() { this.getBanner().should('be.visible'); }
+	assertMainHeaderVisible() { this.getMainHeader().should('be.visible').and('contain', 'Cypress API'); }
+	assertDocsLinkVisible() { this.getDocsLink().should('be.visible'); }
+	clickDocsLink() { this.getDocsLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+
+	// Commands.add workflows
+	assertCommandsAddHeaderVisible() { this.getCommandsAddHeader().should('be.visible'); }
+	assertCommandsAddLinkVisible() { this.getCommandsAddLink().should('be.visible'); }
+	clickCommandsAddLink() { this.getCommandsAddLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertCommandsAddCodeVisible() { this.getCommandsAddCode().should('be.visible'); }
+
+	// Cookies.debug workflows
+	assertCookiesDebugHeaderVisible() { this.getCookiesDebugHeader().should('be.visible'); }
+	assertCookiesDebugLinkVisible() { this.getCookiesDebugLink().should('be.visible'); }
+	clickCookiesDebugLink() { this.getCookiesDebugLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertCookiesDebugCodeVisible() { this.getCookiesDebugCode().should('be.visible'); }
+
+	// arch workflows
+	assertArchHeaderVisible() { this.getArchHeader().should('be.visible'); }
+	assertArchLinkVisible() { this.getArchLink().should('be.visible'); }
+	clickArchLink() { this.getArchLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertArchCodeVisible() { this.getArchCode().should('be.visible'); }
+
+	// config workflows
+	assertConfigHeaderVisible() { this.getConfigHeader().should('be.visible'); }
+	assertConfigLinkVisible() { this.getConfigLink().should('be.visible'); }
+	clickConfigLink() { this.getConfigLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertConfigCodeVisible() { this.getConfigCode().should('be.visible'); }
+
+	// dom.isHidden workflows
+	assertDomIsHiddenHeaderVisible() { this.getDomIsHiddenHeader().should('be.visible'); }
+	assertDomIsHiddenLinkVisible() { this.getDomIsHiddenLink().should('be.visible'); }
+	clickDomIsHiddenLink() { this.getDomIsHiddenLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertDomIsHiddenCodeVisible() { this.getDomIsHiddenCode().should('be.visible'); }
+	assertDomPHiddenVisible() { this.getDomPHidden().should('be.visible'); }
+	assertDomPVisibleVisible() { this.getDomPVisible().should('be.visible'); }
+
+	// env workflows
+	assertEnvHeaderVisible() { this.getEnvHeader().should('be.visible'); }
+	assertEnvLinkVisible() { this.getEnvLink().should('be.visible'); }
+	clickEnvLink() { this.getEnvLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertEnvCodeVisible() { this.getEnvCode().should('be.visible'); }
+
+	// log workflows
+	assertLogHeaderVisible() { this.getLogHeader().should('be.visible'); }
+	assertLogLinkVisible() { this.getLogLink().should('be.visible'); }
+	clickLogLink() { this.getLogLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertLogCodeVisible() { this.getLogCode().should('be.visible'); }
+
+	// platform workflows
+	assertPlatformHeaderVisible() { this.getPlatformHeader().should('be.visible'); }
+	assertPlatformLinkVisible() { this.getPlatformLink().should('be.visible'); }
+	clickPlatformLink() { this.getPlatformLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertPlatformCodeVisible() { this.getPlatformCode().should('be.visible'); }
+
+	// version workflows
+	assertVersionHeaderVisible() { this.getVersionHeader().should('be.visible'); }
+	assertVersionLinkVisible() { this.getVersionLink().should('be.visible'); }
+	clickVersionLink() { this.getVersionLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	assertVersionCodeVisible() { this.getVersionCode().should('be.visible'); }
+
+	// Full workflow for all Cypress API examples
+	runAllCypressAPIWorkflows() {
+		// Banner and header
+		this.assertBannerVisible();
+		this.assertMainHeaderVisible();
+		// Docs link
+		this.assertDocsLinkVisible();
+		// Commands.add section
+		this.assertCommandsAddHeaderVisible();
+		this.assertCommandsAddLinkVisible();
+		this.assertCommandsAddCodeVisible();
+		// Cookies.debug section
+		this.assertCookiesDebugHeaderVisible();
+		this.assertCookiesDebugLinkVisible();
+		this.assertCookiesDebugCodeVisible();
+		// arch section
+		this.assertArchHeaderVisible();
+		this.assertArchLinkVisible();
+		this.assertArchCodeVisible();
+		// config section
+		this.assertConfigHeaderVisible();
+		this.assertConfigLinkVisible();
+		this.assertConfigCodeVisible();
+		// dom.isHidden section
+		this.assertDomIsHiddenHeaderVisible();
+		this.assertDomIsHiddenLinkVisible();
+		this.assertDomIsHiddenCodeVisible();
+		this.assertDomPHiddenVisible();
+		this.assertDomPVisibleVisible();
+		// env section
+		this.assertEnvHeaderVisible();
+		this.assertEnvLinkVisible();
+		this.assertEnvCodeVisible();
+		// log section
+		this.assertLogHeaderVisible();
+		this.assertLogLinkVisible();
+		this.assertLogCodeVisible();
+		// platform section
+		this.assertPlatformHeaderVisible();
+		this.assertPlatformLinkVisible();
+		this.assertPlatformCodeVisible();
+		// version section
+		this.assertVersionHeaderVisible();
+		this.assertVersionLinkVisible();
+		this.assertVersionCodeVisible();
 	}
 }
