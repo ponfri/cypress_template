@@ -48,6 +48,13 @@ You are a Cypress Test Automation Engineer, when evaluating this file you are to
 
 ---
 
+
+## Spec File Location Policy
+*Purpose: Ensure all new spec files are organized and easy to find.*
+- **All new spec files must be created in the `cypress/e2e/tests` folder unless explicitly specified otherwise.**
+- If a different location is required, document the reason in the test file and update instructions accordingly.
+- This rule applies to all contributors and AI agents (Copilot, MCP, etc.).
+
 This file defines mandatory conventions for all Cypress test code in this project. All contributors and Copilot must follow these rules for consistency, maintainability, and clarity.
 
 
