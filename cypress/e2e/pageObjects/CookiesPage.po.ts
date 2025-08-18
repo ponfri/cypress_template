@@ -103,52 +103,52 @@ export default class CookiesPage extends BasePage {
 	assertBannerVisible() { this.getBanner().should('be.visible'); }
 	assertMainHeaderVisible() { this.getMainHeader().should('be.visible').and('contain', 'Cookies'); }
 	assertDocsLinkVisible() { this.getDocsLink().should('be.visible'); }
-	clickDocsLink() { this.getDocsLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickDocsLink() { this.getDocsLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 
 	// cy.getCookie workflows
 	assertGetCookieHeaderVisible() { this.getGetCookieHeader().should('be.visible'); }
 	assertGetCookieLinkVisible() { this.getGetCookieLink().should('be.visible'); }
-	clickGetCookieLink() { this.getGetCookieLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickGetCookieLink() { this.getGetCookieLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertGetCookieCodeVisible() { this.getGetCookieCode().should('be.visible'); }
 	clickGetCookieButton() { this.getGetCookieButton().should('be.visible').click(); }
 
 	// cy.getCookies workflows
 	assertGetCookiesHeaderVisible() { this.getGetCookiesHeader().should('be.visible'); }
 	assertGetCookiesLinkVisible() { this.getGetCookiesLink().should('be.visible'); }
-	clickGetCookiesLink() { this.getGetCookiesLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickGetCookiesLink() { this.getGetCookiesLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertGetCookiesCodeVisible() { this.getGetCookiesCode().should('be.visible'); }
 	clickGetCookiesButton() { this.getGetCookiesButton().should('be.visible').click(); }
 
 	// cy.getAllCookies workflows
 	assertGetAllCookiesHeaderVisible() { this.getGetAllCookiesHeader().should('be.visible'); }
 	assertGetAllCookiesLinkVisible() { this.getGetAllCookiesLink().should('be.visible'); }
-	clickGetAllCookiesLink() { this.getGetAllCookiesLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickGetAllCookiesLink() { this.getGetAllCookiesLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertGetAllCookiesCodeVisible() { this.getGetAllCookiesCode().should('be.visible'); }
 
 	// cy.setCookie workflows
 	assertSetCookieHeaderVisible() { this.getSetCookieHeader().should('be.visible'); }
 	assertSetCookieLinkVisible() { this.getSetCookieLink().should('be.visible'); }
-	clickSetCookieLink() { this.getSetCookieLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickSetCookieLink() { this.getSetCookieLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertSetCookieCodeVisible() { this.getSetCookieCode().should('be.visible'); }
 
 	// cy.clearCookie workflows
 	assertClearCookieHeaderVisible() { this.getClearCookieHeader().should('be.visible'); }
 	assertClearCookieLinkVisible() { this.getClearCookieLink().should('be.visible'); }
-	clickClearCookieLink() { this.getClearCookieLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickClearCookieLink() { this.getClearCookieLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertClearCookieCodeVisible() { this.getClearCookieCode().should('be.visible'); }
 	clickClearCookieButton() { this.getClearCookieButton().should('be.visible').click(); }
 
 	// cy.clearCookies workflows
 	assertClearCookiesHeaderVisible() { this.getClearCookiesHeader().should('be.visible'); }
 	assertClearCookiesLinkVisible() { this.getClearCookiesLink().should('be.visible'); }
-	clickClearCookiesLink() { this.getClearCookiesLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickClearCookiesLink() { this.getClearCookiesLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertClearCookiesCodeVisible() { this.getClearCookiesCode().should('be.visible'); }
 	clickClearCookiesButton() { this.getClearCookiesButton().should('be.visible').click(); }
 
 	// cy.clearAllCookies workflows
 	assertClearAllCookiesHeaderVisible() { this.getClearAllCookiesHeader().should('be.visible'); }
 	assertClearAllCookiesLinkVisible() { this.getClearAllCookiesLink().should('be.visible'); }
-	clickClearAllCookiesLink() { this.getClearAllCookiesLink().should('be.visible').invoke('removeAttr', 'target').click(); }
+	clickClearAllCookiesLink() { this.getClearAllCookiesLink().should('be.visible').first().invoke('removeAttr', 'target').click(); }
 	assertClearAllCookiesCodeVisible() { this.getClearAllCookiesCode().should('be.visible'); }
 
 	// Full workflow for all cookies examples

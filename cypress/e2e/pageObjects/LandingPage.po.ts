@@ -93,28 +93,28 @@ class LandingPage extends BasePage {
 	get githubLink() { return cy.get(this.#elements.githubLink); }
 
 	// Workflow methods for page-specific elements and all links
-	clickBanner() { return this.banner.click(); }
-	clickBannerAlt() { return this.bannerAlt.click(); }
-	clickQueryingLink() { return this.queryingLink.click(); }
-	clickTraversalLink() { return this.traversalLink.click(); }
-	clickActionsLink() { return this.actionsLink.click(); }
-	clickWindowLink() { return this.windowLink.click(); }
-	clickViewportLink() { return this.viewportLink.click(); }
-	clickLocationLink() { return this.locationLink.click(); }
-	clickNavigationLink() { return this.navigationLink.click(); }
-	clickAssertionsLink() { return this.assertionsLink.click(); }
-	clickMiscLink() { return this.miscLink.click(); }
-	clickConnectorsLink() { return this.connectorsLink.click(); }
-	clickAliasingLink() { return this.aliasingLink.click(); }
-	clickWaitingLink() { return this.waitingLink.click(); }
-	clickNetworkRequestsLink() { return this.networkRequestsLink.click(); }
-	clickFilesLink() { return this.filesLink.click(); }
-	clickStorageLink() { return this.storageLink.click(); }
-	clickCookiesLink() { return this.cookiesLink.click(); }
-	clickSpiesStubsClocksLink() { return this.spiesStubsClocksLink.click(); }
-	clickUtilitiesLink() { return this.utilitiesLink.click(); }
-	clickCypressApiLink() { return this.cypressApiLink.click(); }
-	clickGithubLink() { return this.githubLink.click(); }
+	clickBanner() { return this.banner.first().click({ force: true }); }
+	clickBannerAlt() { return this.bannerAlt.first().click({ force: true }); }
+	clickQueryingLink() { return this.queryingLink.first().click({ force: true }); }
+	clickTraversalLink() { return this.traversalLink.first().click({ force: true }); }
+	clickActionsLink() { return this.actionsLink.first().click({ force: true }); }
+	clickWindowLink() { return this.windowLink.first().click({ force: true }); }
+	clickViewportLink() { return this.viewportLink.first().click({ force: true }); }
+	clickLocationLink() { return this.locationLink.first().click({ force: true }); }
+	clickNavigationLink() { return this.navigationLink.first().click({ force: true }); }
+	clickAssertionsLink() { return this.assertionsLink.first().click({ force: true }); }
+	clickMiscLink() { return this.miscLink.first().click({ force: true }); }
+	clickConnectorsLink() { return this.connectorsLink.first().click({ force: true }); }
+	clickAliasingLink() { return this.aliasingLink.first().click({ force: true }); }
+	clickWaitingLink() { return this.waitingLink.first().click({ force: true }); }
+	clickNetworkRequestsLink() { return this.networkRequestsLink.first().click({ force: true }); }
+	clickFilesLink() { return this.filesLink.first().click({ force: true }); }
+	clickStorageLink() { return this.storageLink.first().click({ force: true }); }
+	clickCookiesLink() { return this.cookiesLink.first().click({ force: true }); }
+	clickSpiesStubsClocksLink() { return this.spiesStubsClocksLink.first().click({ force: true }); }
+	clickUtilitiesLink() { return this.utilitiesLink.first().click({ force: true }); }
+	clickCypressApiLink() { return this.cypressApiLink.first().click({ force: true }); }
+	clickGithubLink() { return this.githubLink.first().click({ force: true }); }
 
 	getText(selector: string) {
 		return cy.get(this.#elements[selector]).invoke('text');

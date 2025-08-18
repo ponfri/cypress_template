@@ -8,9 +8,6 @@ import { BasePage } from './BasePage.po';
 export default class AssertionsPage extends BasePage {
 	// Private selectors for all relevant elements
 	#elements = {
-		navbar: '#navbar',
-		navbarToggle: '.navbar-toggle',
-		navLinks: '.nav a',
 		assertionsSection: '#assertions',
 		assertionTable: '.assertion-table',
 		assertionTableRows: '.assertion-table tbody tr',
@@ -36,9 +33,6 @@ export default class AssertionsPage extends BasePage {
 	};
 
 	// Getters for elements
-	getNavbar() { return cy.get(this.#elements.navbar); }
-	getNavbarToggle() { return cy.get(this.#elements.navbarToggle); }
-	getNavLinks() { return cy.get(this.#elements.navLinks); }
 	getAssertionsSection() { return cy.get(this.#elements.assertionsSection); }
 	getAssertionTable() { return cy.get(this.#elements.assertionTable); }
 	getAssertionTableRows() { return cy.get(this.#elements.assertionTableRows); }
@@ -87,7 +81,7 @@ export default class AssertionsPage extends BasePage {
 	assertAssertionsLinkActive() {
 		this.getAssertionsLinkActive().should('have.class', 'active');
 		this.getAssertionsLinkActive().should('have.attr', 'href');
-		this.getAssertionsLinkActive().should('include.text', 'cypress.io');
+		this.getAssertionsLinkActive().should('include.text', 'Cypress Docs');
 	}
 	assertAssertionsPParagraphsLength(length: number) {
 		this.getAssertionsPParagraphs().should('have.length', length);
@@ -128,11 +122,6 @@ export default class AssertionsPage extends BasePage {
 		});
 	}
 
-	// Navbar workflows
-	assertNavbarVisible() { this.getNavbar().should('be.visible'); }
-	assertNavbarNotVisible() { this.getNavbar().should('not.be.visible'); }
-	clickNavbarToggle() { this.getNavbarToggle().should('be.visible').click(); }
-	assertNavLinksVisible() { this.getNavLinks().should('be.visible'); }
 
 	// Assertions for headers
 	assertShouldHeaderVisible() { this.getShouldHeader().should('be.visible'); }
