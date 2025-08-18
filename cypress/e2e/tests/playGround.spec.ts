@@ -15,7 +15,7 @@ describe("Landing Page Smoke Tests", () => {
     cy.waitForPageReady();
   });
 
-  it.only("[ ] should verify we are on the landing page (MCP server)", { tags: ["@smoke", "@mcp", "@landing"] }, () => {
+  it("[ ] should verify we are on the landing page (MCP server)", { tags: ["@smoke", "@mcp", "@landing"] }, () => {
     // Assert the URL is correct (Cypress)
     cy.url().should('include', '/');
     // Assert a key landing page element is visible
