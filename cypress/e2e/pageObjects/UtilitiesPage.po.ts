@@ -5,31 +5,31 @@ import { BasePage } from './BasePage.po';
  * Covers all workflows for Cypress._, Cypress.$, Cypress.Blob, Cypress.minimatch, Cypress.Promise, navbar, navigation, code blocks, headers, and external links
  */
 export default class UtilitiesPage extends BasePage {
-		#elements = {
-			banner: '.banner',
-			mainHeader: 'h1',
-			docsLink: "a[href='https://on.cypress.io/_']",
-			lodashHeader: "h4#_",
-			lodashLink: "a[href='https://on.cypress.io/_']",
-			lodashMethodLink: "a[href='https://on.cypress.io/_']", // Cypress._.method()
-			lodashCode: "pre code.javascript.hljs",
-			jqueryHeader: "h4#$",
-			jqueryLink: "a[href='https://on.cypress.io/$']",
-			jqueryCode: "pre code.javascript.hljs",
-			jqueryList: 'ul.utility-jquery',
-			jqueryListItems: 'ul.utility-jquery li',
-			blobHeader: "h4#Blob",
-			blobLink: "a[href='https://on.cypress.io/blob']",
-			blobCode: "pre code.javascript.hljs",
-			blobDiv: '.utility-blob',
-			blobImg: '.utility-blob img',
-			minimatchHeader: "h4#minimatch",
-			minimatchLink: "a[href='https://on.cypress.io/minimatch']",
-			minimatchCode: "pre code.javascript.hljs",
-			promiseHeader: "h4#Promise",
-			promiseLink: "a[href='https://on.cypress.io/promise']",
-			promiseCode: "pre code.javascript.hljs",
-		};
+			#elements = {
+				banner: '.banner[data-cy="banner"]',
+				mainHeader: 'h1[data-cy="main-header"]',
+				docsLink: "a[data-cy='docs-link']",
+				lodashHeader: "h4#_[data-cy='lodash-header']",
+				lodashLink: "a[data-cy='lodash-link']",
+				lodashMethodLink: "a[data-cy='lodash-method-link']", // Cypress._.method()
+				lodashCode: "pre code.javascript.hljs[data-cy='lodash-code']",
+				jqueryHeader: "h4#$[data-cy='jquery-header']",
+				jqueryLink: "a[data-cy='jquery-link']",
+				jqueryCode: "pre code.javascript.hljs[data-cy='jquery-code']",
+				jqueryList: 'ul.utility-jquery[data-cy="jquery-list"]',
+				jqueryListItems: 'ul.utility-jquery li[data-cy="jquery-list-item"]',
+				blobHeader: "h4#Blob[data-cy='blob-header']",
+				blobLink: "a[data-cy='blob-link']",
+				blobCode: "pre code.javascript.hljs[data-cy='blob-code']",
+				blobDiv: '.utility-blob[data-cy="blob-div"]',
+				blobImg: '.utility-blob img[data-cy="blob-img"]',
+				minimatchHeader: "h4#minimatch[data-cy='minimatch-header']",
+				minimatchLink: "a[data-cy='minimatch-link']",
+				minimatchCode: "pre code.javascript.hljs[data-cy='minimatch-code']",
+				promiseHeader: "h4#Promise[data-cy='promise-header']",
+				promiseLink: "a[data-cy='promise-link']",
+				promiseCode: "pre code.javascript.hljs[data-cy='promise-code']",
+			};
 
 		// Getters for all locators
 		get banner() { return cy.get(this.#elements.banner); }
@@ -57,53 +57,49 @@ export default class UtilitiesPage extends BasePage {
 		get promiseCode() { return cy.get(this.#elements.promiseCode); }
 
 			// Interaction methods for all locators
-			clickBanner() { this.banner.click(); }
-			clickMainHeader() { this.mainHeader.click(); }
-			clickDocsLink() { this.docsLink.click(); }
-			clickLodashHeader() { this.lodashHeader.click(); }
-			clickLodashLink() { this.lodashLink.click(); }
-			clickLodashMethodLink() { this.lodashMethodLink.click(); }
-			clickLodashCode() { this.lodashCode.click(); }
-			clickJqueryHeader() { this.jqueryHeader.click(); }
-			clickJqueryLink() { this.jqueryLink.click(); }
-			clickJqueryCode() { this.jqueryCode.click(); }
-			clickJqueryList() { this.jqueryList.click(); }
-			clickJqueryListItems(index = 0) { this.jqueryListItems.eq(index).click(); }
-			clickBlobHeader() { this.blobHeader.click(); }
-			clickBlobLink() { this.blobLink.click(); }
-			clickBlobCode() { this.blobCode.click(); }
-			clickBlobDiv() { this.blobDiv.click(); }
-			clickBlobImg() { this.blobImg.click(); }
-			clickMinimatchHeader() { this.minimatchHeader.click(); }
-			clickMinimatchLink() { this.minimatchLink.click(); }
-			clickMinimatchCode() { this.minimatchCode.click(); }
-			clickPromiseHeader() { this.promiseHeader.click(); }
-			clickPromiseLink() { this.promiseLink.click(); }
-			clickPromiseCode() { this.promiseCode.click(); }
+			clickBanner() { this.banner.click(); return this; }
+			clickMainHeader() { this.mainHeader.click(); return this; }
+			clickDocsLink() { this.docsLink.click(); return this; }
+			clickLodashHeader() { this.lodashHeader.click(); return this; }
+			clickLodashLink() { this.lodashLink.click(); return this; }
+			clickLodashMethodLink() { this.lodashMethodLink.click(); return this; }
+			clickLodashCode() { this.lodashCode.click(); return this; }
+			clickJqueryHeader() { this.jqueryHeader.click(); return this; }
+			clickJqueryLink() { this.jqueryLink.click(); return this; }
+			clickJqueryCode() { this.jqueryCode.click(); return this; }
+			clickJqueryList() { this.jqueryList.click(); return this; }
+			clickJqueryListItems(index = 0) { this.jqueryListItems.eq(index).click(); return this; }
+			clickBlobHeader() { this.blobHeader.click(); return this; }
+			clickBlobLink() { this.blobLink.click(); return this; }
+			clickBlobCode() { this.blobCode.click(); return this; }
+			clickBlobDiv() { this.blobDiv.click(); return this; }
+			clickBlobImg() { this.blobImg.click(); return this; }
+			clickMinimatchHeader() { this.minimatchHeader.click(); return this; }
+			clickMinimatchLink() { this.minimatchLink.click(); return this; }
+			clickMinimatchCode() { this.minimatchCode.click(); return this; }
+			clickPromiseHeader() { this.promiseHeader.click(); return this; }
+			clickPromiseLink() { this.promiseLink.click(); return this; }
+			clickPromiseCode() { this.promiseCode.click(); return this; }
 
-				// Workflow methods
-				visitAllUtilityDocs() {
-					this.clickLodashLink();
-					this.clickJqueryLink();
-					this.clickBlobLink();
-					this.clickMinimatchLink();
-					this.clickPromiseLink();
-				}
+					// Workflow methods
+					visitAllUtilityDocs() {
+						this.clickLodashLink();
+						this.clickJqueryLink();
+						this.clickBlobLink();
+						this.clickMinimatchLink();
+						this.clickPromiseLink();
+						return this;
+					}
 
-				interactWithAllCodeSamples() {
-					this.clickLodashCode();
-					this.clickJqueryCode();
-					this.clickBlobCode();
-					this.clickMinimatchCode();
-					this.clickPromiseCode();
-				}
+					interactWithAllCodeSamples() {
+						this.clickLodashCode();
+						this.clickJqueryCode();
+						this.clickBlobCode();
+						this.clickMinimatchCode();
+						this.clickPromiseCode();
+						return this;
+					}
 
-				validateAllUtilitySectionsVisible() {
-					this.lodashHeader.should('be.visible');
-					this.jqueryHeader.should('be.visible');
-					this.blobHeader.should('be.visible');
-					this.minimatchHeader.should('be.visible');
-					this.promiseHeader.should('be.visible');
-				}
+					// Assertion should be done in test, not here
 
 }

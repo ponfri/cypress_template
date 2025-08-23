@@ -7,30 +7,30 @@ import { BasePage } from './BasePage.po';
  */
 export default class AssertionsPage extends BasePage {
 		// Private selectors for all relevant elements
-		#elements = {
-			assertionsSection: '#assertions',
-			assertionTable: '.assertion-table',
-			assertionTableRows: '.assertion-table tbody tr',
-			assertionTableLastRow: '.assertion-table tbody tr:last',
-			assertionTableSuccessRow: '.assertion-table tbody tr.success',
-			assertionTableCells: '.assertion-table td',
-			assertionsLink: '.assertions-link',
-			assertionsLinkActive: '.assertions-link.active',
-			assertionsP: '.assertions-p',
-			assertionsPParagraphs: '.assertions-p p',
-			docsHeader: '.docs-header',
-			docsHeaderDiv: '.docs-header div',
-			twoElements: '.two-elements',
-			twoElementsFirst: '.two-elements .first',
-			twoElementsSecond: '.two-elements .second',
-			randomNumber: '#random-number',
-			randomNumberExample: '.random-number-example',
-			shouldHeader: "h4#should a[href='https://on.cypress.io/should']",
-			andHeader: "h4#and a[href='https://on.cypress.io/and']",
-			expectHeader: "h4#expect",
-			assertHeader: "h4#assert",
-			shouldCallbackHeader: "h3 a[href='https://on.cypress.io/should#Function']",
-		};
+			#elements = {
+				assertionsSection: '#assertions[data-cy="assertions-section"]',
+				assertionTable: '.assertion-table[data-cy="assertion-table"]',
+				assertionTableRows: '.assertion-table tbody tr[data-cy="assertion-table-row"]',
+				assertionTableLastRow: '.assertion-table tbody tr:last[data-cy="assertion-table-last-row"]',
+				assertionTableSuccessRow: '.assertion-table tbody tr.success[data-cy="assertion-table-success-row"]',
+				assertionTableCells: '.assertion-table td[data-cy="assertion-table-cell"]',
+				assertionsLink: '.assertions-link[data-cy="assertions-link"]',
+				assertionsLinkActive: '.assertions-link.active[data-cy="assertions-link-active"]',
+				assertionsP: '.assertions-p[data-cy="assertions-p"]',
+				assertionsPParagraphs: '.assertions-p p[data-cy="assertions-p-paragraph"]',
+				docsHeader: '.docs-header[data-cy="docs-header"]',
+				docsHeaderDiv: '.docs-header div[data-cy="docs-header-div"]',
+				twoElements: '.two-elements[data-cy="two-elements"]',
+				twoElementsFirst: '.two-elements .first[data-cy="two-elements-first"]',
+				twoElementsSecond: '.two-elements .second[data-cy="two-elements-second"]',
+				randomNumber: '#random-number[data-cy="random-number"]',
+				randomNumberExample: '.random-number-example[data-cy="random-number-example"]',
+				shouldHeader: 'h4#should a[data-cy="should-header"]',
+				andHeader: 'h4#and a[data-cy="and-header"]',
+				expectHeader: 'h4#expect[data-cy="expect-header"]',
+				assertHeader: 'h4#assert[data-cy="assert-header"]',
+				shouldCallbackHeader: 'h3 a[data-cy="should-callback-header"]',
+			};
 
 		// Getters
 		get assertionsSection() { return cy.get(this.#elements.assertionsSection); }
@@ -57,140 +57,65 @@ export default class AssertionsPage extends BasePage {
 		get shouldCallbackHeader() { return cy.get(this.#elements.shouldCallbackHeader); }
 
 			// Interaction methods
-
-			clickAssertionsSection() {
-				this.assertionsSection.click();
-			}
-
-			clickAssertionTable() {
-				this.assertionTable.click();
-			}
-
-			clickAssertionTableRow(index: number) {
-				this.assertionTableRows.eq(index).click();
-			}
-
-			clickAssertionTableLastRow() {
-				this.assertionTableLastRow.click();
-			}
-
-			clickAssertionTableSuccessRow() {
-				this.assertionTableSuccessRow.click();
-			}
-
-			clickAssertionTableCell(index: number) {
-				this.assertionTableCells.eq(index).click();
-			}
-
-			clickAssertionsLink() {
-				this.assertionsLink.click();
-			}
-
-			clickAssertionsLinkActive() {
-				this.assertionsLinkActive.click();
-			}
-
-			clickAssertionsP() {
-				this.assertionsP.click();
-			}
-
-			clickAssertionsPParagraph(index: number) {
-				this.assertionsPParagraphs.eq(index).click();
-			}
-
-			clickDocsHeader() {
-				this.docsHeader.click();
-			}
-
-			clickDocsHeaderDiv() {
-				this.docsHeaderDiv.click();
-			}
-
-			clickTwoElements() {
-				this.twoElements.click();
-			}
-
-			clickTwoElementsFirst() {
-				this.twoElementsFirst.click();
-			}
-
-			clickTwoElementsSecond() {
-				this.twoElementsSecond.click();
-			}
-
-			clickRandomNumber() {
-				this.randomNumber.click();
-			}
-
-			clickRandomNumberExample() {
-				this.randomNumberExample.click();
-			}
-
-			clickShouldHeader() {
-				this.shouldHeader.click();
-			}
-
-			clickAndHeader() {
-				this.andHeader.click();
-			}
-
-			clickExpectHeader() {
-				this.expectHeader.click();
-			}
-
-			clickAssertHeader() {
-				this.assertHeader.click();
-			}
-
-			clickShouldCallbackHeader() {
-				this.shouldCallbackHeader.click();
-			}
+			clickAssertionsSection() { this.assertionsSection.click(); return this; }
+			clickAssertionTable() { this.assertionTable.click(); return this; }
+			clickAssertionTableRow(index: number) { this.assertionTableRows.eq(index).click(); return this; }
+			clickAssertionTableLastRow() { this.assertionTableLastRow.click(); return this; }
+			clickAssertionTableSuccessRow() { this.assertionTableSuccessRow.click(); return this; }
+			clickAssertionTableCell(index: number) { this.assertionTableCells.eq(index).click(); return this; }
+			clickAssertionsLink() { this.assertionsLink.click(); return this; }
+			clickAssertionsLinkActive() { this.assertionsLinkActive.click(); return this; }
+			clickAssertionsP() { this.assertionsP.click(); return this; }
+			clickAssertionsPParagraph(index: number) { this.assertionsPParagraphs.eq(index).click(); return this; }
+			clickDocsHeader() { this.docsHeader.click(); return this; }
+			clickDocsHeaderDiv() { this.docsHeaderDiv.click(); return this; }
+			clickTwoElements() { this.twoElements.click(); return this; }
+			clickTwoElementsFirst() { this.twoElementsFirst.click(); return this; }
+			clickTwoElementsSecond() { this.twoElementsSecond.click(); return this; }
+			clickRandomNumber() { this.randomNumber.click(); return this; }
+			clickRandomNumberExample() { this.randomNumberExample.click(); return this; }
+			clickShouldHeader() { this.shouldHeader.click(); return this; }
+			clickAndHeader() { this.andHeader.click(); return this; }
+			clickExpectHeader() { this.expectHeader.click(); return this; }
+			clickAssertHeader() { this.assertHeader.click(); return this; }
+			clickShouldCallbackHeader() { this.shouldCallbackHeader.click(); return this; }
 
 				// Workflow methods
 
-				/** Click a table row, then assert its cell contains expected text */
-				assertTableRowContent(rowIndex: number, expectedCellText: string) {
+				// Workflow methods (no assertions, chainable)
+				clickTableRow(rowIndex: number) {
 					this.clickAssertionTableRow(rowIndex);
-					this.assertionTableCells.eq(rowIndex).should('contain.text', expectedCellText);
+					return this;
 				}
 
-				/** Click the last table row and assert it has success class */
-				assertLastRowIsSuccess() {
+				clickLastRow() {
 					this.clickAssertionTableLastRow();
-					this.assertionTableLastRow.should('have.class', 'success');
+					return this;
 				}
 
-				/** Click assertions link and assert it becomes active */
-				assertLinkBecomesActive() {
+				clickLinkAndActivate() {
 					this.clickAssertionsLink();
-					this.assertionsLinkActive.should('exist');
+					return this;
 				}
 
-				/** Click docs header and assert its div contains expected text */
-				assertDocsHeaderContent(expectedText: string) {
+				clickDocsHeaderAndDiv() {
 					this.clickDocsHeader();
-					this.docsHeaderDiv.should('contain.text', expectedText);
+					this.clickDocsHeaderDiv();
+					return this;
 				}
 
-				/** Click random number and assert the example displays the number */
-				assertRandomNumberDisplayed() {
+				clickRandomNumberAndExample() {
 					this.clickRandomNumber();
-					this.randomNumber.invoke('text').then(num => {
-						this.randomNumberExample.should('contain.text', num);
-					});
+					this.clickRandomNumberExample();
+					return this;
 				}
 
-				/** Click all headers and assert their content exists */
-				assertAllHeadersContent(expectedTexts: string[]) {
+				clickAllHeaders() {
 					this.clickShouldHeader();
-					this.shouldHeader.should('contain.text', expectedTexts[0]);
 					this.clickAndHeader();
-					this.andHeader.should('contain.text', expectedTexts[1]);
 					this.clickExpectHeader();
-					this.expectHeader.should('contain.text', expectedTexts[2]);
 					this.clickAssertHeader();
-					this.assertHeader.should('contain.text', expectedTexts[3]);
 					this.clickShouldCallbackHeader();
-					this.shouldCallbackHeader.should('contain.text', expectedTexts[4]);
+					return this;
 				}
 }

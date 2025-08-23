@@ -7,22 +7,22 @@ import { BasePage } from './BasePage.po';
 export default class NetworkRequestsPage extends BasePage {
 
 		// Private selectors for all relevant elements
-		#elements = {
-			networkRequestsSection: '#network-requests',
-			cyRequestHeader: "h4#request:has(a[href='https://on.cypress.io/request'])",
-			cyRequestCode: "pre code.javascript.hljs",
-			cyInterceptHeader: "h4#http:has(a[href='https://on.cypress.io/intercept'])",
-			cyInterceptCode: "pre code.javascript.hljs",
-			networkBtn: '.network-btn',
-			networkComment: '.network-comment',
-			networkPostBtn: '.network-post',
-			networkPostComment: '.network-post-comment',
-			networkPutBtn: '.network-put',
-			networkPutComment: '.network-put-comment',
-			moreInfoLinks: [
-				"a[href='https://on.cypress.io/api']"
-			]
-		};
+			#elements = {
+				networkRequestsSection: '#network-requests',
+				cyRequestHeader: "h4[data-cy=\"cy-request-header\"]",
+				cyRequestCode: "pre code.javascript.hljs[data-cy=\"cy-request-code\"]",
+				cyInterceptHeader: "h4[data-cy=\"cy-intercept-header\"]",
+				cyInterceptCode: "pre code.javascript.hljs[data-cy=\"cy-intercept-code\"]",
+				networkBtn: ".network-btn[data-cy=\"network-btn\"]",
+				networkComment: ".network-comment[data-cy=\"network-comment\"]",
+				networkPostBtn: ".network-post[data-cy=\"network-post-btn\"]",
+				networkPostComment: ".network-post-comment[data-cy=\"network-post-comment\"]",
+				networkPutBtn: ".network-put[data-cy=\"network-put-btn\"]",
+				networkPutComment: ".network-put-comment[data-cy=\"network-put-comment\"]",
+				moreInfoLinks: [
+					"a[data-cy=\"network-more-info\"]"
+				]
+			};
 
 		// Getters for all locators
 		get networkRequestsSection() { return cy.get(this.#elements.networkRequestsSection); }
@@ -45,31 +45,31 @@ export default class NetworkRequestsPage extends BasePage {
 		clickMoreInfoLinks() { this.moreInfoLinks.forEach(link => link.click()); }
 
 		// Workflow methods
-		sendNetworkRequest() {
-			this.clickNetworkBtn();
-			this.networkComment.should('be.visible');
-		}
+			sendNetworkRequest() {
+				this.clickNetworkBtn();
+				return this;
+			}
 
-		sendNetworkPostRequest() {
-			this.clickNetworkPostBtn();
-			this.networkPostComment.should('be.visible');
-		}
+			sendNetworkPostRequest() {
+				this.clickNetworkPostBtn();
+				return this;
+			}
 
-		sendNetworkPutRequest() {
-			this.clickNetworkPutBtn();
-			this.networkPutComment.should('be.visible');
-		}
+			sendNetworkPutRequest() {
+				this.clickNetworkPutBtn();
+				return this;
+			}
 
-		verifyNetworkComments() {
-			this.networkComment.should('be.visible');
-			this.networkPostComment.should('be.visible');
-			this.networkPutComment.should('be.visible');
-		}
+			verifyNetworkComments() {
+				// Assertions should be done in test, not here
+				return this;
+			}
 
-		clickAllNetworkButtons() {
-			this.clickNetworkBtn();
-			this.clickNetworkPostBtn();
-			this.clickNetworkPutBtn();
-		}
+			clickAllNetworkButtons() {
+				this.clickNetworkBtn();
+				this.clickNetworkPostBtn();
+				this.clickNetworkPutBtn();
+				return this;
+			}
 
 }

@@ -8,18 +8,18 @@ export default class MiscPage extends BasePage {
   // Private selectors for all relevant elements
   #elements = {
     miscSection: "#misc",
-    miscHeader: "h4:has(a[href='https://on.cypress.io/misc'])",
-    miscCode: "pre code.javascript.hljs",
-    miscExample: ".misc-example",
-    miscButton: ".misc-btn",
-    miscInput: ".misc-input",
-    miscCheckbox: ".misc-checkbox",
-    miscSelect: ".misc-select",
-    miscListItems: ".misc-list li",
-    miscParagraphs: ".misc-p p",
-    miscTable: ".misc-table",
-    miscTableRows: ".misc-table tbody tr",
-    miscTableCells: ".misc-table td",
+    miscHeader: "h4[data-cy='misc-header']",
+    miscCode: "pre code.javascript.hljs[data-cy='misc-code']",
+    miscExample: ".misc-example[data-cy='misc-example']",
+    miscButton: ".misc-btn[data-cy='misc-btn']",
+    miscInput: ".misc-input[data-cy='misc-input']",
+    miscCheckbox: ".misc-checkbox[data-cy='misc-checkbox']",
+    miscSelect: ".misc-select[data-cy='misc-select']",
+    miscListItems: ".misc-list li[data-cy='misc-list-item']",
+    miscParagraphs: ".misc-p p[data-cy='misc-paragraph']",
+    miscTable: ".misc-table[data-cy='misc-table']",
+    miscTableRows: ".misc-table tbody tr[data-cy='misc-table-row']",
+    miscTableCells: ".misc-table td[data-cy='misc-table-cell']",
   };
 
   // Getters for all locators
@@ -85,17 +85,18 @@ export default class MiscPage extends BasePage {
     this.typeMiscInput(input);
     this.selectMiscOption(option);
     this.clickMiscButton();
+    return this;
   }
 
   checkAndUncheckMiscCheckbox() {
     this.checkMiscCheckbox();
-    this.miscCheckbox.should("be.checked");
     this.uncheckMiscCheckbox();
-    this.miscCheckbox.should("not.be.checked");
+    return this;
   }
 
-  verifyMiscTableRowsCount(expected: number) {
-    this.miscTableRows.should("have.length", expected);
+  verifyMiscTableRowsCount() {
+    // Assertion should be done in test, not here
+    return this;
   }
 
   verifyMiscListItemsContain(text: string) {

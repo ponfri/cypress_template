@@ -8,17 +8,17 @@ export default class AliasingPage extends BasePage {
   // Private selectors for all relevant elements
   #elements = {
     aliasingSection: '#as',
-    aliasingHeader: "h4:has(a[href='https://on.cypress.io/as'])",
-    aliasingCode: "pre code.javascript.hljs",
-    asTable: '.as-table',
-    asTableRows: '.as-table tbody tr',
-    asTableCells: '.as-table td',
-    asTableFirstBtn: '.as-table tbody tr:first td:first button',
-    networkBtn: '.network-btn',
-    networkComment: '.network-comment',
-    getCommentBtn: 'button.network-btn',
-    asTableHeaders: '.as-table thead th',
-    asTableChangeBtns: '.as-table button',
+    aliasingHeader: "h4[data-cy=\"aliasing-header\"]",
+    aliasingCode: "pre code.javascript.hljs[data-cy=\"aliasing-code\"]",
+    asTable: ".as-table[data-cy=\"as-table\"]",
+    asTableRows: ".as-table tbody tr[data-cy=\"as-table-row\"]",
+    asTableCells: ".as-table td[data-cy=\"as-table-cell\"]",
+    asTableFirstBtn: ".as-table tbody tr:first td:first button[data-cy=\"as-table-first-btn\"]",
+    networkBtn: ".network-btn[data-cy=\"network-btn\"]",
+    networkComment: ".network-comment[data-cy=\"network-comment\"]",
+    getCommentBtn: "button.network-btn[data-cy=\"get-comment-btn\"]",
+    asTableHeaders: ".as-table thead th[data-cy=\"as-table-header\"]",
+    asTableChangeBtns: ".as-table button[data-cy=\"as-table-change-btn\"]",
   };
 
   // Getters
@@ -87,17 +87,18 @@ export default class AliasingPage extends BasePage {
 
       // Workflow methods
 
-      /** Click a table row, then its first button, then verify a cell contains expected text */
-      interactWithTableRow(rowIndex: number, expectedCellText: string) {
+      /** Click a table row, then its first button */
+      interactWithTableRow(rowIndex: number) {
         this.clickAsTableRow(rowIndex);
         this.clickAsTableFirstBtn();
-        this.asTableCells.eq(rowIndex).should('contain.text', expectedCellText);
+        return this;
       }
 
-      /** Perform network comment workflow: click network button, wait for comment, click get comment button */
-      performNetworkCommentFlow(expectedComment: string) {
+      /** Perform network comment workflow: click network button, click get comment button */
+      performNetworkCommentFlow() {
         this.clickNetworkBtn();
-        this.networkComment.should('contain.text', expectedComment);
+        this.clickGetCommentBtn();
+        return this;
         this.clickGetCommentBtn();
       }
 

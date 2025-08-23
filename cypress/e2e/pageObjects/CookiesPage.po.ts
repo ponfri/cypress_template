@@ -6,43 +6,43 @@ import { BasePage } from './BasePage.po';
  */
 export default class CookiesPage extends BasePage {
 		// Locators
-		#elements = {
-			cookiesHeader: 'h1',
-			getCookieHeader: 'cy.getCookie()',
-			getCookiesHeader: 'cy.getCookies()',
-			getAllCookiesHeader: 'cy.getAllCookies()',
-			setCookieHeader: 'cy.setCookie()',
-			clearCookieHeader: 'cy.clearCookie()',
-			clearCookiesHeader: 'cy.clearCookies()',
-			clearAllCookiesHeader: 'cy.clearAllCookies()',
-			setCookieButton1: '#getCookie .set-a-cookie',
-			setCookieButton2: '#getCookies .set-a-cookie',
-			setCookieButton3: '#clearCookie .set-a-cookie',
-			setCookieButton4: '#clearCookies .set-a-cookie',
-			setCookieButton5: 'button.set-a-cookie',
-			getCookieCode: 0,
-			getCookiesCode: 1,
-			getAllCookiesCode: 2,
-			setCookieCode: 3,
-			clearCookieCode: 4,
-			clearCookiesCode: 5,
-			clearAllCookiesCode: 6,
-		};
+			#elements = {
+				cookiesHeader: 'h1[data-cy="cookies-header"]',
+				getCookieHeader: 'h4[data-cy="get-cookie-header"]',
+				getCookiesHeader: 'h4[data-cy="get-cookies-header"]',
+				getAllCookiesHeader: 'h4[data-cy="get-all-cookies-header"]',
+				setCookieHeader: 'h4[data-cy="set-cookie-header"]',
+				clearCookieHeader: 'h4[data-cy="clear-cookie-header"]',
+				clearCookiesHeader: 'h4[data-cy="clear-cookies-header"]',
+				clearAllCookiesHeader: 'h4[data-cy="clear-all-cookies-header"]',
+				setCookieButton1: '#getCookie .set-a-cookie[data-cy="set-cookie-btn-1"]',
+				setCookieButton2: '#getCookies .set-a-cookie[data-cy="set-cookie-btn-2"]',
+				setCookieButton3: '#clearCookie .set-a-cookie[data-cy="set-cookie-btn-3"]',
+				setCookieButton4: '#clearCookies .set-a-cookie[data-cy="set-cookie-btn-4"]',
+				setCookieButton5: 'button.set-a-cookie[data-cy="set-cookie-btn-5"]',
+				getCookieCode: 0,
+				getCookiesCode: 1,
+				getAllCookiesCode: 2,
+				setCookieCode: 3,
+				clearCookieCode: 4,
+				clearCookiesCode: 5,
+				clearAllCookiesCode: 6,
+			};
 
 		// Getters
-		get cookiesHeader() { return cy.contains(this.#elements.cookiesHeader); }
-		get getCookieHeader() { return cy.contains('h4', this.#elements.getCookieHeader); }
-		get getCookiesHeader() { return cy.contains('h4', this.#elements.getCookiesHeader); }
-		get getAllCookiesHeader() { return cy.contains('h4', this.#elements.getAllCookiesHeader); }
-		get setCookieHeader() { return cy.contains('h4', this.#elements.setCookieHeader); }
-		get clearCookieHeader() { return cy.contains('h4', this.#elements.clearCookieHeader); }
-		get clearCookiesHeader() { return cy.contains('h4', this.#elements.clearCookiesHeader); }
-		get clearAllCookiesHeader() { return cy.contains('h4', this.#elements.clearAllCookiesHeader); }
+		get cookiesHeader() { return cy.get(this.#elements.cookiesHeader); }
+		get getCookieHeader() { return cy.get(this.#elements.getCookieHeader); }
+		get getCookiesHeader() { return cy.get(this.#elements.getCookiesHeader); }
+		get getAllCookiesHeader() { return cy.get(this.#elements.getAllCookiesHeader); }
+		get setCookieHeader() { return cy.get(this.#elements.setCookieHeader); }
+		get clearCookieHeader() { return cy.get(this.#elements.clearCookieHeader); }
+		get clearCookiesHeader() { return cy.get(this.#elements.clearCookiesHeader); }
+		get clearAllCookiesHeader() { return cy.get(this.#elements.clearAllCookiesHeader); }
 		get setCookieButton1() { return cy.get(this.#elements.setCookieButton1); }
 		get setCookieButton2() { return cy.get(this.#elements.setCookieButton2); }
 		get setCookieButton3() { return cy.get(this.#elements.setCookieButton3); }
 		get setCookieButton4() { return cy.get(this.#elements.setCookieButton4); }
-		get setCookieButton5() { return cy.get(this.#elements.setCookieButton5).eq(4); }
+		get setCookieButton5() { return cy.get(this.#elements.setCookieButton5); }
 		get getCookieCode() { return cy.get('pre').eq(this.#elements.getCookieCode); }
 		get getCookiesCode() { return cy.get('pre').eq(this.#elements.getCookiesCode); }
 		get getAllCookiesCode() { return cy.get('pre').eq(this.#elements.getAllCookiesCode); }
@@ -59,20 +59,24 @@ export default class CookiesPage extends BasePage {
 		clickSetCookieButton5() { this.setCookieButton5.click(); }
 
 		// Workflow methods (add as needed)
-		setAndVerifyCookie(cookieName: string, value: string) {
-			cy.setCookie(cookieName, value);
-			cy.getCookie(cookieName).should('have.property', 'value', value);
-		}
-		clearAndVerifyCookie(cookieName: string) {
-			cy.clearCookie(cookieName);
-			cy.getCookie(cookieName).should('be.null');
-		}
-		setAndVerifyAllCookies(cookies: {name: string, value: string}[]) {
-			cookies.forEach(c => cy.setCookie(c.name, c.value));
-			cy.getAllCookies().should('have.length', cookies.length);
-		}
-		clearAndVerifyAllCookies() {
-			cy.clearAllCookies();
-			cy.getAllCookies().should('be.empty');
-		}
+			setCookieWorkflow(cookieName: string, value: string) {
+				cy.setCookie(cookieName, value);
+				// Assertion should be done in test, not here
+				return this;
+			}
+			clearCookieWorkflow(cookieName: string) {
+				cy.clearCookie(cookieName);
+				// Assertion should be done in test, not here
+				return this;
+			}
+			setAllCookiesWorkflow(cookies: {name: string, value: string}[]) {
+				cookies.forEach(c => cy.setCookie(c.name, c.value));
+				// Assertion should be done in test, not here
+				return this;
+			}
+			clearAllCookiesWorkflow() {
+				cy.clearAllCookies();
+				// Assertion should be done in test, not here
+				return this;
+			}
 }

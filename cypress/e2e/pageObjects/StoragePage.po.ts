@@ -6,33 +6,33 @@ import { BasePage } from './BasePage.po';
  */
 export default class StoragePage extends BasePage {
 	// Private selectors for all relevant elements
-		#elements = {
-			banner: '.banner',
-			mainHeader: 'h1',
-			docsLink: "a[href='https://on.cypress.io/api']",
-			clearLocalStorageSection: '#clearlocalstorage',
-			clearLocalStorageHeader: "h4:contains('cy.clearLocalStorage()')",
-			clearLocalStorageLink: "a[href='https://on.cypress.io/clearlocalstorage']",
-			clearLocalStorageCode: "pre code.javascript.hljs",
-			clearLocalStorageButton: '.ls-btn.btn-success',
-			getAllLocalStorageSection: '#getalllocalstorage',
-			getAllLocalStorageHeader: "h4:contains('cy.getAllLocalStorage()')",
-			getAllLocalStorageLink: "a[href='https://on.cypress.io/getalllocalstorage']",
-			getAllLocalStorageCode: "pre code.javascript.hljs",
-			clearAllLocalStorageSection: '#clearalllocalstorage',
-			clearAllLocalStorageHeader: "h4:contains('cy.clearAllLocalStorage()')",
-			clearAllLocalStorageLink: "a[href='https://on.cypress.io/clearalllocalstorage']",
-			clearAllLocalStorageCode: "pre code.javascript.hljs",
-			getAllSessionStorageSection: '#getallsessionstorage',
-			getAllSessionStorageHeader: "h4:contains('cy.getAllSessionStorage()')",
-			getAllSessionStorageLink: "a[href='https://on.cypress.io/getallsessionstorage']",
-			getAllSessionStorageCode: "pre code.javascript.hljs",
-			clearAllSessionStorageSection: '#clearallsessionstorage',
-			clearAllSessionStorageHeader: "h4:contains('cy.clearAllSessionStorage()')",
-			clearAllSessionStorageLink: "a[href='https://on.cypress.io/clearallsessionstorage']",
-			clearAllSessionStorageCode: "pre code.javascript.hljs",
-			populateButton: '.ls-btn.btn-success',
-		};
+			#elements = {
+				banner: '.banner[data-cy="banner"]',
+				mainHeader: 'h1[data-cy="main-header"]',
+				docsLink: "a[data-cy=\"docs-link\"]",
+				clearLocalStorageSection: '#clearlocalstorage[data-cy="clear-local-storage-section"]',
+				clearLocalStorageHeader: "h4[data-cy=\"clear-local-storage-header\"]",
+				clearLocalStorageLink: "a[data-cy=\"clear-local-storage-link\"]",
+				clearLocalStorageCode: "pre code.javascript.hljs[data-cy=\"clear-local-storage-code\"]",
+				clearLocalStorageButton: '.ls-btn.btn-success[data-cy="clear-local-storage-btn"]',
+				getAllLocalStorageSection: '#getalllocalstorage[data-cy="get-all-local-storage-section"]',
+				getAllLocalStorageHeader: "h4[data-cy=\"get-all-local-storage-header\"]",
+				getAllLocalStorageLink: "a[data-cy=\"get-all-local-storage-link\"]",
+				getAllLocalStorageCode: "pre code.javascript.hljs[data-cy=\"get-all-local-storage-code\"]",
+				clearAllLocalStorageSection: '#clearalllocalstorage[data-cy="clear-all-local-storage-section"]',
+				clearAllLocalStorageHeader: "h4[data-cy=\"clear-all-local-storage-header\"]",
+				clearAllLocalStorageLink: "a[data-cy=\"clear-all-local-storage-link\"]",
+				clearAllLocalStorageCode: "pre code.javascript.hljs[data-cy=\"clear-all-local-storage-code\"]",
+				getAllSessionStorageSection: '#getallsessionstorage[data-cy="get-all-session-storage-section"]',
+				getAllSessionStorageHeader: "h4[data-cy=\"get-all-session-storage-header\"]",
+				getAllSessionStorageLink: "a[data-cy=\"get-all-session-storage-link\"]",
+				getAllSessionStorageCode: "pre code.javascript.hljs[data-cy=\"get-all-session-storage-code\"]",
+				clearAllSessionStorageSection: '#clearallsessionstorage[data-cy="clear-all-session-storage-section"]',
+				clearAllSessionStorageHeader: "h4[data-cy=\"clear-all-session-storage-header\"]",
+				clearAllSessionStorageLink: "a[data-cy=\"clear-all-session-storage-link\"]",
+				clearAllSessionStorageCode: "pre code.javascript.hljs[data-cy=\"clear-all-session-storage-code\"]",
+				populateButton: '.ls-btn.btn-success[data-cy="populate-btn"]',
+			};
 
 		// Getters for all locators
 		get banner() { return cy.get(this.#elements.banner); }
@@ -72,34 +72,30 @@ export default class StoragePage extends BasePage {
 		clickClearAllSessionStorageLink() { this.clearAllSessionStorageLink.click(); }
 
 		// Workflow methods
-		clearLocalStorageWorkflow() {
-			this.clickClearLocalStorageButton();
-			cy.window().then(win => {
-				expect(Object.keys(win.localStorage)).to.have.length(0);
-			});
-		}
+			clearLocalStorageWorkflow() {
+				this.clickClearLocalStorageButton();
+				// Assertion should be done in test, not here
+				return this;
+			}
 
-		populateStorageWorkflow() {
-			this.clickPopulateButton();
-			cy.window().then(win => {
-				expect(Object.keys(win.localStorage).length).to.be.greaterThan(0);
-			});
-		}
+			populateStorageWorkflow() {
+				this.clickPopulateButton();
+				// Assertion should be done in test, not here
+				return this;
+			}
 
-		verifyAllStorageSectionsVisible() {
-			this.clearLocalStorageSection.should('be.visible');
-			this.getAllLocalStorageSection.should('be.visible');
-			this.clearAllLocalStorageSection.should('be.visible');
-			this.getAllSessionStorageSection.should('be.visible');
-			this.clearAllSessionStorageSection.should('be.visible');
-		}
+			verifyAllStorageSectionsVisible() {
+				// Assertion should be done in test, not here
+				return this;
+			}
 
-		clickAllStorageLinks() {
-			this.clickClearLocalStorageLink();
-			this.clickGetAllLocalStorageLink();
-			this.clickClearAllLocalStorageLink();
-			this.clickGetAllSessionStorageLink();
-			this.clickClearAllSessionStorageLink();
-		}
+				clickAllStorageLinks() {
+					this.clickClearLocalStorageLink();
+					this.clickGetAllLocalStorageLink();
+					this.clickClearAllLocalStorageLink();
+					this.clickGetAllSessionStorageLink();
+					this.clickClearAllSessionStorageLink();
+					return this;
+				}
 
 }

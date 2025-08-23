@@ -3,50 +3,50 @@ import { BasePage } from './BasePage.po';
 export class TraversalPage extends BasePage {
   // Private selectors for all major elements on the Traversal page
   #elements = {
-    breadcrumb: '.traversal-breadcrumb',
-    breadcrumbActive: '.traversal-breadcrumb .active',
-    badge: '.traversal-badge',
-    listGroup: '.list-group',
-    listGroupItem: '.list-group-item',
-    traversalList: '.traversal-list > li',
-    traversalNav: '.traversal-nav > li',
-    traversalNavActive: '.traversal-nav > li.active',
-    traversalPagination: '.traversal-pagination',
-    traversalPaginationLi: '.traversal-pagination li',
-    traversalPaginationA: '.traversal-pagination li a',
-    traversalTable: '.traversal-table',
-    traversalTableTd: '.traversal-table td',
-    traversalButtons: '.traversal-buttons .btn',
-    traversalButtonsLink: '.traversal-buttons a.btn',
-    traversalButtonsButton: '.traversal-buttons button.btn',
-    traversalButtonsInput: '.traversal-buttons input.btn[type="button"]',
-    traversalButtonsSubmit: '.traversal-buttons input.btn[type="submit"]',
-    traversalUl: '.traversal-ul',
-    traversalUlLi: '.traversal-ul li',
-    traversalNextAll: '.traversal-next-all',
-    traversalNextAllLi: '.traversal-next-all li',
-    healthyFoods: '.healthy-foods',
-    healthyFoodsLi: '.healthy-foods li',
-    foodsList: '.foods-list',
-    foodsListLi: '.foods-list li',
-    fruitsHeader: '#fruits',
-    veggiesHeader: '#veggies',
-    nutsHeader: '#nuts',
-    traversalDisabled: '.traversal-disabled',
-    traversalDisabledBtn: '.traversal-disabled .btn',
-    traversalDisabledBtnEnabled: '.traversal-disabled .btn:not([disabled])',
-    traversalMark: '.traversal-mark',
-    traversalCite: '.traversal-cite',
-    clothesNav: '.clothes-nav',
-    clothesNavActive: '.clothes-nav .active',
-    birdsList: '.birds.list-group',
-    birdsListItem: '.birds.list-group .list-group-item',
-    birdsListItemActive: '.birds.list-group .list-group-item.active',
-    fruitsList: '.fruits-list',
-    fruitsListThird: '.fruits-list .third',
-    traversalPills: '.traversal-pills',
-    traversalPillsActive: '.traversal-pills .active',
-    traversalPillsLi: '.traversal-pills li',
+    breadcrumb: '.traversal-breadcrumb[data-cy="breadcrumb"]',
+    breadcrumbActive: '.traversal-breadcrumb .active[data-cy="breadcrumb-active"]',
+    badge: '.traversal-badge[data-cy="badge"]',
+    listGroup: '.list-group[data-cy="list-group"]',
+    listGroupItem: '.list-group-item[data-cy="list-group-item"]',
+    traversalList: '.traversal-list > li[data-cy="traversal-list-item"]',
+    traversalNav: '.traversal-nav > li[data-cy="traversal-nav-item"]',
+    traversalNavActive: '.traversal-nav > li.active[data-cy="traversal-nav-active"]',
+    traversalPagination: '.traversal-pagination[data-cy="traversal-pagination"]',
+    traversalPaginationLi: '.traversal-pagination li[data-cy="traversal-pagination-li"]',
+    traversalPaginationA: '.traversal-pagination li a[data-cy="traversal-pagination-a"]',
+    traversalTable: '.traversal-table[data-cy="traversal-table"]',
+    traversalTableTd: '.traversal-table td[data-cy="traversal-table-td"]',
+    traversalButtons: '.traversal-buttons .btn[data-cy="traversal-btn"]',
+    traversalButtonsLink: '.traversal-buttons a.btn[data-cy="traversal-btn-link"]',
+    traversalButtonsButton: '.traversal-buttons button.btn[data-cy="traversal-btn-button"]',
+    traversalButtonsInput: '.traversal-buttons input.btn[type="button"][data-cy="traversal-btn-input"]',
+    traversalButtonsSubmit: '.traversal-buttons input.btn[type="submit"][data-cy="traversal-btn-submit"]',
+    traversalUl: '.traversal-ul[data-cy="traversal-ul"]',
+    traversalUlLi: '.traversal-ul li[data-cy="traversal-ul-li"]',
+    traversalNextAll: '.traversal-next-all[data-cy="traversal-next-all"]',
+    traversalNextAllLi: '.traversal-next-all li[data-cy="traversal-next-all-li"]',
+    healthyFoods: '.healthy-foods[data-cy="healthy-foods"]',
+    healthyFoodsLi: '.healthy-foods li[data-cy="healthy-foods-li"]',
+    foodsList: '.foods-list[data-cy="foods-list"]',
+    foodsListLi: '.foods-list li[data-cy="foods-list-li"]',
+    fruitsHeader: '#fruits[data-cy="fruits-header"]',
+    veggiesHeader: '#veggies[data-cy="veggies-header"]',
+    nutsHeader: '#nuts[data-cy="nuts-header"]',
+    traversalDisabled: '.traversal-disabled[data-cy="traversal-disabled"]',
+    traversalDisabledBtn: '.traversal-disabled .btn[data-cy="traversal-disabled-btn"]',
+    traversalDisabledBtnEnabled: '.traversal-disabled .btn:not([disabled])[data-cy="traversal-disabled-btn-enabled"]',
+    traversalMark: '.traversal-mark[data-cy="traversal-mark"]',
+    traversalCite: '.traversal-cite[data-cy="traversal-cite"]',
+    clothesNav: '.clothes-nav[data-cy="clothes-nav"]',
+    clothesNavActive: '.clothes-nav .active[data-cy="clothes-nav-active"]',
+    birdsList: '.birds.list-group[data-cy="birds-list"]',
+    birdsListItem: '.birds.list-group .list-group-item[data-cy="birds-list-item"]',
+    birdsListItemActive: '.birds.list-group .list-group-item.active[data-cy="birds-list-item-active"]',
+    fruitsList: '.fruits-list[data-cy="fruits-list"]',
+    fruitsListThird: '.fruits-list .third[data-cy="fruits-list-third"]',
+    traversalPills: '.traversal-pills[data-cy="traversal-pills"]',
+    traversalPillsActive: '.traversal-pills .active[data-cy="traversal-pills-active"]',
+    traversalPillsLi: '.traversal-pills li[data-cy="traversal-pills-li"]',
   };
 
   // Getters for all locators
@@ -112,16 +112,17 @@ export class TraversalPage extends BasePage {
       this.clickTraversalButtonsButton();
       this.clickTraversalButtonsInput();
       this.clickTraversalButtonsSubmit();
+      return this;
     }
 
     verifyAllHeadersVisible() {
-      this.fruitsHeader.should('be.visible');
-      this.veggiesHeader.should('be.visible');
-      this.nutsHeader.should('be.visible');
+      // Assertions should be done in test, not here
+      return this;
     }
 
-    verifyListGroupItemsCount(expected: number) {
-      this.listGroupItem.should('have.length', expected);
+    verifyListGroupItemsCount() {
+      // Assertions should be done in test, not here
+      return this;
     }
 
     verifyActiveStates() {

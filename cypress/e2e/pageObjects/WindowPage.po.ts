@@ -3,13 +3,13 @@ import { BasePage } from './BasePage.po';
 export default class WindowPage extends BasePage {
   // Private selectors for all relevant elements
   #elements = {
-    windowSection: '#window',
-    cyWindowHeader: "h4:has(a[href='https://on.cypress.io/window'])",
-    cyWindowCode: "pre code.javascript.hljs",
-    cyDocumentHeader: "h4:has(a[href='https://on.cypress.io/document'])",
-    cyDocumentCode: "pre code.javascript.hljs:has(code:contains('cy.document()'))",
-    cyTitleHeader: "h4:has(a[href='https://on.cypress.io/title'])",
-    cyTitleCode: "pre code.javascript.hljs:has(code:contains('cy.title()'))",
+    windowSection: '#window[data-cy="window-section"]',
+    cyWindowHeader: 'h4[data-cy="cy-window-header"]',
+    cyWindowCode: 'pre code.javascript.hljs[data-cy="cy-window-code"]',
+    cyDocumentHeader: 'h4[data-cy="cy-document-header"]',
+    cyDocumentCode: 'pre code.javascript.hljs[data-cy="cy-document-code"]',
+    cyTitleHeader: 'h4[data-cy="cy-title-header"]',
+    cyTitleCode: 'pre code.javascript.hljs[data-cy="cy-title-code"]',
   };
 
   // Getters for all locators
@@ -22,13 +22,13 @@ export default class WindowPage extends BasePage {
   get cyTitleCode() { return cy.get(this.#elements.cyTitleCode); }
 
   // Interaction methods
-  clickWindowSection() { this.windowSection.click(); }
-  clickCyWindowHeader() { this.cyWindowHeader.click(); }
-  clickCyWindowCode() { this.cyWindowCode.click(); }
-  clickCyDocumentHeader() { this.cyDocumentHeader.click(); }
-  clickCyDocumentCode() { this.cyDocumentCode.click(); }
-  clickCyTitleHeader() { this.cyTitleHeader.click(); }
-  clickCyTitleCode() { this.cyTitleCode.click(); }
+  clickWindowSection() { this.windowSection.click(); return this; }
+  clickCyWindowHeader() { this.cyWindowHeader.click(); return this; }
+  clickCyWindowCode() { this.cyWindowCode.click(); return this; }
+  clickCyDocumentHeader() { this.cyDocumentHeader.click(); return this; }
+  clickCyDocumentCode() { this.cyDocumentCode.click(); return this; }
+  clickCyTitleHeader() { this.cyTitleHeader.click(); return this; }
+  clickCyTitleCode() { this.cyTitleCode.click(); return this; }
 
   // Workflow methods
   demonstrateAllWindowCommands() {
@@ -38,19 +38,14 @@ export default class WindowPage extends BasePage {
     this.clickCyDocumentCode();
     this.clickCyTitleHeader();
     this.clickCyTitleCode();
+    return this;
   }
 
-  validateAllHeadersAndCodesVisible() {
-    this.cyWindowHeader.should('be.visible');
-    this.cyWindowCode.should('be.visible');
-    this.cyDocumentHeader.should('be.visible');
-    this.cyDocumentCode.should('be.visible');
-    this.cyTitleHeader.should('be.visible');
-    this.cyTitleCode.should('be.visible');
-  }
+  // Assertions should be done in test, not here
 
   exploreAllWindowSections() {
     this.demonstrateAllWindowCommands();
-    this.validateAllHeadersAndCodesVisible();
+    // Assertion removed; should be in test
+    return this;
   }
 }

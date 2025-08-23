@@ -7,15 +7,15 @@ import { BasePage } from './BasePage.po';
  */
 export default class NavigationPage extends BasePage {
 		// Private selectors for all relevant elements
-		#elements = {
-			navigationSection: '#navigation',
-			cyGoHeader: "h4#go a[href='https://on.cypress.io/go']",
-			cyGoCode: "#go ~ pre code.javascript.hljs",
-			cyReloadHeader: "h4#reload a[href='https://on.cypress.io/reload']",
-			cyReloadCode: "#reload ~ pre code.javascript.hljs",
-			cyVisitHeader: "h4#visit a[href='https://on.cypress.io/visit']",
-			cyVisitCode: "#visit ~ pre code.javascript.hljs",
-		};
+			#elements = {
+				navigationSection: '#navigation[data-cy="navigation-section"]',
+				cyGoHeader: 'h4#go a[data-cy="cy-go-header"]',
+				cyGoCode: '#go ~ pre code.javascript.hljs[data-cy="cy-go-code"]',
+				cyReloadHeader: 'h4#reload a[data-cy="cy-reload-header"]',
+				cyReloadCode: '#reload ~ pre code.javascript.hljs[data-cy="cy-reload-code"]',
+				cyVisitHeader: 'h4#visit a[data-cy="cy-visit-header"]',
+				cyVisitCode: '#visit ~ pre code.javascript.hljs[data-cy="cy-visit-code"]',
+			};
 
 		// Getters for all locators
 		get navigationSection() { return cy.get(this.#elements.navigationSection); }
@@ -32,26 +32,29 @@ export default class NavigationPage extends BasePage {
 		clickCyVisitHeader() { this.cyVisitHeader.click(); }
 
 		// Workflow methods
-		goBackAndForward() {
-			cy.go('back');
-			cy.go('forward');
-		}
+			goBackAndForward() {
+				cy.go('back');
+				cy.go('forward');
+				return this;
+			}
 
-		reloadPage() {
-			cy.reload();
-			// Optionally verify reload by checking a visible element
-			this.navigationSection.should('be.visible');
-		}
+			reloadPage() {
+				cy.reload();
+				// Assertion should be done in test, not here
+				return this;
+			}
 
-		visitUrl(url: string) {
-			cy.visit(url);
-			cy.url().should('eq', url);
-		}
+			visitUrl(url: string) {
+				cy.visit(url);
+				// Assertion should be done in test, not here
+				return this;
+			}
 
-		clickAllHeaders() {
-			this.clickCyGoHeader();
-			this.clickCyReloadHeader();
-			this.clickCyVisitHeader();
-		}
+			clickAllHeaders() {
+				this.clickCyGoHeader();
+				this.clickCyReloadHeader();
+				this.clickCyVisitHeader();
+				return this;
+			}
 
 }

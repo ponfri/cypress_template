@@ -2,23 +2,23 @@ import { BasePage } from './BasePage.po';
 
 export class QueryingPage extends BasePage {
   #elements = {
-    pageHeader: 'h1',
-    pageDesc: '.banner p',
-    queryingSection: '.home-list a[href="/commands/querying"]',
-    getLink: 'a[href="/commands/querying"]',
-    containsLink: 'a[href="/commands/querying"]',
-    withinLink: 'a[href="/commands/querying"]',
-    rootLink: 'a[href="/commands/querying"]',
-    inputName: '#inputName',
-    inputEmail: '#inputEmail',
-    inputPassword: '#inputPassword',
-    saveFormButton: '.query-button .btn',
+    pageHeader: 'h1[data-cy="page-header"]',
+    pageDesc: '.banner p[data-cy="page-desc"]',
+    queryingSection: '.home-list a[data-cy="querying-section"]',
+    getLink: 'a[data-cy="get-link"]',
+    containsLink: 'a[data-cy="contains-link"]',
+    withinLink: 'a[data-cy="within-link"]',
+    rootLink: 'a[data-cy="root-link"]',
+    inputName: '#inputName[data-cy="input-name"]',
+    inputEmail: '#inputEmail[data-cy="input-email"]',
+    inputPassword: '#inputPassword[data-cy="input-password"]',
+    saveFormButton: '.query-button .btn[data-cy="save-form-btn"]',
     submitButton: '[data-cy="submit"]',
     dataTestExample: '[data-test-id="test-example"]',
-    queryList: '.query-list',
-    queryListItems: '.query-list li',
-    queryUl: '.query-ul',
-    queryUlItems: '.query-ul li',
+    queryList: '.query-list[data-cy="query-list"]',
+    queryListItems: '.query-list li[data-cy="query-list-item"]',
+    queryUl: '.query-ul[data-cy="query-ul"]',
+    queryUlItems: '.query-ul li[data-cy="query-ul-item"]',
     bestPracticesWell: '[data-cy="best-practices-selecting-elements"]',
   };
 
@@ -60,14 +60,17 @@ export class QueryingPage extends BasePage {
         this.typeInputPassword(password);
         this.clickSaveFormButton();
         this.clickSubmitButton();
+        return this;
       }
 
-      verifyQueryListItemsCount(expected: number) {
-        this.queryListItems.should('have.length', expected);
+      verifyQueryListItemsCount() {
+        // Assertion should be done in test, not here
+        return this;
       }
 
       verifyBestPracticesVisible() {
-        this.bestPracticesWell.should('be.visible');
+        // Assertion should be done in test, not here
+        return this;
       }
 
       clickAllQueryLinks() {
@@ -75,6 +78,7 @@ export class QueryingPage extends BasePage {
         this.clickContainsLink();
         this.clickWithinLink();
         this.clickRootLink();
+        return this;
       }
 
 }

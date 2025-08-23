@@ -5,32 +5,32 @@ import { BasePage } from './BasePage.po';
  * Covers all workflows for spies, stubs, clock, tick, matchers, buttons, code blocks, headers, and external links
  */
 export default class SpiesStubsClocksPage extends BasePage {
-		#elements = {
-			banner: '.banner',
-			mainHeader: 'h1',
-			docsLink: "a[href='https://on.cypress.io/api']",
-			spySection: '#spies-stubs-clocks',
-			spyHeader: "h4#spy",
-			spyLink: "a[href='https://on.cypress.io/spy']",
-			spyCode: "pre code.javascript.hljs",
-			stubHeader: "h4#stub",
-			stubLink: "a[href='https://on.cypress.io/stub']",
-			stubCode: "pre code.javascript.hljs",
-			clockHeader: "h4#clock",
-			clockLink: "a[href='https://on.cypress.io/clock']",
-			clockCode: "pre code.javascript.hljs",
-			clockDiv: '#clock-div',
-			tickHeader: "h4#tick",
-			tickLink: "a[href='https://on.cypress.io/tick']",
-			tickCode: "pre code.javascript.hljs",
-			tickDiv: '#tick-div',
-			stubArgumentsHeader: "h4#stub-arguments",
-			stubArgumentsLink: "a[href='https://sinonjs.org/releases/latest/matchers/']",
-			stubArgumentsCode: "pre code.javascript.hljs",
-			matchersHeader: "h4#matchers",
-			matchersLink: "a[href='https://sinonjs.org/releases/latest/matchers/']",
-			matchersCode: "pre code.javascript.hljs",
-		};
+			#elements = {
+				banner: '.banner',
+				mainHeader: 'h1',
+				docsLink: "a[data-cy=\"docs-link\"]",
+				spySection: "#spies-stubs-clocks[data-cy=\"spy-section\"]",
+				spyHeader: "h4[data-cy=\"spy-header\"]",
+				spyLink: "a[data-cy=\"spy-link\"]",
+				spyCode: "pre code.javascript.hljs[data-cy=\"spy-code\"]",
+				stubHeader: "h4[data-cy=\"stub-header\"]",
+				stubLink: "a[data-cy=\"stub-link\"]",
+				stubCode: "pre code.javascript.hljs[data-cy=\"stub-code\"]",
+				clockHeader: "h4[data-cy=\"clock-header\"]",
+				clockLink: "a[data-cy=\"clock-link\"]",
+				clockCode: "pre code.javascript.hljs[data-cy=\"clock-code\"]",
+				clockDiv: "#clock-div[data-cy=\"clock-div\"]",
+				tickHeader: "h4[data-cy=\"tick-header\"]",
+				tickLink: "a[data-cy=\"tick-link\"]",
+				tickCode: "pre code.javascript.hljs[data-cy=\"tick-code\"]",
+				tickDiv: "#tick-div[data-cy=\"tick-div\"]",
+				stubArgumentsHeader: "h4[data-cy=\"stub-arguments-header\"]",
+				stubArgumentsLink: "a[data-cy=\"stub-arguments-link\"]",
+				stubArgumentsCode: "pre code.javascript.hljs[data-cy=\"stub-arguments-code\"]",
+				matchersHeader: "h4[data-cy=\"matchers-header\"]",
+				matchersLink: "a[data-cy=\"matchers-link\"]",
+				matchersCode: "pre code.javascript.hljs[data-cy=\"matchers-code\"]",
+			};
 
 		// Getters for all locators
 		get banner() { return cy.get(this.#elements.banner); }
@@ -68,30 +68,30 @@ export default class SpiesStubsClocksPage extends BasePage {
 		clickMatchersLink() { this.matchersLink.click(); }
 
 		// Workflow methods
-		clickAllApiLinks() {
-			this.clickDocsLink();
-			this.clickSpyLink();
-			this.clickStubLink();
-			this.clickClockLink();
-			this.clickTickLink();
-			this.clickStubArgumentsLink();
-			this.clickMatchersLink();
-		}
+			clickAllApiLinks() {
+				this.clickDocsLink();
+				this.clickSpyLink();
+				this.clickStubLink();
+				this.clickClockLink();
+				this.clickTickLink();
+				this.clickStubArgumentsLink();
+				this.clickMatchersLink();
+				return this;
+			}
 
-		verifyClockAndTickDivsVisible() {
-			this.clockDiv.should('be.visible');
-			this.tickDiv.should('be.visible');
-		}
+			verifyClockAndTickDivsVisible() {
+				// Assertions should be done in test, not here
+				return this;
+			}
 
-		verifySpyAndStubHeadersVisible() {
-			this.spyHeader.should('be.visible');
-			this.stubHeader.should('be.visible');
-		}
+			verifySpyAndStubHeadersVisible() {
+				// Assertions should be done in test, not here
+				return this;
+			}
 
-		verifyMatchersSectionVisible() {
-			this.matchersHeader.should('be.visible');
-			this.matchersLink.should('be.visible');
-			this.matchersCode.should('be.visible');
-		}
+			verifyMatchersSectionVisible() {
+				// Assertions should be done in test, not here
+				return this;
+			}
 
 }

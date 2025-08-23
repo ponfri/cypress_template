@@ -12,33 +12,34 @@ export class BasePage {
     } else {
       cy.visit(this.path || '/');
     }
+    return this;
   }
 
-  // Navigation menu elements
+  // Navigation menu elements (replace cy.contains with robust selectors)
   #navElements = {
-    navCommands: () => cy.contains('a', 'Commands'),
-    navUtilities: () => cy.contains('a', 'Utilities'),
-    navCypressAPI: () => cy.contains('a', 'Cypress API'),
-    navGitHub: () => cy.contains('a', 'GitHub'),
+    navCommands: () => cy.get('[data-cy="nav-commands"]'),
+    navUtilities: () => cy.get('[data-cy="nav-utilities"]'),
+    navCypressAPI: () => cy.get('[data-cy="nav-cypress-api"]'),
+    navGitHub: () => cy.get('[data-cy="nav-github"]'),
 
     // Commands dropdown sub-menu elements
-    commandsQuerying: () => cy.contains('a', 'Querying'),
-    commandsTraversal: () => cy.contains('a', 'Traversal'),
-    commandsActions: () => cy.contains('a', 'Actions'),
-    commandsWindow: () => cy.contains('a', 'Window'),
-    commandsViewport: () => cy.contains('a', 'Viewport'),
-    commandsLocation: () => cy.contains('a', 'Location'),
-    commandsNavigation: () => cy.contains('a', 'Navigation'),
-    commandsAssertions: () => cy.contains('a', 'Assertions'),
-    commandsMisc: () => cy.contains('a', 'Misc'),
-    commandsConnectors: () => cy.contains('a', 'Connectors'),
-    commandsAliasing: () => cy.contains('a', 'Aliasing'),
-    commandsWaiting: () => cy.contains('a', 'Waiting'),
-    commandsNetworkRequests: () => cy.contains('a', 'Network Requests'),
-    commandsFiles: () => cy.contains('a', 'Files'),
-    commandsStorage: () => cy.contains('a', 'Storage'),
-    commandsCookies: () => cy.contains('a', 'Cookies'),
-    commandsSpiesStubsClocks: () => cy.contains('a', 'Spies, Stubs & Clocks'),
+    commandsQuerying: () => cy.get('[data-cy="nav-querying"]'),
+    commandsTraversal: () => cy.get('[data-cy="nav-traversal"]'),
+    commandsActions: () => cy.get('[data-cy="nav-actions"]'),
+    commandsWindow: () => cy.get('[data-cy="nav-window"]'),
+    commandsViewport: () => cy.get('[data-cy="nav-viewport"]'),
+    commandsLocation: () => cy.get('[data-cy="nav-location"]'),
+    commandsNavigation: () => cy.get('[data-cy="nav-navigation"]'),
+    commandsAssertions: () => cy.get('[data-cy="nav-assertions"]'),
+    commandsMisc: () => cy.get('[data-cy="nav-misc"]'),
+    commandsConnectors: () => cy.get('[data-cy="nav-connectors"]'),
+    commandsAliasing: () => cy.get('[data-cy="nav-aliasing"]'),
+    commandsWaiting: () => cy.get('[data-cy="nav-waiting"]'),
+    commandsNetworkRequests: () => cy.get('[data-cy="nav-network-requests"]'),
+    commandsFiles: () => cy.get('[data-cy="nav-files"]'),
+    commandsStorage: () => cy.get('[data-cy="nav-storage"]'),
+    commandsCookies: () => cy.get('[data-cy="nav-cookies"]'),
+    commandsSpiesStubsClocks: () => cy.get('[data-cy="nav-spies-stubs-clocks"]'),
   }
 
   // Getters
@@ -64,28 +65,28 @@ export class BasePage {
   get commandsCookies() { return this.#navElements.commandsCookies(); }
   get commandsSpiesStubsClocks() { return this.#navElements.commandsSpiesStubsClocks(); }
 
-    // Interaction methods
-    clickNavCommands() { this.navCommands.click(); }
-    clickNavUtilities() { this.navUtilities.click(); }
-    clickNavCypressAPI() { this.navCypressAPI.click(); }
-    clickNavGitHub() { this.navGitHub.click(); }
-    clickCommandsQuerying() { this.commandsQuerying.click(); }
-    clickCommandsTraversal() { this.commandsTraversal.click(); }
-    clickCommandsActions() { this.commandsActions.click(); }
-    clickCommandsWindow() { this.commandsWindow.click(); }
-    clickCommandsViewport() { this.commandsViewport.click(); }
-    clickCommandsLocation() { this.commandsLocation.click(); }
-    clickCommandsNavigation() { this.commandsNavigation.click(); }
-    clickCommandsAssertions() { this.commandsAssertions.click(); }
-    clickCommandsMisc() { this.commandsMisc.click(); }
-    clickCommandsConnectors() { this.commandsConnectors.click(); }
-    clickCommandsAliasing() { this.commandsAliasing.click(); }
-    clickCommandsWaiting() { this.commandsWaiting.click(); }
-    clickCommandsNetworkRequests() { this.commandsNetworkRequests.click(); }
-    clickCommandsFiles() { this.commandsFiles.click(); }
-    clickCommandsStorage() { this.commandsStorage.click(); }
-    clickCommandsCookies() { this.commandsCookies.click(); }
-    clickCommandsSpiesStubsClocks() { this.commandsSpiesStubsClocks.click(); }
+  // Interaction methods
+  clickNavCommands() { this.navCommands.click(); return this; }
+  clickNavUtilities() { this.navUtilities.click(); return this; }
+  clickNavCypressAPI() { this.navCypressAPI.click(); return this; }
+  clickNavGitHub() { this.navGitHub.click(); return this; }
+  clickCommandsQuerying() { this.commandsQuerying.click(); return this; }
+  clickCommandsTraversal() { this.commandsTraversal.click(); return this; }
+  clickCommandsActions() { this.commandsActions.click(); return this; }
+  clickCommandsWindow() { this.commandsWindow.click(); return this; }
+  clickCommandsViewport() { this.commandsViewport.click(); return this; }
+  clickCommandsLocation() { this.commandsLocation.click(); return this; }
+  clickCommandsNavigation() { this.commandsNavigation.click(); return this; }
+  clickCommandsAssertions() { this.commandsAssertions.click(); return this; }
+  clickCommandsMisc() { this.commandsMisc.click(); return this; }
+  clickCommandsConnectors() { this.commandsConnectors.click(); return this; }
+  clickCommandsAliasing() { this.commandsAliasing.click(); return this; }
+  clickCommandsWaiting() { this.commandsWaiting.click(); return this; }
+  clickCommandsNetworkRequests() { this.commandsNetworkRequests.click(); return this; }
+  clickCommandsFiles() { this.commandsFiles.click(); return this; }
+  clickCommandsStorage() { this.commandsStorage.click(); return this; }
+  clickCommandsCookies() { this.commandsCookies.click(); return this; }
+  clickCommandsSpiesStubsClocks() { this.commandsSpiesStubsClocks.click(); return this; }
 
       // Workflow methods
 
@@ -111,22 +112,25 @@ export class BasePage {
           case 'Cookies': this.clickCommandsCookies(); break;
           case 'Spies, Stubs & Clocks': this.clickCommandsSpiesStubsClocks(); break;
         }
+        return this;
       }
 
       /** Navigate to Utilities section */
       navigateToUtilities() {
         this.clickNavUtilities();
+        return this;
       }
 
       /** Navigate to Cypress API section */
       navigateToCypressAPI() {
         this.clickNavCypressAPI();
+        return this;
       }
 
-      /** Navigate to GitHub and assert redirect */
-      navigateToGitHubAndAssert() {
+      /** Navigate to GitHub (assertion should be in test) */
+      navigateToGitHub() {
         this.clickNavGitHub();
-        cy.url().should('include', 'github.com');
+        return this;
       }
 
       /** Click all main navigation links for smoke/regression navigation test */
@@ -135,5 +139,6 @@ export class BasePage {
         this.clickNavUtilities();
         this.clickNavCypressAPI();
         this.clickNavGitHub();
+        return this;
       }
 }

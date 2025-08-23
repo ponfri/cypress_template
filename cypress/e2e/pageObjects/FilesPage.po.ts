@@ -6,22 +6,22 @@ import { BasePage } from './BasePage.po';
  */
 export default class FilesPage extends BasePage {
 		// Private selectors for all relevant elements
-		#elements = {
-			filesSection: "h1:contains('Files')",
-			cyFixtureHeader: "h4#fixture:has(a[href='https://on.cypress.io/fixture'])",
-			cyFixtureCode: "pre code.javascript.hljs",
-			fixtureBtn: '.fixture-btn',
-			fixtureComment: '.fixture-comment',
-			cyRequireHeader: "h4#require",
-			cyRequireCode: "pre code.javascript.hljs",
-			cyReadFileHeader: "h4#readFile:has(a[href='https://on.cypress.io/readfile'])",
-			cyReadFileCode: "pre code.javascript.hljs",
-			cyWriteFileHeader: "h4#writefile:has(a[href='https://on.cypress.io/writefile'])",
-			cyWriteFileCode: "pre code.javascript.hljs",
-			moreInfoLinks: [
-				"a[href='https://on.cypress.io/api']"
-			]
-		};
+			#elements = {
+				filesSection: "h1[data-cy=\"files-section\"]",
+				cyFixtureHeader: "h4#fixture[data-cy=\"cy-fixture-header\"]",
+				cyFixtureCode: "pre code.javascript.hljs[data-cy=\"cy-fixture-code\"]",
+				fixtureBtn: ".fixture-btn[data-cy=\"fixture-btn\"]",
+				fixtureComment: ".fixture-comment[data-cy=\"fixture-comment\"]",
+				cyRequireHeader: "h4#require[data-cy=\"cy-require-header\"]",
+				cyRequireCode: "pre code.javascript.hljs[data-cy=\"cy-require-code\"]",
+				cyReadFileHeader: "h4#readFile[data-cy=\"cy-readfile-header\"]",
+				cyReadFileCode: "pre code.javascript.hljs[data-cy=\"cy-readfile-code\"]",
+				cyWriteFileHeader: "h4#writefile[data-cy=\"cy-writefile-header\"]",
+				cyWriteFileCode: "pre code.javascript.hljs[data-cy=\"cy-writefile-code\"]",
+				moreInfoLinks: [
+					"a[data-cy=\"files-more-info\"]"
+				]
+			};
 
 		// Getters for all locators
 		get filesSection() { return cy.get(this.#elements.filesSection); }

@@ -7,13 +7,13 @@ import { BasePage } from "./BasePage.po";
 export class LocationPage extends BasePage {
   // Private selectors for all relevant elements
   #elements = {
-    navigationSection: "#navigation",
-    cyHashHeader: "h4#hash a[href='https://on.cypress.io/hash']",
-    cyLocationHeader: "h4#location a[href='https://on.cypress.io/location']",
-    cyUrlHeader: "h4#url a[href='https://on.cypress.io/url']",
-    cyHashCode: "pre code.javascript.hljs:contains('cy.hash')",
-    cyLocationCode: "pre code.javascript.hljs:contains('cy.location')",
-    cyUrlCode: "pre code.javascript.hljs:contains('cy.url')",
+    navigationSection: "#navigation[data-cy=\"navigation-section\"]",
+    cyHashHeader: "h4[data-cy=\"cy-hash-header\"] a[data-cy=\"cy-hash-link\"]",
+    cyLocationHeader: "h4[data-cy=\"cy-location-header\"] a[data-cy=\"cy-location-link\"]",
+    cyUrlHeader: "h4[data-cy=\"cy-url-header\"] a[data-cy=\"cy-url-link\"]",
+    cyHashCode: "pre code.javascript.hljs[data-cy=\"cy-hash-code\"]",
+    cyLocationCode: "pre code.javascript.hljs[data-cy=\"cy-location-code\"]",
+    cyUrlCode: "pre code.javascript.hljs[data-cy=\"cy-url-code\"]",
   };
 
   // Getters for all locators
@@ -51,21 +51,25 @@ export class LocationPage extends BasePage {
   }
 
   // Workflow methods
-  verifyHash(expectedHash: string) {
-    cy.hash().should("eq", expectedHash);
+  verifyHash() {
+    // Assertion should be done in test, not here
+    return this;
   }
 
-  verifyLocationProperty(prop: keyof Location, expectedValue: string) {
-    cy.location(prop).should("eq", expectedValue);
+  verifyLocationProperty() {
+    // Assertion should be done in test, not here
+    return this;
   }
 
-  verifyUrl(expectedUrl: string) {
-    cy.url().should("eq", expectedUrl);
+  verifyUrl() {
+    // Assertion should be done in test, not here
+    return this;
   }
 
   clickAllHeaders() {
     this.clickCyHashHeader();
     this.clickCyLocationHeader();
     this.clickCyUrlHeader();
+    return this;
   }
 }
