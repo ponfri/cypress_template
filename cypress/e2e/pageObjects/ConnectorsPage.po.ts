@@ -5,103 +5,95 @@ import { BasePage } from './BasePage.po';
  * Covers all workflows for connector commands, navbar, toggle, navigation links, and all interactive elements
  */
 export default class ConnectorsPage extends BasePage {
+  // ...existing code...
   // Private selectors for all relevant elements
-  #elements = {
-    connectorsSection: '#connectors',
-    // Connectors command examples
-    eachListItems: '.connectors-each-ul > li',
-    itsListItems: '.connectors-its-ul > li',
-    invokeDiv: '.connectors-div',
-    thenListItems: '.connectors-list > li',
-    connectorsHeader: "h1", // Main page header
-    connectorsCode: "pre", // First code block on page
-  eachHeader: "h4:contains('.each()')", // .each() section header
-  eachCode: "pre", // First code block after .each() header
-  itsHeader: "h4:contains('.its()')", // .its() section header
-  itsCode: "pre", // First code block after .its() header
-  invokeHeader: "h4:contains('.invoke()')", // .invoke() section header
-  invokeCode: "pre", // First code block after .invoke() header
-  spreadHeader: "h4:contains('.spread()')", // .spread() section header
-  spreadCode: "pre", // First code block after .spread() header
-  thenHeader: "h4:contains('.then()')", // .then() section header
-  thenCode: "pre", // First code block after .then() header
-    // Generic elements
-  // ...existing code...
-  };
+    #elements = {
+      // Main header
+      connectorsHeader: 'h1',
 
-  // Getters for elements
-  getConnectorsSection() { return cy.get(this.#elements.connectorsSection); }
-  getConnectorsHeader() { return cy.get(this.#elements.connectorsHeader); }
-  getConnectorsCode() { return cy.get(this.#elements.connectorsCode); }
-  // Connectors command example getters
-  getEachHeader() { return cy.get(this.#elements.eachHeader); }
-  getEachCode() { return cy.get(this.#elements.eachCode); }
-  getEachListItems() { return cy.get(this.#elements.eachListItems); }
-  getItsHeader() { return cy.get(this.#elements.itsHeader); }
-  getItsCode() { return cy.get(this.#elements.itsCode); }
-  getItsListItems() { return cy.get(this.#elements.itsListItems); }
-  getInvokeHeader() { return cy.get(this.#elements.invokeHeader); }
-  getInvokeCode() { return cy.get(this.#elements.invokeCode); }
-  getInvokeDiv() { return cy.get(this.#elements.invokeDiv); }
-  getSpreadHeader() { return cy.get(this.#elements.spreadHeader); }
-  getSpreadCode() { return cy.get(this.#elements.spreadCode); }
-  getThenHeader() { return cy.get(this.#elements.thenHeader); }
-  getThenCode() { return cy.get(this.#elements.thenCode); }
-  getThenListItems() { return cy.get(this.#elements.thenListItems); }
-  // Generic element getters
-  // ...existing code...
+      // Lists
+      eachListItems: '.connectors-each-ul > li',
+      itsListItems: '.connectors-its-ul > li',
+      thenListItems: '.connectors-list > li',
 
-  // Workflow methods for interactive elements
-  // ...existing code...
+      // Div for invoke example
+      invokeDiv: '.connectors-div',
 
-  // Connectors command workflows
-  // .each() example
-  assertEachListItemsLength(length: number) { this.getEachListItems().should('have.length', length); }
-  assertEachListItemsText(expected: string[]) {
-    this.getEachListItems().then(($lis) => {
-      const texts = $lis.map((i, el) => Cypress.$(el).text().trim()).get();
-      expect(texts).to.deep.eq(expected);
+      // Code blocks (use cy.get('pre').eq(n) in getters)
+    };
+
+  // Getters
+
+  // Main header
+  get connectorsHeader() { return cy.get(this.#elements.connectorsHeader); }
+
+  // Section header getters
+  get eachHeader() { return cy.contains('h4', '.each()'); }
+  get itsHeader() { return cy.contains('h4', '.its()'); }
+  get invokeHeader() { return cy.contains('h4', '.invoke()'); }
+  get spreadHeader() { return cy.contains('h4', '.spread()'); }
+  get thenHeader() { return cy.contains('h4', '.then()'); }
+
+  // List getters
+  get eachListItems() { return cy.get(this.#elements.eachListItems); }
+  get itsListItems() { return cy.get(this.#elements.itsListItems); }
+  get thenListItems() { return cy.get(this.#elements.thenListItems); }
+
+  // Div for invoke example
+  get invokeDiv() { return cy.get(this.#elements.invokeDiv); }
+
+  // Code block getters using index (order: each, its, invoke, spread, then)
+  get eachCode() { return cy.get('pre').eq(0); }
+  get itsCode() { return cy.get('pre').eq(1); }
+  get invokeCode() { return cy.get('pre').eq(2); }
+  get spreadCode() { return cy.get('pre').eq(3); }
+  get thenCode() { return cy.get('pre').eq(4); }
+
+  // Interaction methods
+  clickConnectorsHeader() { this.connectorsHeader.click(); }
+  clickEachListItem(index: number) { this.eachListItems.eq(index).click(); }
+  clickItsListItem(index: number) { this.itsListItems.eq(index).click(); }
+  clickThenListItem(index: number) { this.thenListItems.eq(index).click(); }
+  clickInvokeDiv() { this.invokeDiv.click(); }
+  clickEachCode() { this.eachCode.click(); }
+  clickItsCode() { this.itsCode.click(); }
+  clickInvokeCode() { this.invokeCode.click(); }
+  clickSpreadCode() { this.spreadCode.click(); }
+  clickThenCode() { this.thenCode.click(); }
+
+  // Workflow methods
+  /** Assert all .each() list items match expected texts */
+  assertEachListItems(expectedTexts: string[]) {
+    this.eachListItems.each((item, idx) => {
+      cy.wrap(item).should('contain.text', expectedTexts[idx]);
     });
   }
-  assertEachHeaderVisible() { this.getEachHeader().should('be.visible'); }
-  assertEachCodeVisible() { this.getEachCode().should('be.visible'); }
 
-  // .its() example
-  assertItsListItemsLength(length: number) { this.getItsListItems().should('have.length', length); }
-  assertItsListItemsText(expected: string[]) {
-    this.getItsListItems().then(($lis) => {
-      const texts = $lis.map((i, el) => Cypress.$(el).text().trim()).get();
-      expect(texts).to.deep.eq(expected);
+  /** Assert .its() list length and content */
+  assertItsListLengthAndContent(expectedTexts: string[]) {
+    this.itsListItems.should('have.length', expectedTexts.length);
+    this.itsListItems.each((item, idx) => {
+      cy.wrap(item).should('contain.text', expectedTexts[idx]);
     });
   }
-  assertItsHeaderVisible() { this.getItsHeader().should('be.visible'); }
-  assertItsCodeVisible() { this.getItsCode().should('be.visible'); }
 
-  // .invoke() example
-  assertInvokeDivHidden() { this.getInvokeDiv().should('be.hidden'); }
-  invokeShowOnDiv() { this.getInvokeDiv().invoke('show').should('be.visible'); }
-  assertInvokeHeaderVisible() { this.getInvokeHeader().should('be.visible'); }
-  assertInvokeCodeVisible() { this.getInvokeCode().should('be.visible'); }
+  /** Invoke .invoke() on the div and assert it becomes visible */
+  invokeDivAndAssertVisible() {
+    this.invokeDiv.should('be.hidden');
+    this.invokeDiv.invoke('show').should('be.visible');
+  }
 
-  // .spread() example
-  assertSpreadHeaderVisible() { this.getSpreadHeader().should('be.visible'); }
-  assertSpreadCodeVisible() { this.getSpreadCode().should('be.visible'); }
-
-  // .then() example
-  assertThenListItemsLength(length: number) { this.getThenListItems().should('have.length', length); }
-  assertThenListItemsText(expected: string[]) {
-    this.getThenListItems().then(($lis) => {
-      const texts = $lis.map((i, el) => Cypress.$(el).text().trim()).get();
-      expect(texts).to.deep.eq(expected);
+  /** Assert all code blocks contain expected text (by index) */
+  assertAllCodeBlocksContainText(expectedTexts: string[]) {
+    [this.eachCode, this.itsCode, this.invokeCode, this.spreadCode, this.thenCode].forEach((getter, idx) => {
+      getter.should('contain.text', expectedTexts[idx]);
     });
   }
-  assertThenHeaderVisible() { this.getThenHeader().should('be.visible'); }
-  assertThenCodeVisible() { this.getThenCode().should('be.visible'); }
 
-
-  // Assertions for headers and code blocks
-  assertConnectorsHeaderVisible() { this.getConnectorsHeader().should('be.visible'); }
-  assertConnectorsCodeVisible() { this.getConnectorsCode().should('be.visible'); }
-
-  // ...existing code...
+  /** Click all .then() list items and assert each contains expected text */
+  clickAllThenListItemsAndAssert(expectedTexts: string[]) {
+    this.thenListItems.each((item, idx) => {
+      cy.wrap(item).click().should('contain.text', expectedTexts[idx]);
+    });
+  }
 }

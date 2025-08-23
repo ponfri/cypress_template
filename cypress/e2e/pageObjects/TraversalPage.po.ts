@@ -49,169 +49,85 @@ export class TraversalPage extends BasePage {
     traversalPillsLi: '.traversal-pills li',
   };
 
-  // Public getters for selectors
-  get elements() {
-    return this.#elements;
-  }
+  // Getters for all locators
+  get breadcrumb() { return cy.get(this.#elements.breadcrumb); }
+  get breadcrumbActive() { return cy.get(this.#elements.breadcrumbActive); }
+  get badge() { return cy.get(this.#elements.badge); }
+  get listGroup() { return cy.get(this.#elements.listGroup); }
+  get listGroupItem() { return cy.get(this.#elements.listGroupItem); }
+  get traversalList() { return cy.get(this.#elements.traversalList); }
+  get traversalNav() { return cy.get(this.#elements.traversalNav); }
+  get traversalNavActive() { return cy.get(this.#elements.traversalNavActive); }
+  get traversalPagination() { return cy.get(this.#elements.traversalPagination); }
+  get traversalPaginationLi() { return cy.get(this.#elements.traversalPaginationLi); }
+  get traversalPaginationA() { return cy.get(this.#elements.traversalPaginationA); }
+  get traversalTable() { return cy.get(this.#elements.traversalTable); }
+  get traversalTableTd() { return cy.get(this.#elements.traversalTableTd); }
+  get traversalButtons() { return cy.get(this.#elements.traversalButtons); }
+  get traversalButtonsLink() { return cy.get(this.#elements.traversalButtonsLink); }
+  get traversalButtonsButton() { return cy.get(this.#elements.traversalButtonsButton); }
+  get traversalButtonsInput() { return cy.get(this.#elements.traversalButtonsInput); }
+  get traversalButtonsSubmit() { return cy.get(this.#elements.traversalButtonsSubmit); }
+  get traversalUl() { return cy.get(this.#elements.traversalUl); }
+  get traversalUlLi() { return cy.get(this.#elements.traversalUlLi); }
+  get traversalNextAll() { return cy.get(this.#elements.traversalNextAll); }
+  get traversalNextAllLi() { return cy.get(this.#elements.traversalNextAllLi); }
+  get healthyFoods() { return cy.get(this.#elements.healthyFoods); }
+  get healthyFoodsLi() { return cy.get(this.#elements.healthyFoodsLi); }
+  get foodsList() { return cy.get(this.#elements.foodsList); }
+  get foodsListLi() { return cy.get(this.#elements.foodsListLi); }
+  get fruitsHeader() { return cy.get(this.#elements.fruitsHeader); }
+  get veggiesHeader() { return cy.get(this.#elements.veggiesHeader); }
+  get nutsHeader() { return cy.get(this.#elements.nutsHeader); }
+  get traversalDisabled() { return cy.get(this.#elements.traversalDisabled); }
+  get traversalDisabledBtn() { return cy.get(this.#elements.traversalDisabledBtn); }
+  get traversalDisabledBtnEnabled() { return cy.get(this.#elements.traversalDisabledBtnEnabled); }
+  get traversalMark() { return cy.get(this.#elements.traversalMark); }
+  get traversalCite() { return cy.get(this.#elements.traversalCite); }
+  get clothesNav() { return cy.get(this.#elements.clothesNav); }
+  get clothesNavActive() { return cy.get(this.#elements.clothesNavActive); }
+  get birdsList() { return cy.get(this.#elements.birdsList); }
+  get birdsListItem() { return cy.get(this.#elements.birdsListItem); }
+  get birdsListItemActive() { return cy.get(this.#elements.birdsListItemActive); }
+  get fruitsList() { return cy.get(this.#elements.fruitsList); }
+  get fruitsListThird() { return cy.get(this.#elements.fruitsListThird); }
+  get traversalPills() { return cy.get(this.#elements.traversalPills); }
+  get traversalPillsActive() { return cy.get(this.#elements.traversalPillsActive); }
+  get traversalPillsLi() { return cy.get(this.#elements.traversalPillsLi); }
 
-  // Workflow methods for all interactive/testable elements
+    // Interaction methods
+    clickBreadcrumb() { this.breadcrumb.click(); }
+    clickBadge() { this.badge.click(); }
+    clickListGroupItem() { this.listGroupItem.click(); }
+    clickTraversalNavActive() { this.traversalNavActive.click(); }
+    clickTraversalPaginationA() { this.traversalPaginationA.click(); }
+    clickTraversalButtonsLink() { this.traversalButtonsLink.click(); }
+    clickTraversalButtonsButton() { this.traversalButtonsButton.click(); }
+    clickTraversalButtonsInput() { this.traversalButtonsInput.click(); }
+    clickTraversalButtonsSubmit() { this.traversalButtonsSubmit.click(); }
+  
+    // Workflow methods
+    clickAllTraversalButtons() {
+      this.clickTraversalButtonsLink();
+      this.clickTraversalButtonsButton();
+      this.clickTraversalButtonsInput();
+      this.clickTraversalButtonsSubmit();
+    }
 
-  getBreadcrumbItems() {
-    return cy.get(this.#elements.breadcrumb).find('li');
-  }
-  getActiveBreadcrumb() {
-    return cy.get(this.#elements.breadcrumbActive);
-  }
-  getBadge() {
-    return cy.get(this.#elements.badge);
-  }
-  getListGroupItems() {
-    return cy.get(this.#elements.listGroupItem);
-  }
-  getTraversalListItems() {
-    return cy.get(this.#elements.traversalList);
-  }
-  getTraversalNavItems() {
-    return cy.get(this.#elements.traversalNav);
-  }
-  getTraversalNavActive() {
-    return cy.get(this.#elements.traversalNavActive);
-  }
-  getPaginationLinks() {
-    return cy.get(this.#elements.traversalPaginationA);
-  }
-  getTableCells() {
-    return cy.get(this.#elements.traversalTableTd);
-  }
-  getButtons() {
-    return cy.get(this.#elements.traversalButtons);
-  }
-  clickButtonByText(text: string) {
-    return cy.get(this.#elements.traversalButtons).contains(text).click();
-  }
-  getLinkButton() {
-    return cy.get(this.#elements.traversalButtonsLink);
-  }
-  getButtonButton() {
-    return cy.get(this.#elements.traversalButtonsButton);
-  }
-  getInputButton() {
-    return cy.get(this.#elements.traversalButtonsInput);
-  }
-  getSubmitButton() {
-    return cy.get(this.#elements.traversalButtonsSubmit);
-  }
-  getTraversalUlItems() {
-    return cy.get(this.#elements.traversalUlLi);
-  }
-  getNextAllItems() {
-    return cy.get(this.#elements.traversalNextAllLi);
-  }
-  getHealthyFoodsItems() {
-    return cy.get(this.#elements.healthyFoodsLi);
-  }
-  getFoodsListItems() {
-    return cy.get(this.#elements.foodsListLi);
-  }
-  getFruitsHeader() {
-    return cy.get(this.#elements.fruitsHeader);
-  }
-  getVeggiesHeader() {
-    return cy.get(this.#elements.veggiesHeader);
-  }
-  getNutsHeader() {
-    return cy.get(this.#elements.nutsHeader);
-  }
-  getDisabledButtons() {
-    return cy.get(this.#elements.traversalDisabledBtn);
-  }
-  getEnabledButtons() {
-    return cy.get(this.#elements.traversalDisabledBtnEnabled);
-  }
-  getMark() {
-    return cy.get(this.#elements.traversalMark);
-  }
-  getCite() {
-    return cy.get(this.#elements.traversalCite);
-  }
-  getClothesNavItems() {
-    return cy.get(this.#elements.clothesNav).find('li');
-  }
-  getClothesNavActive() {
-    return cy.get(this.#elements.clothesNavActive);
-  }
-  getBirdsListItems() {
-    return cy.get(this.#elements.birdsListItem);
-  }
-  getBirdsListActive() {
-    return cy.get(this.#elements.birdsListItemActive);
-  }
-  getFruitsListItems() {
-    return cy.get(this.#elements.fruitsList);
-  }
-  getFruitsListThird() {
-    return cy.get(this.#elements.fruitsListThird);
-  }
-  getTraversalPillsItems() {
-    return cy.get(this.#elements.traversalPillsLi);
-  }
-  getTraversalPillsActive() {
-    return cy.get(this.#elements.traversalPillsActive);
-  }
+    verifyAllHeadersVisible() {
+      this.fruitsHeader.should('be.visible');
+      this.veggiesHeader.should('be.visible');
+      this.nutsHeader.should('be.visible');
+    }
 
-  // Example workflow methods for traversal commands
-  children(selector: string) {
-    return cy.get(selector).children();
-  }
-  closest(selector: string, ancestor: string) {
-    return cy.get(selector).closest(ancestor);
-  }
-  eq(selector: string, index: number) {
-    return cy.get(selector).eq(index);
-  }
-  filter(selector: string, filterSelector: string) {
-    return cy.get(selector).filter(filterSelector);
-  }
-  find(selector: string, findSelector: string) {
-    return cy.get(selector).find(findSelector);
-  }
-  first(selector: string) {
-    return cy.get(selector).first();
-  }
-  last(selector: string) {
-    return cy.get(selector).last();
-  }
-  next(selector: string) {
-    return cy.get(selector).next();
-  }
-  nextAll(selector: string) {
-    return cy.get(selector).nextAll();
-  }
-  nextUntil(selector: string, untilSelector: string) {
-    return cy.get(selector).nextUntil(untilSelector);
-  }
-  not(selector: string, notSelector: string) {
-    return cy.get(selector).not(notSelector);
-  }
-  parent(selector: string) {
-    return cy.get(selector).parent();
-  }
-  parents(selector: string) {
-    return cy.get(selector).parents();
-  }
-  parentsUntil(selector: string, untilSelector: string) {
-    return cy.get(selector).parentsUntil(untilSelector);
-  }
-  prev(selector: string) {
-    return cy.get(selector).prev();
-  }
-  prevAll(selector: string) {
-    return cy.get(selector).prevAll();
-  }
-  prevUntil(selector: string, untilSelector: string) {
-    return cy.get(selector).prevUntil(untilSelector);
-  }
-  siblings(selector: string) {
-    return cy.get(selector).siblings();
-  }
+    verifyListGroupItemsCount(expected: number) {
+      this.listGroupItem.should('have.length', expected);
+    }
+
+    verifyActiveStates() {
+      this.breadcrumbActive.should('be.visible');
+      this.traversalNavActive.should('be.visible');
+      this.traversalPillsActive.should('be.visible');
+      this.clothesNavActive.should('be.visible');
+    }
 }

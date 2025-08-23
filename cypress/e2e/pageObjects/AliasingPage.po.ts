@@ -21,59 +21,100 @@ export default class AliasingPage extends BasePage {
     asTableChangeBtns: '.as-table button',
   };
 
-  // Getters for elements
-  getAliasingSection() { return cy.get(this.#elements.aliasingSection); }
-  getAliasingHeader() { return cy.get(this.#elements.aliasingHeader); }
-  getAliasingCode() { return cy.get(this.#elements.aliasingCode); }
-  getAsTable() { return cy.get(this.#elements.asTable); }
-  getAsTableRows() { return cy.get(this.#elements.asTableRows); }
-  getAsTableCells() { return cy.get(this.#elements.asTableCells); }
-  getAsTableFirstBtn() { return cy.get(this.#elements.asTableFirstBtn); }
-  getNetworkBtn() { return cy.get(this.#elements.networkBtn); }
-  getNetworkComment() { return cy.get(this.#elements.networkComment); }
-  getGetCommentBtn() { return cy.get(this.#elements.getCommentBtn); }
-  getAsTableHeaders() { return cy.get(this.#elements.asTableHeaders); }
-  getAsTableChangeBtns() { return cy.get(this.#elements.asTableChangeBtns); }
+  // Getters
+  get aliasingSection() { return cy.get(this.#elements.aliasingSection); }
+  get aliasingHeader() { return cy.get(this.#elements.aliasingHeader); }
+  get aliasingCode() { return cy.get(this.#elements.aliasingCode); }
+  get asTable() { return cy.get(this.#elements.asTable); }
+  get asTableRows() { return cy.get(this.#elements.asTableRows); }
+  get asTableCells() { return cy.get(this.#elements.asTableCells); }
+  get asTableFirstBtn() { return cy.get(this.#elements.asTableFirstBtn); }
+  get networkBtn() { return cy.get(this.#elements.networkBtn); }
+  get networkComment() { return cy.get(this.#elements.networkComment); }
+  get getCommentBtn() { return cy.get(this.#elements.getCommentBtn); }
+  get asTableHeaders() { return cy.get(this.#elements.asTableHeaders); }
+  get asTableChangeBtns() { return cy.get(this.#elements.asTableChangeBtns); }
 
-  // Workflow methods for aliasing
-  aliasFirstBtn() {
-    this.getAsTableFirstBtn().as('firstBtn');
-  }
-  clickAliasedFirstBtn() {
-    cy.get('@firstBtn').click();
-  }
-  assertAliasedFirstBtnChanged() {
-    cy.get('@firstBtn').should('have.class', 'btn-success').and('contain', 'Changed');
-  }
-  aliasGetCommentRoute() {
-    cy.intercept('GET', '**/comments/*').as('getComment');
-  }
-  clickNetworkBtn() {
-    this.getNetworkBtn().click();
-  }
-  waitForGetComment() {
-    cy.wait('@getComment').its('response.statusCode').should('eq', 200);
-  }
-  // Table workflows
-  assertAsTableHeaders(expected: string[]) {
-    this.getAsTableHeaders().then(($ths) => {
-      const texts = $ths.map((i, el) => Cypress.$(el).text().trim()).get();
-      expect(texts).to.deep.eq(expected);
-    });
-  }
-  assertAsTableRowsLength(length: number) {
-    this.getAsTableRows().should('have.length', length);
-  }
-  assertAsTableCellText(row: number, cell: number, text: string) {
-    this.getAsTableRows().eq(row).find('td').eq(cell).should('contain', text);
-  }
-  clickAsTableChangeBtn(row: number, cell: number) {
-    this.getAsTableRows().eq(row).find('td').eq(cell).find('button').click();
-  }
-  assertAsTableChangeBtnText(row: number, cell: number, text: string) {
-    this.getAsTableRows().eq(row).find('td').eq(cell).find('button').should('contain', text);
-  }
-  // Assertions for headers and code blocks
-  assertAliasingHeaderVisible() { this.getAliasingHeader().should('be.visible'); }
-  assertAliasingCodeVisible() { this.getAliasingCode().should('be.visible'); }
+    // Interaction methods
+
+    clickAliasingSection() {
+      this.aliasingSection.click();
+    }
+
+    clickAliasingHeader() {
+      this.aliasingHeader.click();
+    }
+
+    clickAliasingCode() {
+      this.aliasingCode.click();
+    }
+
+    clickAsTable() {
+      this.asTable.click();
+    }
+
+    clickAsTableRow(index: number) {
+      this.asTableRows.eq(index).click();
+    }
+
+    clickAsTableCell(index: number) {
+      this.asTableCells.eq(index).click();
+    }
+
+    clickAsTableFirstBtn() {
+      this.asTableFirstBtn.click();
+    }
+
+    clickNetworkBtn() {
+      this.networkBtn.click();
+    }
+
+    clickNetworkComment() {
+      this.networkComment.click();
+    }
+
+    clickGetCommentBtn() {
+      this.getCommentBtn.click();
+    }
+
+    clickAsTableHeader(index: number) {
+      this.asTableHeaders.eq(index).click();
+    }
+
+    clickAsTableChangeBtn(index: number) {
+      this.asTableChangeBtns.eq(index).click();
+    }
+
+      // Workflow methods
+
+      /** Click a table row, then its first button, then verify a cell contains expected text */
+      interactWithTableRow(rowIndex: number, expectedCellText: string) {
+        this.clickAsTableRow(rowIndex);
+        this.clickAsTableFirstBtn();
+        this.asTableCells.eq(rowIndex).should('contain.text', expectedCellText);
+      }
+
+      /** Perform network comment workflow: click network button, wait for comment, click get comment button */
+      performNetworkCommentFlow(expectedComment: string) {
+        this.clickNetworkBtn();
+        this.networkComment.should('contain.text', expectedComment);
+        this.clickGetCommentBtn();
+      }
+
+      /** Click all change buttons in the table */
+      clickAllChangeButtons() {
+        this.asTableChangeBtns.each(btn => cy.wrap(btn).click());
+      }
+
+      /** Click all table headers for sorting */
+      sortTableByAllHeaders() {
+        this.asTableHeaders.each(header => cy.wrap(header).click());
+      }
+
+      /** Click aliasing header, then code block, and assert code contains expected text */
+      verifyAliasingCodeContent(expectedText: string) {
+        this.clickAliasingHeader();
+        this.clickAliasingCode();
+        this.aliasingCode.should('contain.text', expectedText);
+      }
 }

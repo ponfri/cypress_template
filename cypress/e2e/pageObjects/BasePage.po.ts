@@ -41,53 +41,99 @@ export class BasePage {
     commandsSpiesStubsClocks: () => cy.contains('a', 'Spies, Stubs & Clocks'),
   }
 
-  // Public getters for navigation and Commands sub-menu
-  get NavCommands() { return this.#navElements.navCommands() }
-  get NavUtilities() { return this.#navElements.navUtilities() }
-  get NavCypressAPI() { return this.#navElements.navCypressAPI() }
-  get NavGitHub() { return this.#navElements.navGitHub() }
+  // Getters
+  get navCommands(): Cypress.Chainable<JQuery<HTMLElement>> { return this.#navElements.navCommands(); }
+  get navUtilities() { return this.#navElements.navUtilities(); }
+  get navCypressAPI() { return this.#navElements.navCypressAPI(); }
+  get navGitHub() { return this.#navElements.navGitHub(); }
+  get commandsQuerying() { return this.#navElements.commandsQuerying(); }
+  get commandsTraversal() { return this.#navElements.commandsTraversal(); }
+  get commandsActions() { return this.#navElements.commandsActions(); }
+  get commandsWindow() { return this.#navElements.commandsWindow(); }
+  get commandsViewport() { return this.#navElements.commandsViewport(); }
+  get commandsLocation() { return this.#navElements.commandsLocation(); }
+  get commandsNavigation() { return this.#navElements.commandsNavigation(); }
+  get commandsAssertions() { return this.#navElements.commandsAssertions(); }
+  get commandsMisc() { return this.#navElements.commandsMisc(); }
+  get commandsConnectors() { return this.#navElements.commandsConnectors(); }
+  get commandsAliasing() { return this.#navElements.commandsAliasing(); }
+  get commandsWaiting() { return this.#navElements.commandsWaiting(); }
+  get commandsNetworkRequests() { return this.#navElements.commandsNetworkRequests(); }
+  get commandsFiles() { return this.#navElements.commandsFiles(); }
+  get commandsStorage() { return this.#navElements.commandsStorage(); }
+  get commandsCookies() { return this.#navElements.commandsCookies(); }
+  get commandsSpiesStubsClocks() { return this.#navElements.commandsSpiesStubsClocks(); }
 
-  get CommandsQuerying() { return this.#navElements.commandsQuerying() }
-  get CommandsTraversal() { return this.#navElements.commandsTraversal() }
-  get CommandsActions() { return this.#navElements.commandsActions() }
-  get CommandsWindow() { return this.#navElements.commandsWindow() }
-  get CommandsViewport() { return this.#navElements.commandsViewport() }
-  get CommandsLocation() { return this.#navElements.commandsLocation() }
-  get CommandsNavigation() { return this.#navElements.commandsNavigation() }
-  get CommandsAssertions() { return this.#navElements.commandsAssertions() }
-  get CommandsMisc() { return this.#navElements.commandsMisc() }
-  get CommandsConnectors() { return this.#navElements.commandsConnectors() }
-  get CommandsAliasing() { return this.#navElements.commandsAliasing() }
-  get CommandsWaiting() { return this.#navElements.commandsWaiting() }
-  get CommandsNetworkRequests() { return this.#navElements.commandsNetworkRequests() }
-  get CommandsFiles() { return this.#navElements.commandsFiles() }
-  get CommandsStorage() { return this.#navElements.commandsStorage() }
-  get CommandsCookies() { return this.#navElements.commandsCookies() }
-  get CommandsSpiesStubsClocks() { return this.#navElements.commandsSpiesStubsClocks() }
+    // Interaction methods
+    clickNavCommands() { this.navCommands.click(); }
+    clickNavUtilities() { this.navUtilities.click(); }
+    clickNavCypressAPI() { this.navCypressAPI.click(); }
+    clickNavGitHub() { this.navGitHub.click(); }
+    clickCommandsQuerying() { this.commandsQuerying.click(); }
+    clickCommandsTraversal() { this.commandsTraversal.click(); }
+    clickCommandsActions() { this.commandsActions.click(); }
+    clickCommandsWindow() { this.commandsWindow.click(); }
+    clickCommandsViewport() { this.commandsViewport.click(); }
+    clickCommandsLocation() { this.commandsLocation.click(); }
+    clickCommandsNavigation() { this.commandsNavigation.click(); }
+    clickCommandsAssertions() { this.commandsAssertions.click(); }
+    clickCommandsMisc() { this.commandsMisc.click(); }
+    clickCommandsConnectors() { this.commandsConnectors.click(); }
+    clickCommandsAliasing() { this.commandsAliasing.click(); }
+    clickCommandsWaiting() { this.commandsWaiting.click(); }
+    clickCommandsNetworkRequests() { this.commandsNetworkRequests.click(); }
+    clickCommandsFiles() { this.commandsFiles.click(); }
+    clickCommandsStorage() { this.commandsStorage.click(); }
+    clickCommandsCookies() { this.commandsCookies.click(); }
+    clickCommandsSpiesStubsClocks() { this.commandsSpiesStubsClocks.click(); }
 
-  // Interaction methods for navigation and Commands sub-menu
-  clickNavCommands() { return this.#navElements.navCommands().click() }
-  clickNavUtilities() { return this.#navElements.navUtilities().click() }
-  clickNavCypressAPI() { return this.#navElements.navCypressAPI().click() }
-  clickNavGitHub() { return this.#navElements.navGitHub().click() }
+      // Workflow methods
 
-  clickCommandsQuerying() { return this.#navElements.commandsQuerying().click() }
-  clickCommandsTraversal() { return this.#navElements.commandsTraversal().click() }
-  clickCommandsActions() { return this.#navElements.commandsActions().click() }
-  clickCommandsWindow() { return this.#navElements.commandsWindow().click() }
-  clickCommandsViewport() { return this.#navElements.commandsViewport().click() }
-  clickCommandsLocation() { return this.#navElements.commandsLocation().click() }
-  clickCommandsNavigation() { return this.#navElements.commandsNavigation().click() }
-  clickCommandsAssertions() { return this.#navElements.commandsAssertions().click() }
-  clickCommandsMisc() { return this.#navElements.commandsMisc().click() }
-  clickCommandsConnectors() { return this.#navElements.commandsConnectors().click() }
-  clickCommandsAliasing() { return this.#navElements.commandsAliasing().click() }
-  clickCommandsWaiting() { return this.#navElements.commandsWaiting().click() }
-  clickCommandsNetworkRequests() { return this.#navElements.commandsNetworkRequests().click() }
-  clickCommandsFiles() { return this.#navElements.commandsFiles().click() }
-  clickCommandsStorage() { return this.#navElements.commandsStorage().click() }
-  clickCommandsCookies() { return this.#navElements.commandsCookies().click() }
-  clickCommandsSpiesStubsClocks() { return this.#navElements.commandsSpiesStubsClocks().click() }
+      /** Navigate to a sub-menu under Commands (e.g., Actions, Querying, etc.) */
+      navigateToCommandsSubMenu(subMenu: 'Actions' | 'Querying' | 'Traversal' | 'Window' | 'Viewport' | 'Location' | 'Navigation' | 'Assertions' | 'Misc' | 'Connectors' | 'Aliasing' | 'Waiting' | 'Network Requests' | 'Files' | 'Storage' | 'Cookies' | 'Spies, Stubs & Clocks') {
+        this.clickNavCommands();
+        switch (subMenu) {
+          case 'Actions': this.clickCommandsActions(); break;
+          case 'Querying': this.clickCommandsQuerying(); break;
+          case 'Traversal': this.clickCommandsTraversal(); break;
+          case 'Window': this.clickCommandsWindow(); break;
+          case 'Viewport': this.clickCommandsViewport(); break;
+          case 'Location': this.clickCommandsLocation(); break;
+          case 'Navigation': this.clickCommandsNavigation(); break;
+          case 'Assertions': this.clickCommandsAssertions(); break;
+          case 'Misc': this.clickCommandsMisc(); break;
+          case 'Connectors': this.clickCommandsConnectors(); break;
+          case 'Aliasing': this.clickCommandsAliasing(); break;
+          case 'Waiting': this.clickCommandsWaiting(); break;
+          case 'Network Requests': this.clickCommandsNetworkRequests(); break;
+          case 'Files': this.clickCommandsFiles(); break;
+          case 'Storage': this.clickCommandsStorage(); break;
+          case 'Cookies': this.clickCommandsCookies(); break;
+          case 'Spies, Stubs & Clocks': this.clickCommandsSpiesStubsClocks(); break;
+        }
+      }
 
-  // ...existing code...
+      /** Navigate to Utilities section */
+      navigateToUtilities() {
+        this.clickNavUtilities();
+      }
+
+      /** Navigate to Cypress API section */
+      navigateToCypressAPI() {
+        this.clickNavCypressAPI();
+      }
+
+      /** Navigate to GitHub and assert redirect */
+      navigateToGitHubAndAssert() {
+        this.clickNavGitHub();
+        cy.url().should('include', 'github.com');
+      }
+
+      /** Click all main navigation links for smoke/regression navigation test */
+      clickAllMainNavLinks() {
+        this.clickNavCommands();
+        this.clickNavUtilities();
+        this.clickNavCypressAPI();
+        this.clickNavGitHub();
+      }
 }

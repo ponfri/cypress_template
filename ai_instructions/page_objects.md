@@ -5,7 +5,6 @@ date: 2025-08-17
 description: Co-pilot instructions for our kitchen sink example web site.
 ---
 
-
 # Page Objects Documentation
 ## Page Object File Structure and Conventions
 **Important:**
@@ -31,6 +30,20 @@ When creating a new page object file, follow this pattern for consistency and ma
 - **Interaction Methods:** For each locator, add an interaction method (e.g., `clickBanner()`, `typeInputUsername(text)`) that performs a Cypress action on the element.
 - **Workflow Methods:** For each interaction method, add a workflow method (e.g., `workflowClickBanner()`) that calls the interaction method and returns `this` for chaining. Each workflow method should perform only one action.
 - **No Navigation Locators:** Navigation and workflow methods should be handled in `BasePage`.
+
+## Page Object File Structure (MANDATORY)
+
+All page object files must follow this structure:
+
+1. Export the class and extend BasePage (or appropriate base class)
+2. Locators: Define all selectors in a private `#elements` object at the top of the class
+3. Getters: Add all Cypress getters for each locator, immediately after the locators
+4. Interaction Methods: Add all interaction methods (e.g., click, type, select) after the getters
+5. Workflow Methods: Add any workflow methods (multi-step actions) last, after interaction methods
+
+**Do not place getters, interaction, or workflow methods before the locators.**
+
+This order is strictly enforced for clarity, maintainability, and consistency across the project.
 
 ### Example Pattern
 ```typescript

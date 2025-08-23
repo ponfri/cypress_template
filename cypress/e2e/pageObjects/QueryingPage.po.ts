@@ -1,6 +1,6 @@
 import { BasePage } from './BasePage.po';
 
-class QueryingPage extends BasePage {
+export class QueryingPage extends BasePage {
   #elements = {
     pageHeader: 'h1',
     pageDesc: '.banner p',
@@ -22,11 +22,7 @@ class QueryingPage extends BasePage {
     bestPracticesWell: '[data-cy="best-practices-selecting-elements"]',
   };
 
-  constructor() {
-    super('/commands/querying');
-  }
-
-  // Getters for elements
+  // Getters for all locators
   get pageHeader() { return cy.get(this.#elements.pageHeader); }
   get pageDesc() { return cy.get(this.#elements.pageDesc); }
   get queryingSection() { return cy.get(this.#elements.queryingSection); }
@@ -34,107 +30,51 @@ class QueryingPage extends BasePage {
   get containsLink() { return cy.get(this.#elements.containsLink); }
   get withinLink() { return cy.get(this.#elements.withinLink); }
   get rootLink() { return cy.get(this.#elements.rootLink); }
+  get inputName() { return cy.get(this.#elements.inputName); }
+  get inputEmail() { return cy.get(this.#elements.inputEmail); }
+  get inputPassword() { return cy.get(this.#elements.inputPassword); }
+  get saveFormButton() { return cy.get(this.#elements.saveFormButton); }
+  get submitButton() { return cy.get(this.#elements.submitButton); }
+  get dataTestExample() { return cy.get(this.#elements.dataTestExample); }
+  get queryList() { return cy.get(this.#elements.queryList); }
+  get queryListItems() { return cy.get(this.#elements.queryListItems); }
+  get queryUl() { return cy.get(this.#elements.queryUl); }
+  get queryUlItems() { return cy.get(this.#elements.queryUlItems); }
+  get bestPracticesWell() { return cy.get(this.#elements.bestPracticesWell); }
 
-  // Click methods for all links
-  clickGetLink() { return this.getLink.click(); }
-  clickContainsLink() { return this.containsLink.click(); }
-  clickWithinLink() { return this.withinLink.click(); }
-  clickRootLink() { return this.rootLink.click(); }
+    // Interaction methods
+    clickGetLink() { this.getLink.click(); }
+    clickContainsLink() { this.containsLink.click(); }
+    clickWithinLink() { this.withinLink.click(); }
+    clickRootLink() { this.rootLink.click(); }
+    typeInputName(text: string) { this.inputName.type(text); }
+    typeInputEmail(text: string) { this.inputEmail.type(text); }
+    typeInputPassword(text: string) { this.inputPassword.type(text); }
+    clickSaveFormButton() { this.saveFormButton.click(); }
+    clickSubmitButton() { this.submitButton.click(); }
 
-  // Input box workflow methods
-  typeInputName(value: string) {
-    cy.get(this.#elements.inputName).type(value);
-  }
-  clearInputName() {
-    cy.get(this.#elements.inputName).clear();
-  }
-  getInputNameValue() {
-    return cy.get(this.#elements.inputName).invoke('val');
-  }
+      // Workflow methods
+      fillFormAndSubmit(name: string, email: string, password: string) {
+        this.typeInputName(name);
+        this.typeInputEmail(email);
+        this.typeInputPassword(password);
+        this.clickSaveFormButton();
+        this.clickSubmitButton();
+      }
 
-  typeInputEmail(value: string) {
-    cy.get(this.#elements.inputEmail).type(value);
-  }
-  clearInputEmail() {
-    cy.get(this.#elements.inputEmail).clear();
-  }
-  getInputEmailValue() {
-    return cy.get(this.#elements.inputEmail).invoke('val');
-  }
+      verifyQueryListItemsCount(expected: number) {
+        this.queryListItems.should('have.length', expected);
+      }
 
-  typeInputPassword(value: string) {
-    cy.get(this.#elements.inputPassword).type(value);
-  }
-  clearInputPassword() {
-    cy.get(this.#elements.inputPassword).clear();
-  }
-  getInputPasswordValue() {
-    return cy.get(this.#elements.inputPassword).invoke('val');
-  }
+      verifyBestPracticesVisible() {
+        this.bestPracticesWell.should('be.visible');
+      }
 
-  // Button workflow methods
-  clickSaveFormButton() {
-    cy.get(this.#elements.saveFormButton).click();
-  }
-  clickSubmitButton() {
-    cy.get(this.#elements.submitButton).click();
-  }
+      clickAllQueryLinks() {
+        this.clickGetLink();
+        this.clickContainsLink();
+        this.clickWithinLink();
+        this.clickRootLink();
+      }
 
-  // Data attribute workflow methods
-  getDataTestExampleAttr(attr: string) {
-    return cy.get(this.#elements.dataTestExample).invoke('attr', attr);
-  }
-  getDataTestExampleCss(property: string) {
-    return cy.get(this.#elements.dataTestExample).invoke('css', property);
-  }
-
-  // List item workflow methods
-  getQueryListItems() {
-    return cy.get(this.#elements.queryListItems);
-  }
-  clickQueryListItemByText(text: string) {
-    cy.get(this.#elements.queryListItems).contains(text).click();
-  }
-  getQueryUlItems() {
-    return cy.get(this.#elements.queryUlItems);
-  }
-  clickQueryUlItemByText(text: string) {
-    cy.get(this.#elements.queryUlItems).contains(text).click();
-  }
-
-  // Best practices well
-  getBestPracticesWell() {
-    return cy.get(this.#elements.bestPracticesWell);
-  }
-
-  // Generic workflow methods
-  getText(selector: string) {
-    return cy.get(this.#elements[selector]).invoke('text');
-  }
-  getCss(selector: string, cssProp: string) {
-    return cy.get(this.#elements[selector]).invoke('css', cssProp);
-  }
-  isVisible(selector: string) {
-    return cy.get(this.#elements[selector]).should('be.visible');
-  }
-  isEnabled(selector: string) {
-    return cy.get(this.#elements[selector]).should('not.be.disabled');
-  }
-  typeInput(selector: string, value: string) {
-    return cy.get(this.#elements[selector]).type(value);
-  }
-  clearInput(selector: string) {
-    return cy.get(this.#elements[selector]).clear();
-  }
-  check(selector: string) {
-    return cy.get(this.#elements[selector]).check();
-  }
-  uncheck(selector: string) {
-    return cy.get(this.#elements[selector]).uncheck();
-  }
-  selectOption(selector: string, value: string) {
-    return cy.get(this.#elements[selector]).select(value);
-  }
 }
-
-export default QueryingPage;
