@@ -7,7 +7,7 @@
 
 import LandingPage from "../pageObjects/LandingPage.po";
 
-const landingPage = new LandingPage();
+const landingPage = new LandingPage("/");
 
 describe("Landing Page and Utilities Navigation Smoke Tests", () => {
   beforeEach("[ ] Load landing page and wait for ready.", () => {

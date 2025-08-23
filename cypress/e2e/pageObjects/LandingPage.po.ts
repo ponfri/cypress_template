@@ -1,7 +1,7 @@
 // Page object for https://example.cypress.io landing page
 import { BasePage } from './BasePage.po';
 
-class LandingPage extends BasePage {
+export default class LandingPage extends BasePage {
 				#elements = {
 					banner: '.banner[data-cy="banner"]',
 					bannerAlt: '.banner-alt[data-cy="banner-alt"]',
