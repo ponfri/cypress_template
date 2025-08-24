@@ -19,11 +19,20 @@
     "docker:compose": "docker-compose run --rm --remove-orphans cypress_template",
     "docker:run": "docker run --rm --name cypress_template cypress_temp",
     "docker:start": "docker start cypress_template",
+    "docker:streaming:up": "docker compose -f ./streaming-test-app/docker-compose.yml up --build",
+    "docker:streaming:down": "docker compose -f ./streaming-test-app/docker-compose.yml down",
+    "docker:streaming:restart": "npm run docker:streaming:down && npm run docker:streaming:up",
     "allure:open": "npx allure open ./allure-results -p 3000",
     "allure:cleanup": "rm -rf allure-report allure-results || true",
     "allure:run-open": "npm run cypress:run && npm run allure:open",
     "allure:generate": "npx allure generate -c",
-    "kill:port": "lsof -ti :8080 | xargs kill -9"
+    "kill:port": "lsof -ti :8080 | xargs kill -9",
+     "start:streaming:fresh": "npm run seed:streaming:reset && npm run start:streaming",
+    "start:streaming-api": "npm --prefix ./streaming-test-app/api start",
+    "start:streaming-ui": "npm --prefix ./streaming-test-app/ui run dev",
+    "start:streaming": "concurrently \"npm run start:streaming-api\" \"npm run start:streaming-ui\"",
+    "seed:streaming": "npm --prefix ./streaming-test-app run seed",
+    "seed:streaming:reset": "npm --prefix ./streaming-test-app run seed:reset"
   },
   "keywords": [
     "Cypress",
@@ -59,6 +68,7 @@
     "start-server-and-test": "^2.0.13",
     "typescript": "^5.9.2",
     "webpack": "^5.101.2",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "webpack-bundle-analyzer": "^4.10.2",
+    "concurrently": "^8.2.0"
   }
 }

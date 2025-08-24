@@ -1,0 +1,103 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "demo@local.test",
+      "password": "demo123",
+      "name": "Demo User",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "email": "admin@local.test",
+      "password": "admin123",
+      "name": "Admin User",
+      "role": "admin"
+    }
+  ],
+  "titles": [
+    {
+      "id": 1001,
+      "name": "Ocean Odyssey",
+      "type": "movie",
+      "year": 2024,
+      "genres": [
+        "Documentary",
+        "Nature"
+      ],
+      "rating": 7.8,
+      "runtime": 92,
+      "poster": "/images/ocean.jpg",
+      "backdrop": "/images/ocean-wide.jpg",
+      "synopsis": "Dive into the secret life beneath the waves.",
+      "media": {
+        "hls": "http://localhost:8080/hls/sample.m3u8",
+        "mp4": "http://localhost:8080/video/sample.mp4"
+      }
+    },
+    {
+      "id": 1002,
+      "name": "Neon City",
+      "type": "movie",
+      "year": 2023,
+      "genres": [
+        "Sci-Fi",
+        "Action"
+      ],
+      "rating": 8.2,
+      "runtime": 121,
+      "poster": "/images/neon.jpg",
+      "backdrop": "/images/neon-wide.jpg",
+      "synopsis": "A courier uncovers a plot that could tear the city apart.",
+      "media": {
+        "hls": "http://localhost:8080/hls/sample.m3u8",
+        "mp4": "http://localhost:8080/video/sample.mp4"
+      }
+    },
+    {
+      "id": 2001,
+      "name": "Byte Wars",
+      "type": "series",
+      "year": 2022,
+      "genres": [
+        "Drama",
+        "Tech"
+      ],
+      "rating": 7.4,
+      "seasons": 2,
+      "poster": "/images/byte.jpg",
+      "backdrop": "/images/byte-wide.jpg",
+      "synopsis": "A startup goes head-to-head with a giant.",
+      "media": {
+        "hls": "http://localhost:8080/hls/sample.m3u8",
+        "mp4": "http://localhost:8080/video/sample.mp4"
+      }
+    }
+  ],
+  "lanes": [
+    {
+      "id": "trending",
+      "title": "Trending Now",
+      "items": [
+        1001,
+        1002,
+        2001
+      ]
+    },
+    {
+      "id": "recommended",
+      "title": "Because you watched Nature",
+      "items": [
+        1001,
+        2001
+      ]
+    },
+    {
+      "id": "new",
+      "title": "New Releases",
+      "items": [
+        1002
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "streaming-test-app-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "seed": "node seed.js",
+    "seed:reset": "node seed.js --reset"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "cors": "^2.8.5",
+    "socket.io": "^4.7.2",
+    "swagger-ui-express": "^4.7.1"
+  }
+}
