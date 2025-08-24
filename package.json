@@ -27,7 +27,7 @@
     "allure:run-open": "npm run cypress:run && npm run allure:open",
     "allure:generate": "npx allure generate -c",
     "kill:port": "lsof -ti :8080 | xargs kill -9",
-     "start:streaming:fresh": "npm run seed:streaming:reset && npm run start:streaming",
+    "start:streaming:fresh": "npm run seed:streaming:reset && npm run start:streaming",
     "start:streaming-api": "npm --prefix ./streaming-test-app/api start",
     "start:streaming-ui": "npm --prefix ./streaming-test-app/ui run dev",
     "start:streaming": "concurrently \"npm run start:streaming-api\" \"npm run start:streaming-ui\"",
@@ -48,6 +48,7 @@
     "allure-commandline": "^2.34.1",
     "allure-cypress": "^3.3.3",
     "bootstrap": "^5.3.7",
+    "concurrently": "^8.2.2",
     "cypress": "^14.5.4",
     "cypress-axe": "^1.6.0",
     "cypress-iframe": "^1.0.1",
@@ -68,7 +69,6 @@
     "start-server-and-test": "^2.0.13",
     "typescript": "^5.9.2",
     "webpack": "^5.101.2",
-    "webpack-bundle-analyzer": "^4.10.2",
-    "concurrently": "^8.2.0"
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }
