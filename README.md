@@ -1,5 +1,9 @@
 # Cypress Template Project
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/ponfri/cypress_template/ci.yml?branch=master)](https://github.com/ponfri/cypress_template/actions)
+[![Coverage Status](https://img.shields.io/badge/coverage-unknown-lightgrey)](https://github.com/ponfri/cypress_template)
+[![Dependencies](https://img.shields.io/librariesio/github/ponfri/cypress_template)](https://libraries.io/github/ponfri/cypress_template)
+
 ## Table of Contents
 - [Overview](#cypress-template-project)
 - [Key Features](#key-features)
@@ -178,3 +182,32 @@ npm run allure:run-serve
 ## AI Agent Instructions
 - AI agents (Copilot, MCP, etc.) must read all Markdown instruction files before making any code changes or generating new commands.
 - Always follow the latest conventions and workflows described in this documentation.
+
+## Advanced Reporting
+
+### Mochawesome Customization
+- Edit `reporter-config.json` to change output directory, report title, and options:
+  ```json
+  {
+    "reporterEnabled": "spec, mocha-junit-reporter, mochawesome",
+    "mochawesomeReporterOptions": {
+      "reportDir": "cypress/results/mochawesome",
+      "overwrite": false,
+      "html": true,
+      "json": true,
+      "reportTitle": "Custom Project Report",
+      "charts": true
+    }
+  }
+  ```
+- See [Mochawesome docs](https://github.com/mochawesome/mochawesome) for more options.
+
+### Allure Customization
+- Allure results are generated in `allure-results` and served from `allure-report`.
+- You can add custom steps, attachments, and labels in your tests using Allure commands:
+  ```typescript
+  cy.allureStep('Custom step description');
+  cy.allureDescription('Test description for Allure report');
+  ```
+- For advanced configuration, see [Allure Cypress docs](https://github.com/Shelex/cypress-allure-plugin).
+- To customize the report UI, refer to [Allure documentation](https://docs.qameta.io/allure/).
