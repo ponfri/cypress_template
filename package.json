@@ -37,7 +37,8 @@
   "keywords": [
     "Cypress",
     "Javascript",
-    "Typescript"
+    "Typescript",
+    "Docker"
   ],
   "author": "Phillip Onfri",
   "license": "ISC",
