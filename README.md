@@ -183,6 +183,15 @@ npm run allure:run-serve
 - AI agents (Copilot, MCP, etc.) must read all Markdown instruction files before making any code changes or generating new commands.
 - Always follow the latest conventions and workflows described in this documentation.
 
+## Contribution Templates
+
+This project uses GitHub issue and pull request templates for consistent and clear contributions:
+- **Bug Reports:** Use the bug report template to describe problems, steps to reproduce, and environment details.
+- **Feature Requests:** Use the feature request template to suggest new ideas or improvements.
+- **Pull Requests:** Use the pull request template to describe your changes, link issues, and confirm tests/documentation updates.
+
+Templates are located in `.github/ISSUE_TEMPLATE/` and `.github/PULL_REQUEST_TEMPLATE.md`.
+
 ## Advanced Reporting
 
 ### Mochawesome Customization

@@ -60,5 +60,14 @@ Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Exa
 - [Environment Usage Instructions](ai_instructions/env_usage.md)
 - [Fixtures Documentation](ai_instructions/fixtures.md)
 
+## Contribution Templates
+
+To help maintainers and contributors, this project uses GitHub issue and pull request templates:
+- **Bug Reports:** Fill out the bug report template for any problems you encounter.
+- **Feature Requests:** Use the feature request template to propose new features or improvements.
+- **Pull Requests:** Use the pull request template to describe your changes and confirm you followed project conventions.
+
+Templates are located in `.github/ISSUE_TEMPLATE/` and `.github/PULL_REQUEST_TEMPLATE.md`.
+
 ---
 For further help, contact the project maintainer or open an issue on GitHub.
