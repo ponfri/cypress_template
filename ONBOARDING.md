@@ -60,6 +60,14 @@ Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Exa
 - [Environment Usage Instructions](ai_instructions/env_usage.md)
 - [Fixtures Documentation](ai_instructions/fixtures.md)
 
+## Example Spec & Page Object
+
+To get started with writing tests and page objects, review these examples:
+- [`cypress/e2e/tests/example.spec.ts`](cypress/e2e/tests/example.spec.ts): Example Cypress test spec
+- [`cypress/e2e/pageObjects/ExamplePage.po.ts`](cypress/e2e/pageObjects/ExamplePage.po.ts): Example page object
+
+These files show recommended patterns and comments for new contributors.
+
 ## Contribution Templates
 
 To help maintainers and contributors, this project uses GitHub issue and pull request templates:

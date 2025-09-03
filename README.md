@@ -152,6 +152,14 @@ const admin = Cypress.env('accounts').admin;
 - Page objects are documented in [`ai_instructions/page_objects.md`](ai_instructions/page_objects.md).
 - Follow the conventions for selectors, workflows, and structure described there.
 
+## Example Spec & Page Object
+
+For new contributors, see the following files for a simple, well-commented example:
+- [`cypress/e2e/tests/example.spec.ts`](cypress/e2e/tests/example.spec.ts): Example Cypress test spec
+- [`cypress/e2e/pageObjects/ExamplePage.po.ts`](cypress/e2e/pageObjects/ExamplePage.po.ts): Example page object
+
+These files demonstrate best practices for structuring tests and page objects in this project.
+
 ## Example Workflows
 ### Example 1: API Request and UI Assertion
 ```typescript
