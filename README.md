@@ -1,24 +1,23 @@
-
 # Cypress Template Project
 
 ## Table of Contents
 - [Overview](#cypress-template-project)
 - [Key Features](#key-features)
+- [Prerequisites](#prerequisites)
+- [Configuration Files](#configuration-files)
 - [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
 - [Environment Data Usage](#environment-data-usage)
 - [Custom Commands](#custom-commands)
 - [Page Objects](#page-objects)
 - [Contributing](#contributing)
 - [Documentation](#documentation)
-- [Project Structure](#project-structure)
 - [How to Extend](#how-to-extend)
 - [Conventions & Best Practices](#conventions--best-practices)
 - [Example Workflows](#example-workflows)
+- [Troubleshooting](#troubleshooting)
 - [Changelog](#changelog)
 - [AI Agent Instructions](#ai-agent-instructions)
-
-
-This project is a robust Cypress automation framework for testing a streaming Angular app across multiple environments (dev, qa, prod) and device types (including TVs).
 
 ## Key Features
 - **Custom Commands:** Extensive set of reusable commands for selectors, assertions, API mocking, payload retrieval, storage, style/class checks, interactability, network helpers, performance, and more.
@@ -28,66 +27,129 @@ This project is a robust Cypress automation framework for testing a streaming An
 - **Angular/TV Navigation Support:** Custom commands and strategies for non-scrollable, focus-driven navigation.
 - **Performance Testing:** Built-in commands for API response time, page load, and resource load checks.
 
+## Prerequisites
+- **Node.js** (v22.x or v24.x recommended)
+- **npm** (comes with Node.js)
+- **VS Code** (recommended for editing and running tests)
+
+## Configuration Files
+This project uses several configuration files to organize and manage different aspects of the Cypress test framework. Below is a detailed description of each config file and its location:
+
+### 1. `cypress.config.ts`
+**Location:** Root directory
+**Purpose:** Main Cypress configuration file. Defines test runner options, plugins, environment variables, reporters, and integration with Allure and other plugins. All test execution settings and plugin hooks are managed here.
+
+### 2. `reporter-config.json`
+**Location:** Root directory
+**Purpose:** Configuration for Cypress multi-reporter setup. Specifies options for `mochawesome` and `mocha-junit-reporter`, including output directories and formats. Referenced by `cypress.config.ts` for advanced reporting.
+
+### 3. `cypress.env.json`
+**Location:** Root directory
+**Purpose:** Centralized environment data for all tests. Stores API URLs, test accounts, feature flags, endpoints, and other environment-specific variables. Accessed via `Cypress.env()` in tests and custom commands.
+
+### 4. `tsconfig.json`
+**Location:** Root directory
+**Purpose:** TypeScript configuration for the overall project. Sets compiler options, module resolution, and includes/excludes for TypeScript files outside Cypress-specific code.
+
+### 5. `cypress/tsconfig.json`
+**Location:** `cypress/` folder
+**Purpose:** TypeScript configuration specifically for Cypress test files. Ensures correct type definitions, module resolution, and compatibility with Cypress plugins and custom commands.
+
+---
+
 ## Getting Started
-1. Install dependencies:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ponfri/cypress_template.git
+   cd cypress_template
+   ```
+2. **Install dependencies:**
    ```bash
    npm install
    ```
-2. Configure environment data in `cypress.env.json` (API URLs, accounts, etc.).
-3. Run tests:
-   ```bash
-   npx cypress open
-   # or
-   npx cypress run
+3. **Configure environment data:**
+   Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Example:
+   ```json
+   {
+     "env": { "name": "dev" },
+     "apiBaseUrl": { "dev": "http://localhost:3000/api" },
+     "accounts": { "admin": { "username": "admin_user", "password": "admin_pass" } }
+   }
    ```
+4. **Run tests:**
+   - **Interactive mode:**
+     ```bash
+     npx cypress open
+     ```
+     Opens the Cypress UI for selecting and running tests interactively.
+   - **Headless mode:**
+     ```bash
+     npx cypress run
+     ```
+     Runs all tests in the terminal (useful for CI).
+5. **Generate and view reports:**
+   - **Mochawesome report:**
+     - Run: `npm run run:report`
+     - Open: [http://localhost:8080/mochawesome.html](http://localhost:8080/mochawesome.html)
+   - **Allure report:**
+     - Run: `npm run allure:generate-serve`
+     - Open: [http://localhost:3000](http://localhost:3000)
+   - **Report Types:**
+     - *Mochawesome*: HTML report for test results and screenshots.
+     - *Allure*: Advanced report with test steps, attachments, and analytics.
+
+## Project Structure
+The following folders and files organize the Cypress test framework:
+
+```
+cypress_template/
+├── cypress.env.json            # Centralized environment variables for all tests
+├── cypress_instructions.md     # Main instructions and best practices for contributors and AI agents
+├── ai_instructions/            # Detailed documentation for custom commands, page objects, fixtures, and environment usage
+│   ├── custom_commands.md      # Custom command documentation
+│   ├── env_usage.md            # Environment usage instructions
+│   ├── fixtures.md             # Fixture usage documentation
+│   ├── page_objects.md         # Page object documentation
+├── cypress/                    # Main Cypress test folder
+│   ├── e2e/                    # Test specs and page objects
+│   │   ├── pageObjects/        # Page object classes for UI workflows
+│   │   └── tests/              # All Cypress spec files
+│   ├── support/                # Custom commands and type definitions
+│   └── fixtures/               # Mocked data and API responses
+├── package.json                # Project dependencies and scripts
+├── reporter-config.json        # Multi-reporter configuration for Cypress
+├── tsconfig.json               # TypeScript config for the project
+├── cypress.config.ts           # Main Cypress configuration file
+```
+
+**Folder Explanations:**
+- `cypress.env.json`: Stores all environment variables, API URLs, test accounts, and feature flags.
+- `ai_instructions/`: Contains documentation for contributors and AI agents on custom commands, page objects, fixtures, and environment usage.
+- `cypress/`: Main folder for Cypress tests, support files, and fixtures.
+- `reporter-config.json`: Configures advanced reporting for Cypress.
 
 ## Environment Data Usage
+**Strict Rule:** Always declare environment data (API URLs, accounts, etc.) as constants at the top of your spec files. Never use `Cypress.env()` inline in tests.
 
-- **Strict Rule:** Always declare environment data (API URLs, accounts, etc.) as constants at the top of your spec files. Never use `Cypress.env()` inline in tests.
+**Example:**
+```typescript
+// At the top of your spec file
+const env = Cypress.env('env');
+const apiBaseUrl = Cypress.env('apiBaseUrl')[env];
+const admin = Cypress.env('accounts').admin;
+```
 
 ## Custom Commands
 - All custom commands are documented and typed in [`cypress/support/customCommands.d.ts`](cypress/support/customCommands.d.ts).
 - Usage examples are provided in JSDoc for each command.
+- See [Custom Commands Documentation](ai_instructions/custom_commands.md) for details.
 
-cypress_template/
-├── cypress.env.json
-├── cypress_instructions.md
-├── ai_instructions/
-│   ├── custom_commands.md
-│   ├── env_usage.md
-├── cypress/
-│   ├── e2e/
-│   │   ├── pageObjects/
-│   │   └── tests/
-│   ├── support/
-│   │   ├── commands.ts
-│   └── fixtures/
-├── package.json
-
-## How to Extend
-- When adding a new feature, command, or page object:
-   1. Implement in the appropriate file (see File Links below).
-   2. Add documentation and usage examples in the relevant MD file.
-   3. Update type definitions if needed.
-   4. Keep documentation and code in sync.
-
-## File Links
-- [`cypress/support/commands.ts`](cypress/support/commands.ts): Custom command implementations
-- [`cypress/support/customCommands.d.ts`](cypress/support/customCommands.d.ts): Type definitions
-- [`ai_instructions/custom_commands.md`](ai_instructions/custom_commands.md): Custom command documentation
-- [`ai_instructions/env_usage.md`](ai_instructions/env_usage.md): Environment usage instructions
-- [`ai_instructions/page_objects.md`](ai_instructions/page_objects.md): Page object documentation
-- [`ai_instructions/fixtures.md`](ai_instructions/fixtures.md): Fixture documentation
-
-## Conventions & Best Practices
-- Use descriptive, consistent names for commands, page objects, and fixtures.
-- Centralize environment data in `cypress.env.json`.
-- Prefer custom commands and page objects for reusable workflows.
-- Document all new features and changes in Markdown files.
-- Keep all instructions up to date.
+## Page Objects
+- Page objects are documented in [`ai_instructions/page_objects.md`](ai_instructions/page_objects.md).
+- Follow the conventions for selectors, workflows, and structure described there.
 
 ## Example Workflows
-### Example: API Request and UI Assertion
+### Example 1: API Request and UI Assertion
 ```typescript
 const apiBaseUrl = Cypress.env('apiBaseUrl')[Cypress.env('env')];
 cy.apiRequest(apiBaseUrl + '/data', { method: 'GET' }).then((response) => {
@@ -95,6 +157,20 @@ cy.apiRequest(apiBaseUrl + '/data', { method: 'GET' }).then((response) => {
    cy.assertElementCount('.data-row', response.body.length);
 });
 ```
+
+### Example 2: Run and View Allure Report
+```bash
+# Run tests, generate, and serve Allure report
+npm run allure:run-serve
+# Open http://localhost:3000 in your browser to view the report
+```
+
+## Troubleshooting
+- **Missing dependencies:** Run `npm install` again.
+- **Port already in use:** Use `npm run kill:port` to free up port 8080.
+- **Tests not found:** Make sure your spec files are in `cypress/e2e/tests/` and use `.spec.ts` extension.
+- **Environment variables not loaded:** Double-check your `cypress.env.json` format and values.
+- **More help:** See [Environment Usage Instructions](ai_instructions/env_usage.md) and [Fixtures Documentation](ai_instructions/fixtures.md).
 
 ## Changelog
 - 2025-08-18: Added TOC, extension instructions, file links, conventions, workflows, changelog, and AI agent reminder.
