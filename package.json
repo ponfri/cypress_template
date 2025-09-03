@@ -26,13 +26,7 @@
     "allure:cleanup": "rm -rf allure-report allure-results || true",
     "allure:run-open": "npm run cypress:run && npm run allure:open",
     "allure:generate": "npx allure generate -c",
-    "kill:port": "lsof -ti :8080 | xargs kill -9",
-    "start:streaming:fresh": "npm run seed:streaming:reset && npm run start:streaming",
-    "start:streaming-api": "npm --prefix ./streaming-test-app/api start",
-    "start:streaming-ui": "npm --prefix ./streaming-test-app/ui run dev",
-    "start:streaming": "concurrently \"npm run start:streaming-api\" \"npm run start:streaming-ui\"",
-    "seed:streaming": "npm --prefix ./streaming-test-app run seed",
-    "seed:streaming:reset": "npm --prefix ./streaming-test-app run seed:reset"
+    "kill:port": "lsof -ti :8080 | xargs kill -9"
   },
   "keywords": [
     "Cypress",
@@ -50,7 +44,7 @@
     "allure-cypress": "^3.3.3",
     "bootstrap": "^5.3.7",
     "concurrently": "^8.2.2",
-    "cypress": "^14.5.4",
+    "cypress": "^15.1.0",
     "cypress-axe": "^1.6.0",
     "cypress-iframe": "^1.0.1",
     "cypress-localstorage-commands": "^2.2.8",
@@ -59,7 +53,7 @@
     "dotenv": "^17.2.1",
     "junit-merge": "^2.0.0",
     "kill-port": "^2.0.1",
-    "live-server": "^1.2.2",
+    "live-server": "^1.2.0",
     "mocha-junit-reporter": "^2.2.1",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^5.0.0",
