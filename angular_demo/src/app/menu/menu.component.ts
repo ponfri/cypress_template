@@ -1,29 +1,17 @@
-
 import { Component, Input, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [RouterModule],
-  template: `
-    <nav class="modern-nav top-nav">
-      <div class="menu-links">
-  <a routerLink="/home"><span class="menu-icon">🏠</span> Home</a>
-  <a routerLink="/products"><span class="menu-icon">🛒</span> Products</a>
-  <a routerLink="/forms"><span class="menu-icon">📝</span> Forms</a>
-  <a routerLink="/angular20-demo"><span class="menu-icon">✨</span> Angular 20 Demo</a>
-        @if (isAdmin) {
-          <span><a routerLink="/admin"><span class="menu-icon">🔒</span> Admin</a></span>
-        }
-      </div>
-      <button class="logout-btn" (click)="logout()"><span class="menu-icon">🚪</span> Logout</button>
-    </nav>
-    `
+  imports: [RouterModule, CommonModule],
+  templateUrl: './menu.component.html'
 })
 export class MenuComponent {
   @Input() isAdmin = false;
+  showDropdown = false;
   router = inject(Router);
   // Removed empty constructor
   logout() {

@@ -1,0 +1,4 @@
+/* Force the error icon in the button to be white, overriding all other styles */
+::ng-deep .error-icon {
+  color: #fff !important;
+}

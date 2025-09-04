@@ -1,0 +1,21 @@
+<div class="page-container" style="max-width:700px;margin:2rem auto;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);padding:2rem;">
+  <h2 style="text-align:center;color:#1976d2;margin-bottom:2rem;">Angular Testing Examples</h2>
+  <section style="margin-bottom:2rem;">
+    <h3>Unit Test Example</h3>
+    <pre style="background:#f5f5f5;padding:1rem;border-radius:8px;">it('should add two numbers', () => {{ '{' }}
+  expect(1 + 1).toBe(2);
+{{ '}' }});</pre>
+    <p>Run <code>npm test</code> to execute unit tests.</p>
+  </section>
+  <section>
+    <h3>End-to-End (e2e) Test Example</h3>
+    <pre style="background:#f5f5f5;padding:1rem;border-radius:8px;">it('should log in as admin', () => {{ '{' }}
+  cy.visit('/login');
+  cy.get('input[name=\"username\"').type('admin');
+  cy.get('input[name=\"password\"').type('admin123');
+  cy.get('button').contains('Login').click();
+  cy.url().should('include', '/home');
+{{ '}' }});</pre>
+    <p>Run <code>ng e2e</code> to execute e2e tests.</p>
+  </section>
+</div>

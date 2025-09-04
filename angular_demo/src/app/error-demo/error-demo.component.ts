@@ -1,13 +1,10 @@
 import { Component, ErrorHandler, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
-import { MenuComponent } from '../menu/menu.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-error-demo',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, MenuComponent, FooterComponent],
+  imports: [CommonModule],
   templateUrl: './error-demo.component.html'
 })
 export class ErrorDemoComponent {

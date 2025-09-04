@@ -1,0 +1,26 @@
+<nav class="modern-nav top-nav">
+  <div class="menu-links">
+    <a routerLink="/home" class="menu-link"><span class="menu-icon">🏠</span> <span class="menu-text">Home</span></a>
+    <a routerLink="/products" class="menu-link"><span class="menu-icon">🛒</span> <span class="menu-text">Products</span></a>
+    <a routerLink="/forms" class="menu-link"><span class="menu-icon">📝</span> <span class="menu-text">Forms</span></a>
+    <a routerLink="/tutorials" class="menu-link"><span class="menu-icon">📚</span> <span class="menu-text">Tutorials</span></a>
+    <a routerLink="/playground" class="menu-link"><span class="menu-icon">🧪</span> <span class="menu-text">Playground</span></a>
+    <div class="dropdown" tabindex="0">
+      <button type="button" class="dropdown-label menu-link" (click)="showDropdown = !showDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
+        <span class="menu-icon">🧩</span> <span class="menu-text">Demos ▼</span>
+      </button>
+      <div class="dropdown-content" *ngIf="showDropdown" (mouseleave)="showDropdown = false">
+        <a routerLink="/error-demo"><span class="menu-icon">❗</span> <span class="menu-text">Error Demo</span></a>
+        <a routerLink="/testing-demo"><span class="menu-icon">🧪</span> <span class="menu-text">Testing Demo</span></a>
+        <a routerLink="/api-demo"><span class="menu-icon">🔗</span> <span class="menu-text">API Demo</span></a>
+        <a routerLink="/angular20-demo"><span class="menu-icon">✨</span> <span class="menu-text">Angular 20 Demo</span></a>
+      </div>
+    </div>
+    <a routerLink="/animations-demo" class="menu-link"><span class="menu-icon">🎬</span> <span class="menu-text">Animations</span></a>
+    <a routerLink="/accessibility-demo" class="menu-link"><span class="menu-icon">♿</span> <span class="menu-text">Accessibility</span></a>
+    <a routerLink="/glossary" class="menu-link"><span class="menu-icon">📖</span> <span class="menu-text">Glossary</span></a>
+    <a routerLink="/challenges" class="menu-link"><span class="menu-icon">🏆</span> <span class="menu-text">Challenges</span></a>
+    <a *ngIf="isAdmin" routerLink="/admin" class="menu-link"><span class="menu-icon">🔒</span> <span class="menu-text">Admin</span></a>
+  </div>
+  <button class="logout-btn" (click)="logout()"><span class="menu-icon">🚪</span> Logout</button>
+</nav>

@@ -1,0 +1,17 @@
+<div class="page-container" style="max-width:700px;margin:2rem auto;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);padding:2rem;">
+  <h2 style="text-align:center;color:#1976d2;margin-bottom:2rem;">API Integration Demo</h2>
+  <section style="margin-bottom:2rem;">
+    <h3>Fetch Products from API</h3>
+    <pre style="background:#f5f5f5;padding:1rem;border-radius:8px;">fetch('http://localhost:3200/api/products')
+  .then(res => res.json())
+  .then(data => console.log(data));</pre>
+    <p>Use <code>HttpClient</code> in Angular for real apps.</p>
+  </section>
+  <section>
+    <h3>Angular HttpClient Example</h3>
+    <pre style="background:#f5f5f5;padding:1rem;border-radius:8px;">this.http.get('/api/products').subscribe(data => {{ '{' }}
+  this.products = data;
+{{ '}' }});</pre>
+    <p>See <a href="https://angular.io/guide/http" target="_blank">Angular HTTP Guide</a>.</p>
+  </section>
+</div>

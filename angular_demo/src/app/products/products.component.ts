@@ -1,14 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-
 import { DataService, Product } from '../services/data.service';
-import { HeaderComponent } from '../header/header.component';
-import { MenuComponent } from '../menu/menu.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, MenuComponent],
+  imports: [],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

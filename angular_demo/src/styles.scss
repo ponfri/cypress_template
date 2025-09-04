@@ -282,3 +282,46 @@ label {
 	margin-top: 0.5rem;
 	display: block;
 }
+
+/* Force smaller font and tighter spacing for menu links */
+.menu-links a {
+  font-size: 0.78rem !important;
+  padding: 0.15rem 0.3rem !important;
+  margin: 0 0.05rem 0 0 !important;
+  line-height: 1.05 !important;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.menu-links {
+  gap: 0.1rem !important;
+  padding: 0 0.2rem !important;
+}
+
+nav.top-nav {
+  padding: 0.15rem 0.2rem 0.15rem 0.2rem !important;
+}
+
+.logout-btn {
+  font-size: 0.85rem !important;
+  margin-left: 0.2rem !important;
+  padding: 0.15rem 0.4rem !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  outline: none;
+}
+.dropdown-content {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #1976d2;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+  border-radius: 8px;
+  z-index: 100;
+  margin-top: 0.2em;
+  padding: 0.5em 0;
+}
