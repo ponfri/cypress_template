@@ -1,0 +1,40 @@
+
+<div style="text-align:center; margin-bottom:2rem;">
+	<img src="assets/angular-icon-logo.png" alt="Angular Logo" style="width:100px;display:block;margin:0 auto 1rem auto;" />
+	<h2 style="color:#1976d2; margin-bottom:1rem;">Forms Demo</h2>
+	<p style="color:#333; font-size:1.1rem;">Angular forms demo page</p>
+</div>
+
+<div class="page-container">
+	<section appHighlight>
+		<h3>Template-driven Form</h3>
+		<form #userForm="ngForm" (ngSubmit)="onSubmitTemplate(userForm)">
+			<label>Name:
+				<input name="name" [(ngModel)]="user.name" required class="login-input" />
+			</label>
+			<br />
+			<label>Email:
+				<input name="email" [(ngModel)]="user.email" required email class="login-input" />
+			</label>
+			<br />
+			<button type="submit" [disabled]="!userForm.valid" class="login-btn">Submit</button>
+		</form>
+		<p>Preview: {{ user.name | capitalize }} ({{ user.email }})</p>
+	</section>
+
+	<section appHighlight>
+		<h3>Reactive Form</h3>
+		<form [formGroup]="productForm" (ngSubmit)="onSubmitReactive()">
+			<label>Product Name:
+				<input formControlName="name" class="login-input" />
+			</label>
+			<br />
+			<label>Price:
+				<input formControlName="price" type="number" class="login-input" />
+			</label>
+			<br />
+			<button type="submit" [disabled]="!productForm.valid" class="login-btn">Submit</button>
+		</form>
+			<p>Preview: {{ (productForm.value.name ?? '') | capitalize }} (${{ productForm.value.price ?? '' }})</p>
+	</section>
+</div>

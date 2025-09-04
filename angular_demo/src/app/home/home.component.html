@@ -1,0 +1,30 @@
+<app-cd-demo *ngIf="false" [value]="0"></app-cd-demo>
+<app-advanced-form *ngIf="false"></app-advanced-form>
+<app-card *ngIf="false"></app-card>
+<div style="text-align:center; margin-bottom:2rem;">
+	<img src="assets/angular-icon-logo.png" alt="Angular Logo" style="width:100px;display:block;margin:0 auto 1rem auto;" />
+	<h2 style="color:#1976d2; margin-bottom:1rem;">{{ 'welcome' | translate }}</h2>
+	<p style="color:#333; font-size:1.1rem;">{{ 'intro' | translate }}</p>
+</div>
+
+<div class="page-container">
+<section>
+	<h3>RxJS Observable Demo</h3>
+	<button (click)="startObservableDemo()">Start Observable</button>
+	<p *myIf="observableValue !== null">Observable value: {{ observableValue }}</p>
+</section>
+
+<section>
+	<h3>Dynamic Component Loader Demo</h3>
+	<button (click)="loadDynamic()">Load Dynamic Component</button>
+	<ng-container #dynamicContainer></ng-container>
+	<!-- Static usage for lint compliance -->
+	<app-dynamic-demo *ngIf="false"></app-dynamic-demo>
+</section>
+
+<section>
+	<h3>Angular Signals Demo</h3>
+	<button (click)="store.increment()">Increment</button>
+	<button (click)="store.decrement()">Decrement</button>
+	<p>Counter: {{ store.counter }}</p>
+</section>

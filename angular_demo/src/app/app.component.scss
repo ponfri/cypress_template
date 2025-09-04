@@ -1,0 +1,11 @@
+// Layout to keep footer below content
+.app-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.main-content {
+	flex: 1 0 auto;
+	min-height: 0;
+}
