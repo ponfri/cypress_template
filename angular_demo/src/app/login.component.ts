@@ -53,6 +53,17 @@ export class LoginComponent {
       next: () => {
         this.registerError = '';
         this.registerSuccess = true;
+        // Automatically log in after registration
+        this.loginService.login(username, password).subscribe({
+          next: (res) => {
+            localStorage.setItem('currentUser', res.user.username);
+            localStorage.setItem('currentUserRole', res.user.role || 'user');
+            this.router.navigate(['/home']);
+          },
+          error: (err) => {
+            this.loginError = err?.error?.message || 'Login failed after registration.';
+          }
+        });
       },
       error: (err) => {
         this.registerError = err?.error?.message || 'Registration failed.';
