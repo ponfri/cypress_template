@@ -11,6 +11,8 @@ import { LoginService, User } from './login.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
+  showLoginPassword = false;
+  showRegisterPassword = false;
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -20,6 +22,13 @@ export class LoginComponent {
     password: new FormControl('', Validators.required),
     role: new FormControl('user', Validators.required)
   });
+  toggleLoginPassword() {
+    this.showLoginPassword = !this.showLoginPassword;
+  }
+
+  toggleRegisterPassword() {
+    this.showRegisterPassword = !this.showRegisterPassword;
+  }
   loginError = '';
   registerError = '';
   registerSuccess = false;
