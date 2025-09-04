@@ -4,10 +4,9 @@ import { DataService, User } from './data.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './admin.component.html',
+    selector: 'app-admin',
+    imports: [CommonModule],
+    templateUrl: './admin.component.html'
 })
 export class AdminComponent {
   users: User[] = [];

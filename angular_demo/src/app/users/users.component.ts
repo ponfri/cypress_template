@@ -7,11 +7,10 @@ import { MenuComponent } from '../menu.component';
 import { FooterComponent } from '../footer.component';
 
 @Component({
-  selector: 'app-users',
-  standalone: true,
-  imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent, MenuComponent],
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+    selector: 'app-users',
+    imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent, MenuComponent],
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];

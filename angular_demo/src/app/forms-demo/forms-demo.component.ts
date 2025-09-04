@@ -9,11 +9,10 @@ import { MenuComponent } from '../menu.component';
 import { FooterComponent } from '../footer.component';
 
 @Component({
-  selector: 'app-forms-demo',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HighlightDirective, CapitalizePipe, HeaderComponent, FooterComponent, MenuComponent],
-  templateUrl: './forms-demo.component.html',
-  styleUrl: './forms-demo.component.scss'
+    selector: 'app-forms-demo',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, HighlightDirective, CapitalizePipe, HeaderComponent, FooterComponent, MenuComponent],
+    templateUrl: './forms-demo.component.html',
+    styleUrl: './forms-demo.component.scss'
 })
 export class FormsDemoComponent {
   // Template-driven form model

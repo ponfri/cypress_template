@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
 import { LoginService, User } from './login.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './login.component.html',
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './login.component.html'
 })
 export class LoginComponent {
   showLoginPassword = false;

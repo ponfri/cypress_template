@@ -18,19 +18,18 @@ import { Router, NavigationEnd } from '@angular/router';
 import { registerAngularElements } from '../angular-elements';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, MyIfDirective, DynamicDemoComponent, TranslationPipe, CardComponent, AdvancedFormComponent, CdDemoComponent, FooterComponent, HeaderComponent, MenuComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({ opacity: 0 })),
-      state('*', style({ opacity: 1 })),
-      transition(':enter', [animate('600ms ease-in')]),
-      transition(':leave', [animate('600ms ease-out')])
-    ])
-  ]
+    selector: 'app-home',
+    imports: [CommonModule, MyIfDirective, DynamicDemoComponent, TranslationPipe, CardComponent, AdvancedFormComponent, CdDemoComponent, FooterComponent, HeaderComponent, MenuComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    animations: [
+        trigger('fadeInOut', [
+            state('void', style({ opacity: 0 })),
+            state('*', style({ opacity: 1 })),
+            transition(':enter', [animate('600ms ease-in')]),
+            transition(':leave', [animate('600ms ease-out')])
+        ])
+    ]
 })
 export class HomeComponent implements AfterViewInit {
   cdValue = 0;

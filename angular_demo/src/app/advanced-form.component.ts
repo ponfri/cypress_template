@@ -4,10 +4,9 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-advanced-form',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, JsonPipe],
-  template: `
+    selector: 'app-advanced-form',
+    imports: [CommonModule, ReactiveFormsModule, JsonPipe],
+    template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()" style="margin:1rem 0;">
       <label>
         Name:

@@ -5,10 +5,9 @@ import { ContactsService, Contact } from './contacts.service';
 import { FooterComponent } from './footer.component';
 
 @Component({
-  selector: 'app-contacts',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, FooterComponent],
-  template: `
+    selector: 'app-contacts',
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, FooterComponent],
+    template: `
     <div class="login-bg">
   <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
       <div class="page-container">

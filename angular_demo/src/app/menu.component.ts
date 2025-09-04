@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  template: `
+    selector: 'app-menu',
+    imports: [RouterModule, CommonModule],
+    template: `
     <nav class="modern-nav top-nav">
       <div class="menu-links">
         <a routerLink="/home"><span class="menu-icon">🏠</span> Home</a>
