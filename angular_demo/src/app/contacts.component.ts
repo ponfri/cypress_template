@@ -10,7 +10,7 @@ import { FooterComponent } from './footer.component';
   imports: [CommonModule, ReactiveFormsModule, FormsModule, FooterComponent],
   template: `
     <div class="login-bg">
-  <img src="assets/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
+  <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
       <div class="page-container">
         <h2 style="color:#1976d2;text-align:center;">Contacts</h2>
         <form [formGroup]="contactForm" (ngSubmit)="addContact()" style="margin-bottom:1.5rem;">
