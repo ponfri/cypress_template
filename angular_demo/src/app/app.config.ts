@@ -7,7 +7,7 @@ import { GlobalErrorHandler } from './global-error-handler';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { routes } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 // ...existing code...
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './error.interceptor';
