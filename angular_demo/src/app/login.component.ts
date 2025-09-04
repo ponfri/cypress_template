@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService, User } from './login.service';
+import { LoginService } from './login.service';
 
 @Component({
-    selector: 'app-login',
-    imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: './login.component.html'
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   showLoginPassword = false;
@@ -32,7 +34,11 @@ export class LoginComponent {
   registerError = '';
   registerSuccess = false;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+
+  loginService = inject(LoginService);
+  router = inject(Router);
+
+  // Removed empty constructor
 
   onLogin() {
     const username = this.loginForm.value.username || '';

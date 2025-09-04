@@ -1,15 +1,15 @@
 <div class="login-bg">
   <div class="page-container login-container">
-  <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" style="width: 100px; display: block; margin-bottom: 1rem;" class="app-logo" />
+    <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" style="width: 100px; display: block; margin-bottom: 1rem;" class="app-logo" />
     <h2 style="color:#1976d2;text-align:center;margin-bottom:1rem;">Welcome to the Angular Demo!</h2>
     <p style="text-align:center;color:#333;margin-bottom:2rem;font-size:1.1rem;">Sign in or create an account to explore all Angular features.</p>
-  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" style="margin-bottom:1.5rem; max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" style="margin-bottom:1.5rem; max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
       <label>Username:<input formControlName="username" class="login-input" /></label><br />
       <label>Password:
         <span style="display:flex; align-items:center;">
           <input [type]="showLoginPassword ? 'text' : 'password'" formControlName="password" class="login-input" />
-          <button type="button" (click)="toggleLoginPassword()" 
-            [ngStyle]="showLoginPassword ? {'background':'#ffeb3b','color':'#333'} : {}" 
+          <button type="button" (click)="toggleLoginPassword()"
+            [ngStyle]="showLoginPassword ? {'background':'#ffeb3b','color':'#333'} : {}"
             style="margin-left:0.5rem; white-space:nowrap;">
             {{ showLoginPassword ? 'Hide' : 'Show' }}
           </button>
@@ -17,16 +17,18 @@
       </label><br />
       <button type="submit" [disabled]="loginForm.invalid" class="login-btn">Login</button>
     </form>
-    <div *ngIf="loginError" style="color:#d32f2f;text-align:center;">{{ loginError }}</div>
+    @if (loginError) {
+      <div style="color:#d32f2f;text-align:center;">{{ loginError }}</div>
+    }
     <hr />
     <h2 style="color:#1976d2;text-align:center;margin-bottom:1rem;">Create Account</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="onRegister()" style="max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" style="max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
       <label>Username:<input formControlName="username" class="login-input" /></label><br />
       <label>Password:
         <span style="display:flex; align-items:center;">
           <input [type]="showRegisterPassword ? 'text' : 'password'" formControlName="password" class="login-input" />
-          <button type="button" (click)="toggleRegisterPassword()" 
-            [ngStyle]="showRegisterPassword ? {'background':'#ffeb3b','color':'#333'} : {}" 
+          <button type="button" (click)="toggleRegisterPassword()"
+            [ngStyle]="showRegisterPassword ? {'background':'#ffeb3b','color':'#333'} : {}"
             style="margin-left:0.5rem; white-space:nowrap;">
             {{ showRegisterPassword ? 'Hide' : 'Show' }}
           </button>
@@ -43,7 +45,11 @@
       </div>
       <button type="submit" [disabled]="registerForm.invalid" class="login-btn">Create Account</button>
     </form>
-    <div *ngIf="registerError" style="color:#d32f2f;text-align:center;">{{ registerError }}</div>
-    <div *ngIf="registerSuccess" style="color:#388e3c;text-align:center;">Account created! You can now log in.</div>
+    @if (registerError) {
+      <div style="color:#d32f2f;text-align:center;">{{ registerError }}</div>
+    }
+    @if (registerSuccess) {
+      <div style="color:#388e3c;text-align:center;">Account created! You can now log in.</div>
+    }
   </div>
 </div>

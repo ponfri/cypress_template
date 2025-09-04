@@ -9,13 +9,13 @@ import { AdminComponent } from './admin.component';
 import { ContactsComponent } from './contacts.component';
 import { authGuard } from './auth.guard';
 import { userResolver } from './user.resolver';
-import { canDeactivateGuard } from './can-deactivate.guard';
+// import { canDeactivateGuard } from './can-deactivate.guard';
 
 export const routes: Routes = [
 	{ path: 'contacts', component: ContactsComponent },
 	{ path: '', component: LoginComponent },
 	{ path: 'login', component: LoginComponent },
-		{ path: 'users', component: UsersComponent, resolve: { userData: userResolver } },
+	{ path: 'users', component: UsersComponent, resolve: { userData: userResolver } },
 	{ path: 'products', component: ProductsComponent },
 	{ path: 'forms', component: FormsDemoComponent },
 	{
@@ -23,5 +23,5 @@ export const routes: Routes = [
 		canActivate: [authGuard],
 		component: AdminComponent
 	},
-		{ path: 'home', component: HomeComponent } // Home page after login
+	{ path: 'home', component: HomeComponent } // Home page after login
 ];

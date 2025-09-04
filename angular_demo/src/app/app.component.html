@@ -1,11 +1,11 @@
 
 <div class="app-layout">
-	<app-header></app-header>
-	<ng-container *ngIf="!isLoginPage">
-			<app-menu [isAdmin]="isAdmin"></app-menu>
-	</ng-container>
-	<div class="main-content">
-		<router-outlet></router-outlet>
-	</div>
-	<app-footer></app-footer>
+  <app-header></app-header>
+  @if (!isLoginPage) {
+    <app-menu [isAdmin]="isAdmin"></app-menu>
+  }
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
 </div>

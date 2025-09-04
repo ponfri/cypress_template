@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule, NgForm } from '@angular/forms';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HighlightDirective } from '../highlight.directive';
 import { CapitalizePipe } from '../capitalize.pipe';
-import { HeaderComponent } from '../header.component';
-import { MenuComponent } from '../menu.component';
-import { FooterComponent } from '../footer.component';
 
 @Component({
-    selector: 'app-forms-demo',
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, HighlightDirective, CapitalizePipe, HeaderComponent, FooterComponent, MenuComponent],
-    templateUrl: './forms-demo.component.html',
-    styleUrl: './forms-demo.component.scss'
+  selector: 'app-forms-demo',
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, HighlightDirective, CapitalizePipe],
+  templateUrl: './forms-demo.component.html',
+  styleUrl: './forms-demo.component.scss'
 })
 export class FormsDemoComponent {
   // Template-driven form model

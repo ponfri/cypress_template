@@ -1,11 +1,12 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[myIf]',
   standalone: true
 })
 export class MyIfDirective {
-  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef) {}
+  private templateRef = inject(TemplateRef<unknown>);
+  private viewContainer = inject(ViewContainerRef);
 
   @Input() set myIf(condition: boolean) {
     this.viewContainer.clear();

@@ -2,7 +2,7 @@ import { ErrorHandler, Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalErrorHandler implements ErrorHandler {
-  handleError(error: any): void {
+  handleError(error: unknown): void {
     // Log error to console and show alert for demo
     console.error('Global Error Handler:', error);
     if (typeof window !== 'undefined' && typeof alert !== 'undefined') {

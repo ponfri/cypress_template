@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import { ContactsService, Contact } from './contacts.service';
 import { FooterComponent } from './footer.component';
 
 @Component({
-    selector: 'app-contacts',
-    imports: [CommonModule, ReactiveFormsModule, FormsModule, FooterComponent],
-    template: `
+  selector: 'app-contacts',
+  standalone: true,
+  imports: [ReactiveFormsModule, FormsModule, FooterComponent],
+  template: `
     <div class="login-bg">
-  <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
+      <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
       <div class="page-container">
         <h2 style="color:#1976d2;text-align:center;">Contacts</h2>
         <form [formGroup]="contactForm" (ngSubmit)="addContact()" style="margin-bottom:1.5rem;">
@@ -20,15 +21,17 @@ import { FooterComponent } from './footer.component';
         </form>
         <input [(ngModel)]="searchTerm" placeholder="Search contacts..." class="login-input" style="margin-bottom:1rem;" />
         <ul style="list-style:none;padding:0;">
-          <li *ngFor="let contact of filteredContacts()" style="margin-bottom:1rem;padding:1rem;background:#f5f5f5;border-radius:8px;box-shadow:0 1px 4px rgba(25,118,210,0.06);">
-            <strong>{{ contact.name }}</strong> <span style="color:#1976d2;">({{ contact.email }})</span>
-            <button class="login-btn" style="float:right;" (click)="deleteContact(contact)">Delete</button>
-          </li>
+          @for (contact of filteredContacts(); track contact) {
+            <li style="margin-bottom:1rem;padding:1rem;background:#f5f5f5;border-radius:8px;box-shadow:0 1px 4px rgba(25,118,210,0.06);">
+              <strong>{{ contact.name }}</strong> <span style="color:#1976d2;">({{ contact.email }})</span>
+              <button class="login-btn" style="float:right;" (click)="deleteContact(contact)">Delete</button>
+            </li>
+          }
         </ul>
-    <app-footer></app-footer>
+        <app-footer></app-footer>
       </div>
     </div>
-  `
+    `
 })
 export class ContactsComponent {
   contactForm = new FormGroup({
@@ -38,10 +41,13 @@ export class ContactsComponent {
   });
   searchTerm = '';
   contacts: Contact[] = [];
+
   user: string = localStorage.getItem('currentUser') || '';
   isAdmin: boolean = localStorage.getItem('currentUserRole') === 'admin';
 
-  constructor(private contactsService: ContactsService) {
+  contactsService = inject(ContactsService);
+
+  constructor() {
     this.loadContacts();
   }
 

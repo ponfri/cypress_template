@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { Component, inject } from '@angular/core';
 import { DataService, User } from './data.service';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-admin',
-    imports: [CommonModule],
-    templateUrl: './admin.component.html'
+  selector: 'app-admin',
+  standalone: true,
+  imports: [],
+  templateUrl: './admin.component.html'
 })
 export class AdminComponent {
+
   users: User[] = [];
   deleteMsg = '';
 
-  constructor(private dataService: DataService, private router: Router) {
+  dataService = inject(DataService);
+  router = inject(Router);
+
+  constructor() {
     this.loadUsers();
   }
 

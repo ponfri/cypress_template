@@ -1,16 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { DataService, User } from '../data.service';
-import { HeaderComponent } from '../header.component';
-import { MenuComponent } from '../menu.component';
-import { FooterComponent } from '../footer.component';
 
 @Component({
-    selector: 'app-users',
-    imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent, MenuComponent],
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.scss']
+  selector: 'app-users',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
@@ -52,7 +50,7 @@ export class UsersComponent implements OnInit {
         this.password = '';
         this.loadUsers();
       },
-      error: (err: any) => {
+  error: (err: { error?: { message?: string } }) => {
         this.error = err?.error?.message || 'Registration failed.';
         this.success = '';
       }
