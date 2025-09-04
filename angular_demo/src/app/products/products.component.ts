@@ -1,15 +1,16 @@
 import { Component, OnInit, inject } from '@angular/core';
 
-import { DataService, Product } from '../data.service';
-import { HeaderComponent } from '../header.component';
-import { MenuComponent } from '../menu.component';
-import { FooterComponent } from '../footer.component';
+import { DataService, Product } from '../services/data.service';
+import { HeaderComponent } from '../header/header.component';
+import { MenuComponent } from '../menu/menu.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
-    selector: 'app-products',
-    imports: [HeaderComponent, FooterComponent, MenuComponent],
-    templateUrl: './products.component.html',
-    styleUrl: './products.component.scss'
+  selector: 'app-products',
+  standalone: true,
+  imports: [HeaderComponent, FooterComponent, MenuComponent],
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];

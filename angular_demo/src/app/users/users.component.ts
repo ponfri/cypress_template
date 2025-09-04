@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { DataService, User } from '../data.service';
+import { DataService, User } from '../services/data.service';
 
 @Component({
   selector: 'app-users',

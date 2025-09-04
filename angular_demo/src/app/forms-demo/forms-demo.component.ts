@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 import { FormsModule, NgForm } from '@angular/forms';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { HighlightDirective } from '../highlight.directive';
-import { CapitalizePipe } from '../capitalize.pipe';
+import { HighlightDirective } from '../highlight.directive/highlight.directive';
+import { CapitalizePipe } from '../capitalize.pipe/capitalize.pipe';
 
 @Component({
   selector: 'app-forms-demo',

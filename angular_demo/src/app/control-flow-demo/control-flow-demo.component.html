@@ -1,0 +1,12 @@
+<div>
+  <ng-container *ngIf="show; else elseBlock">
+    <p>*ngIf syntax works! (show = true)</p>
+  </ng-container>
+  <ng-template #elseBlock>
+    <p>*ngIf syntax works! (show = false)</p>
+  </ng-template>
+  <button (click)="show = !show">Toggle</button>
+  <ul>
+    <li *ngFor="let item of items">{{ item }}</li>
+  </ul>
+</div>

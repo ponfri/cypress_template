@@ -5,36 +5,33 @@
 	<p style="color:#333; font-size:1.1rem;">Angular forms demo page</p>
 </div>
 
-<div class="page-container">
-	<section appHighlight>
-		<h3>Template-driven Form</h3>
-		<form #userForm="ngForm" (ngSubmit)="onSubmitTemplate(userForm)">
-			<label>Name:
-				<input name="name" [(ngModel)]="user.name" required class="login-input" />
+
+<div class="page-container" style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);padding:2rem;">
+	<section appHighlight style="text-align:center; margin-bottom:2rem; padding:2rem; border-radius:12px; background:#f5f5f5; box-shadow:0 2px 8px rgba(25,118,210,0.08);">
+		<h3 style="margin-bottom:1rem;">Template-driven Form</h3>
+		<form #userForm="ngForm" (ngSubmit)="onSubmitTemplate(userForm)" style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+			<label style="width:100%; max-width:320px; text-align:left;">Name:
+				<input name="name" [(ngModel)]="user.name" required class="login-input" style="width:100%; margin-top:0.5rem;" />
 			</label>
-			<br />
-			<label>Email:
-				<input name="email" [(ngModel)]="user.email" required email class="login-input" />
+			<label style="width:100%; max-width:320px; text-align:left;">Email:
+				<input name="email" [(ngModel)]="user.email" required email class="login-input" style="width:100%; margin-top:0.5rem;" />
 			</label>
-			<br />
-			<button type="submit" [disabled]="!userForm.valid" class="login-btn">Submit</button>
+			<button type="submit" [disabled]="!userForm.valid" class="login-btn" style="min-width:120px; margin-top:1rem; transition:box-shadow 0.2s; box-shadow:0 1px 4px rgba(25,118,210,0.10);">Submit</button>
 		</form>
-		<p>Preview: {{ user.name | capitalize }} ({{ user.email }})</p>
+		<p style="margin-top:1rem;">Preview: {{ user.name | capitalize }} ({{ user.email }})</p>
 	</section>
 
-	<section appHighlight>
-		<h3>Reactive Form</h3>
-		<form [formGroup]="productForm" (ngSubmit)="onSubmitReactive()">
-			<label>Product Name:
-				<input formControlName="name" class="login-input" />
+	<section appHighlight style="text-align:center; margin-bottom:2rem; padding:2rem; border-radius:12px; background:#f5f5f5; box-shadow:0 2px 8px rgba(25,118,210,0.08);">
+		<h3 style="margin-bottom:1rem;">Reactive Form</h3>
+		<form [formGroup]="productForm" (ngSubmit)="onSubmitReactive()" style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+			<label style="width:100%; max-width:320px; text-align:left;">Product Name:
+				<input formControlName="name" class="login-input" style="width:100%; margin-top:0.5rem;" />
 			</label>
-			<br />
-			<label>Price:
-				<input formControlName="price" type="number" class="login-input" />
+			<label style="width:100%; max-width:320px; text-align:left;">Price:
+				<input formControlName="price" type="number" class="login-input" style="width:100%; margin-top:0.5rem;" />
 			</label>
-			<br />
-			<button type="submit" [disabled]="!productForm.valid" class="login-btn">Submit</button>
+			<button type="submit" [disabled]="!productForm.valid" class="login-btn" style="min-width:120px; margin-top:1rem; transition:box-shadow 0.2s; box-shadow:0 1px 4px rgba(25,118,210,0.10);">Submit</button>
 		</form>
-			<p>Preview: {{ (productForm.value.name ?? '') | capitalize }} (${{ productForm.value.price ?? '' }})</p>
+		<p style="margin-top:1rem;">Preview: {{ (productForm.value.name ?? '') | capitalize }} (${{ productForm.value.price ?? '' }})</p>
 	</section>
 </div>

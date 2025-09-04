@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+  <input formControlName="name" placeholder="Name" />
+  <input formControlName="email" placeholder="Email" />
+  <button type="submit">Submit</button>
+</form>
+<div *ngIf="form.valid">Form is valid!</div>

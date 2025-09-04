@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
-import { MyIfDirective } from '../my-if.directive';
+import { MyIfDirective } from '../my-if.directive/my-if.directive';
 
 describe('HomeComponent', () => {
   beforeEach(async () => {

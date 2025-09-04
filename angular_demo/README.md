@@ -30,9 +30,44 @@ Here are all the main routes in the Angular app:
 
 **Note:** Some routes (like `/admin`) are only visible to admin users. The menu updates automatically based on your role.
 
-# Angular Demo App
 
-Welcome to the Angular Demo App! This project is designed for beginners and showcases key features of Angular, including authentication, role-based navigation, forms, and more. No prior Angular experience is required.
+# Angular 20 Demo App
+
+Welcome to the Angular 20 Demo App! This project is upgraded to Angular 20 and showcases modern Angular features, including signals, standalone components, inject(), new control flow, zone-less change detection, and more. It also includes classic demos for authentication, role-based navigation, forms, and admin features. No prior Angular experience is required.
+
+## What's New in Angular 20?
+- **Signals:** Reactive state management with signals and signal-based forms.
+- **Standalone Components:** All components use the latest standalone API.
+- **inject() API:** Modern dependency injection.
+- **New Control Flow:** Demos for new *ngIf/*ngFor syntax.
+- **Zone-less Change Detection:** Demo for zone-less mode.
+- **View Transitions API:** Smooth page transitions.
+- **ngAfterRender Hook:** Demo of new lifecycle hook.
+- **Feature Routing:** Lazy-loaded feature route demo.
+- **DI Tokens:** Custom DI token demo.
+- **Async Pipe:** Modern async data handling.
+- **Custom Pipes & Directives:** Standalone pipe and directive demos.
+- **Signal Inputs/Outputs:** Demo of signal-based component communication.
+
+## Modernized UI/UX
+- All pages use a modern card layout, consistent spacing, and responsive design.
+- Navigation menu updates based on user role (admin/user).
+- All demo pages are visually coherent and easy to use.
+
+## Demo Pages
+| Path                | Page/Component         | Description                          |
+|---------------------|-----------------------|--------------------------------------|
+| `/`                 | LoginComponent         | Login and registration page           |
+| `/home`             | HomeComponent          | Welcome page, intro, RxJS, signals    |
+| `/products`         | ProductsComponent      | Product list and buy buttons          |
+| `/forms`            | FormsDemoComponent     | Template-driven & reactive forms      |
+| `/contacts`         | ContactsComponent      | Manage contacts (CRUD)                |
+| `/admin`            | AdminComponent         | Admin panel (delete users, admin only)|
+| `/users`            | UsersComponent         | User list (if enabled)                |
+| `/angular20-demo`   | Angular20DemoComponent | Angular 20 feature showcase           |
+| `/feature-demo`     | FeatureDemoComponent   | Lazy-loaded feature route demo        |
+
+**Note:** Some routes (like `/admin`) are only visible to admin users. The menu updates automatically based on your role.
 
 # Angular Demo App
 

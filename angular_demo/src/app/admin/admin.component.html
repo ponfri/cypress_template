@@ -1,2 +1,25 @@
-<h2>Admin Page (Lazy Loaded)</h2>
-<p>This page is protected by a route guard and loaded lazily.</p>
+<div style="max-width:600px;margin:2rem auto;padding:2rem;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);">
+  <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
+  <div class="page-container">
+    <h2 style="color:#1976d2;text-align:center;margin-bottom:2rem;">Admin Panel</h2>
+    <h3 style="color:#1976d2; text-align:center; margin-bottom:1.5rem;">Delete User Accounts</h3>
+    <ul style="list-style:none; padding:0; text-align:center;">
+      @for (user of users; track user) {
+  <li style="margin-bottom:1.5rem; display:flex; flex-direction:column; align-items:center; background:#f5f5f5; border-radius:12px; box-shadow:0 2px 8px rgba(25,118,210,0.10); padding:1.5rem;">
+          <div style="margin-bottom:0.5rem;">
+            {{ user.username }} <span style="color:gray;">[{{ user.role || 'user' }}]</span>
+          </div>
+          @if (canDelete(user)) {
+            <button (click)="deleteUser(user)" class="login-btn" style="margin-top:0.5rem; min-width:120px; transition:box-shadow 0.2s; box-shadow:0 1px 4px rgba(25,118,210,0.10);">Delete</button>
+          }
+          @if (!canDelete(user)) {
+            <span style="color:gray; margin-top:0.5rem;">(cannot delete this account)</span>
+          }
+        </li>
+      }
+    </ul>
+    @if (deleteMsg) {
+      <div style="color:#388e3c;">{{ deleteMsg }}</div>
+    }
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
-import { DynamicDemoComponent } from './dynamic-demo.component';
+import { DynamicDemoComponent } from './dynamic-demo/dynamic-demo.component';
 
 export function registerAngularElements(injector: Injector) {
   const dynamicDemoElement = createCustomElement(DynamicDemoComponent, { injector });

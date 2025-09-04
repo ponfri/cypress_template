@@ -1,26 +1,26 @@
 import { Component, inject, ViewChild, ViewContainerRef, Injector, AfterViewInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { MyIfDirective } from '../my-if.directive';
-import { StoreService } from '../store.service';
-import { DynamicDemoComponent } from '../dynamic-demo.component';
-import { CardComponent } from '../card.component';
-import { AdvancedFormComponent } from '../advanced-form.component';
-import { CdDemoComponent } from '../cd-demo.component';
-import { TranslationPipe } from '../translation.pipe';
+import { StoreService } from '../services/store.service';
+import { DynamicDemoComponent } from '../dynamic-demo/dynamic-demo.component';
+import { CardComponent } from '../card/card.component';
+import { AdvancedFormComponent } from '../advanced-form/advanced-form.component';
+import { CdDemoComponent } from '../cd-demo/cd-demo.component';
+import { TranslationPipe } from '../translation.pipe/translation.pipe';
 import { Router, NavigationEnd } from '@angular/router';
 import { registerAngularElements } from '../angular-elements';
 import { interval, take, map } from 'rxjs';
+import { MyIfDirective } from '../my-if.directive/my-if.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    MyIfDirective,
     DynamicDemoComponent,
     CardComponent,
     AdvancedFormComponent,
     CdDemoComponent,
-    TranslationPipe
+    TranslationPipe,
+    MyIfDirective
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
