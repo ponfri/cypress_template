@@ -1,3 +1,29 @@
+# Angular 20 Demo App
+
+## Quick Start
+1. **Install Node.js (v22.x or v24.x recommended) and npm.**
+2. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ponfri/cypress_template.git
+   cd cypress_template
+   ```
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+4. **Start the backend server:**
+   ```bash
+   node server.js
+   ```
+   The API runs at [http://localhost:3200](http://localhost:3200)
+5. **Start the Angular app:**
+   ```bash
+   npm start
+   ```
+   Visit [http://localhost:5200](http://localhost:5200)
+
+For step-by-step onboarding, see [ONBOARDING.md](../ONBOARDING.md).
+
 # Table of Contents
 
 - [What is Angular?](#what-is-angular)
@@ -30,10 +56,6 @@ Here are all the main routes in the Angular app:
 
 **Note:** Some routes (like `/admin`) are only visible to admin users. The menu updates automatically based on your role.
 
-
-# Angular 20 Demo App
-
-Welcome to the Angular 20 Demo App! This project is upgraded to Angular 20 and showcases modern Angular features, including signals, standalone components, inject(), new control flow, zone-less change detection, and more. It also includes classic demos for authentication, role-based navigation, forms, and admin features. No prior Angular experience is required.
 
 ## What's New in Angular 20?
 - **Signals:** Reactive state management with signals and signal-based forms.
@@ -248,12 +270,46 @@ npm test
 ```
 Runs Angular’s built-in unit tests.
 
+## Example: Write Your First Test
+
+Create a new spec file in `src/app/` (e.g., `hello-world.component.spec.ts`):
+
+```typescript
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HelloWorldComponent } from './hello-world.component';
+
+describe('HelloWorldComponent', () => {
+  let component: HelloWorldComponent;
+  let fixture: ComponentFixture<HelloWorldComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HelloWorldComponent]
+    }).compileComponents();
+    fixture = TestBed.createComponent(HelloWorldComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+```
+
+See more examples in the `src/app/` folder.
+
 ## Troubleshooting
-- **Frontend won’t start:** Make sure you ran `npm install` and are in the right folder
-- **Backend won’t start:** Make sure Node.js is installed
-- **Images missing:** Check `src/assets/img` and update paths
-- **Login/register issues:** Make sure backend is running
-- **Other errors:** See [Angular documentation](https://angular.io/docs)
+**Common Issues:**
+- If `npm install` fails, check your Node.js version (`node -v`).
+- If the frontend won’t start, make sure you ran `npm install` and are in the right folder.
+- If the backend won’t start, make sure Node.js is installed and you are running `node server.js` from the project root.
+- For permission errors, use a terminal with admin rights or check your folder permissions.
+- If images are missing, check `src/assets/img` and update paths.
+- If login/register features don’t work, make sure the backend is running.
+- For other errors, see [Angular documentation](https://angular.io/docs).
+
+See [ONBOARDING.md](../ONBOARDING.md) for more troubleshooting tips.
 
 ## Learn More
 - [Angular Getting Started](https://angular.io/start)
