@@ -3,67 +3,7 @@
 	margin-bottom: 1.5rem;
 }
 
-// Header styles
-.app-header {
-	width: 100vw;
-	margin-bottom: 0;
-	padding: 0;
-	background: none;
-}
-.header-bg {
-	justify-content: center;
-	border-radius: 0;
-	box-shadow: none;
-	margin: 0;
-	padding: 0;
-	position: relative;
-	top: 0;
-	left: 0;
-	background-color: #1976d2;
-}
-.header-bg::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(25, 118, 210, 0.55); /* blue tint, increased opacity for darker overlay */
-	z-index: 1;
-}
-
-.header-content {
-	position: relative;
-	z-index: 2;
-	background: none !important;
-	padding: 3.5rem 0 2.5rem 0;
-	border-radius: 0;
-	box-shadow: none;
-	width: 100%;
-	text-align: center;
-	position: static;
-	left: 0;
-	bottom: auto;
-	align-items: center;
-	justify-content: center;
-}
-.header-title {
-	color: #fff;
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-bottom: 0.5rem;
-	margin-top: 0;
-	text-shadow: 2px 2px 8px #222, 0 0 2px #000;
-}
-.header-slogan {
-	color: #e3f2fd;
-	font-size: 1.3rem;
-	margin-bottom: 0;
-	margin-top: 0;
-	text-shadow: 1px 1px 6px #222, 0 0 2px #000;
-	font-weight: 400;
-	margin: 0;
-}
+// Header styles moved to src/app/header/header.component.scss
 // Footer styles
 // (Removed global footer styles to avoid conflicts with component styles)
 

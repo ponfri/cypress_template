@@ -42,4 +42,5 @@ export const routes: Routes = [
 	{ path: 'accessibility-demo', loadComponent: () => import('./accessibility-demo/accessibility-demo.component').then(m => m.AccessibilityDemoComponent) },
 	{ path: 'glossary', loadComponent: () => import('./glossary/glossary.component').then(m => m.GlossaryComponent) },
 	{ path: 'challenges', loadComponent: () => import('./challenges/challenges.component').then(m => m.ChallengesComponent) },
+	{ path: '**', loadComponent: () => import('./error-page/error-page.component').then(m => m.ErrorPageComponent) }
 ];

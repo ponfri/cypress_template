@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SignalCounterService } from '../signal-counter/signal-counter.service';
 import { HeaderComponent } from '../header/header.component';
 import { MenuComponent } from '../menu/menu.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-signal-service-demo',

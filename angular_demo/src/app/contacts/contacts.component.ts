@@ -2,7 +2,6 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import { ContactsService, Contact } from './contacts.service';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-contacts',

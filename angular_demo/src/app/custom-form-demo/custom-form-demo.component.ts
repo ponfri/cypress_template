@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CustomInputComponent } from '../custom-input/custom-input.component';
 import { HeaderComponent } from '../header/header.component';
 import { MenuComponent } from '../menu/menu.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-custom-form-demo',
