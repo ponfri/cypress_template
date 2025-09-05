@@ -1,7 +1,5 @@
 // Ensure consistent spacing above footer for all pages
-.page-container {
-	margin-bottom: 1.5rem;
-}
+
 
 // Header styles moved to src/app/header/header.component.scss
 // Footer styles
@@ -70,11 +68,12 @@ body {
 
 .page-container {
 	background: #fff;
-		border-radius: 0;
+	border-radius: 0;
 	box-shadow: 0 2px 16px rgba(0,0,0,0.08);
 	padding: 2rem;
 	max-width: 600px;
 	margin: auto;
+	margin-bottom: 2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
