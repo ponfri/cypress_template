@@ -1,3 +1,20 @@
+// Playgrounds dropdown styles (match Demos)
+.menu-playgrounds:hover {
+  background: #bbdefb !important;
+  box-shadow: 0 0 0 2px #1976d233 !important;
+}
+.menu-playgrounds:hover .menu-text {
+  color: #1976d2 !important;
+}
+.menu-playgrounds:focus,
+.menu-playgrounds:focus-visible {
+  outline: none;
+  background: #bbdefb;
+  box-shadow: 0 0 0 2px #1976d233;
+}
+.menu-playgrounds .menu-text {
+  color: #fff !important;
+}
 .menu-demos:hover {
   background: #bbdefb !important;
   box-shadow: 0 0 0 2px #1976d233 !important;
@@ -68,24 +85,21 @@
 .menu-links .menu-text {
   color: inherit;
   vertical-align: middle;
+  font-size: 0.8em;
 }
 
 .menu-links a:hover,
 .menu-links button:hover {
   background: #fff;
   color: #1976d2;
-}
-
-.logout-btn {
-  font-size: 0.85rem;
-  margin-left: 0.2rem;
-  padding: 0.15rem 0.4rem;
+  transition: background 0.2s, color 0.2s;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
   outline: none;
+  vertical-align: top;
 }
 
 .dropdown-content {
@@ -98,7 +112,7 @@
   border-radius: 8px;
   z-index: 100;
   margin-top: 0.2em;
-  padding: 0.5em 0;
+  white-space: nowrap;
 }
 
 .dropdown-content a {

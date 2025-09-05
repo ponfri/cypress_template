@@ -35,6 +35,7 @@ export const routes: Routes = [
 	{ path: 'angular20-demo', component: Angular20DemoComponent },
 	{ path: 'tutorials', loadComponent: () => import('./tutorials/tutorials.component').then(m => m.TutorialsComponent) },
 	{ path: 'playground', loadComponent: () => import('./playground/playground.component').then(m => m.PlaygroundComponent) },
+	{ path: 'testing-playground', loadComponent: () => import('./testing-playground/testing-playground.component').then(m => m.TestingPlaygroundComponent) },
 	{ path: 'error-demo', loadComponent: () => import('./error-demo/error-demo.component').then(m => m.ErrorDemoComponent) },
 	{ path: 'testing-demo', loadComponent: () => import('./testing-demo/testing-demo.component').then(m => m.TestingDemoComponent) },
 	{ path: 'api-demo', loadComponent: () => import('./api-demo/api-demo.component').then(m => m.ApiDemoComponent) },

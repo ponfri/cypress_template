@@ -16,6 +16,7 @@ import { ViewEncapsulation } from '@angular/core';
 export class MenuComponent {
   @Input() isAdmin = false;
   showDropdown = false;
+  showPlaygroundsDropdown = false;
   router = inject(Router);
   // Removed empty constructor
   logout() {

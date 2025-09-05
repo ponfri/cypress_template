@@ -3,6 +3,7 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { GlobalErrorHandler } from './app/global-error-handler/global-error-handler';
 import { ErrorHandler } from '@angular/core';
+import './app/testing-playground/test-shadow-el';
 
 bootstrapApplication(AppComponent, {
   ...appConfig,

@@ -66,6 +66,7 @@ Welcome to the Angular 20 Demo App! This project is upgraded to Angular 20 and s
 | `/users`            | UsersComponent         | User list (if enabled)                |
 | `/angular20-demo`   | Angular20DemoComponent | Angular 20 feature showcase           |
 | `/feature-demo`     | FeatureDemoComponent   | Lazy-loaded feature route demo        |
+| `/testing-playground` | TestingPlaygroundComponent | Cypress testing playground: dynamic modal, file upload, drag-and-drop, custom dropdown, pagination, toast, date picker, shadow DOM, similar elements, hidden element |
 
 **Note:** Some routes (like `/admin`) are only visible to admin users. The menu updates automatically based on your role.
 

@@ -4,7 +4,15 @@
     <a routerLink="/products" class="menu-link"><span class="menu-icon">🛒</span> <span class="menu-text">Products</span></a>
     <a routerLink="/forms" class="menu-link"><span class="menu-icon">📝</span> <span class="menu-text">Forms</span></a>
     <a routerLink="/tutorials" class="menu-link"><span class="menu-icon">📚</span> <span class="menu-text">Tutorials</span></a>
-    <a routerLink="/playground" class="menu-link"><span class="menu-icon">🧪</span> <span class="menu-text">Playground</span></a>
+    <div class="dropdown" tabindex="0">
+      <button type="button" class="dropdown-label menu-link menu-playgrounds" (click)="showPlaygroundsDropdown = !showPlaygroundsDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
+        <span class="menu-icon">🧪</span> <span class="menu-text">Playgrounds ▼</span>
+      </button>
+      <div class="dropdown-content" *ngIf="showPlaygroundsDropdown" (mouseleave)="showPlaygroundsDropdown = false">
+        <a routerLink="/playground"><span class="menu-icon">🧪</span> <span class="menu-text">Playground</span></a>
+        <a routerLink="/testing-playground" data-cy="nav-testing-playground"><span class="menu-icon">🧪</span> <span class="menu-text">Testing Playground</span></a>
+      </div>
+    </div>
     <div class="dropdown" tabindex="0">
       <button type="button" class="dropdown-label menu-link menu-demos" (click)="showDropdown = !showDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
         <span class="menu-icon">🧩</span> <span class="menu-text">Demos ▼</span>
