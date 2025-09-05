@@ -7,7 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-feature-demo',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, MenuComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, MenuComponent],
   templateUrl: './feature-demo.component.html'
 })
 export class FeatureDemoComponent {}

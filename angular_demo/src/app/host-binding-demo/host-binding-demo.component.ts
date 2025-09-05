@@ -8,7 +8,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-host-binding-demo',
   standalone: true,
-  imports: [CommonModule, HostDemoDirective, HeaderComponent, MenuComponent, FooterComponent],
+  imports: [CommonModule, HostDemoDirective, HeaderComponent, MenuComponent],
   templateUrl: './host-binding-demo.component.html',
   styles: [`.active { border: 2px solid #ff9800 !important; }`]
 })

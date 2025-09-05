@@ -9,7 +9,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-custom-form-demo',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CustomInputComponent, HeaderComponent, MenuComponent, FooterComponent],
+  imports: [CommonModule, ReactiveFormsModule, CustomInputComponent, HeaderComponent, MenuComponent],
   templateUrl: './custom-form-demo.component.html'
 })
 export class CustomFormDemoComponent {

@@ -8,7 +8,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-signal-service-demo',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, MenuComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, MenuComponent],
   templateUrl: './signal-service-demo.component.html'
 })
 export class SignalServiceDemoComponent {

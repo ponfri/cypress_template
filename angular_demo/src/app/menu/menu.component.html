@@ -6,7 +6,7 @@
     <a routerLink="/tutorials" class="menu-link"><span class="menu-icon">📚</span> <span class="menu-text">Tutorials</span></a>
     <a routerLink="/playground" class="menu-link"><span class="menu-icon">🧪</span> <span class="menu-text">Playground</span></a>
     <div class="dropdown" tabindex="0">
-      <button type="button" class="dropdown-label menu-link" (click)="showDropdown = !showDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
+      <button type="button" class="dropdown-label menu-link menu-demos" (click)="showDropdown = !showDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
         <span class="menu-icon">🧩</span> <span class="menu-text">Demos ▼</span>
       </button>
       <div class="dropdown-content" *ngIf="showDropdown" (mouseleave)="showDropdown = false">

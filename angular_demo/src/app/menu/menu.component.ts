@@ -3,11 +3,15 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { ViewEncapsulation } from '@angular/core';
+
 @Component({
   selector: 'app-menu',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './menu.component.html'
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent {
   @Input() isAdmin = false;

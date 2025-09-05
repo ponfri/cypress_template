@@ -7,7 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, FooterComponent],
+  imports: [ReactiveFormsModule, FormsModule],
   template: `
     <div class="login-bg">
       <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
@@ -28,7 +28,7 @@ import { FooterComponent } from '../footer/footer.component';
             </li>
           }
         </ul>
-        <app-footer></app-footer>
+
       </div>
     </div>
     `
