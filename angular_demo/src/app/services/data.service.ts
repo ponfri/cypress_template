@@ -6,6 +6,8 @@ export interface User {
   username: string;
   password: string;
   role?: string;
+  locked?: boolean;
+  verified?: boolean;
 }
 
 export interface Product {
@@ -23,6 +25,48 @@ export interface Contact {
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
+  updateRole(username: string, role: string): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/update-role`, { username, role });
+  }
+
+  toggleVerify(username: string): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/toggle-verify`, { username });
+  }
+
+  getAuditLog(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/audit-log`);
+  }
+
+  getProfile(username: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/profile/${username}`);
+  }
+
+  exportUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/export`);
+  }
+
+  importUsers(users: User[]): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/import`, { users });
+  }
+
+  bulkDelete(usernames: string[]): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/bulk-delete`, { usernames });
+  }
+
+  bulkLock(usernames: string[], lock: boolean): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/bulk-lock`, { usernames, lock });
+  }
+  updateUser(user: User): Observable<{ success: boolean }> {
+    return this.http.put<{ success: boolean }>(`${this.apiUrl}/users/${user.username}`, user);
+  }
+
+  resetPassword(username: string): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/reset-password`, { username });
+  }
+
+  toggleLock(username: string): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/toggle-lock`, { username });
+  }
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3200/api';
 
@@ -56,5 +100,16 @@ export class DataService {
 
   deleteContact(id: number, token: string): Observable<{ success: boolean }> {
     return this.http.delete<{ success: boolean }>(`${this.apiUrl}/contacts/${id}`, { body: { token } });
+  }
+
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${username}`);
+  }
+
+  addUser(username: string, password: string, role?: string): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/register`, { username, password, role });
+  }
+  clearAuditLog(): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.apiUrl}/clear-audit-log`, {});
   }
 }

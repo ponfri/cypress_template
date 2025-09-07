@@ -9,7 +9,8 @@
         <span style="display:flex; align-items:center;">
           <input [type]="showLoginPassword ? 'text' : 'password'" formControlName="password" class="login-input" />
           <button type="button" (click)="toggleLoginPassword()"
-            [ngStyle]="showLoginPassword ? {'background':'#ffeb3b','color':'#333'} : {}"
+            [style.background]="showLoginPassword ? '#ffeb3b' : null"
+            [style.color]="showLoginPassword ? '#333' : null"
             style="margin-left:0.5rem; white-space:nowrap;">
             {{ showLoginPassword ? 'Hide' : 'Show' }}
           </button>
@@ -17,9 +18,9 @@
       </label><br />
   <button type="submit" [disabled]="loginForm.invalid" class="login-btn" data-cy="login-btn">Login</button>
     </form>
-    @if (loginError) {
-      <div style="color:#d32f2f;text-align:center;">{{ loginError }}</div>
-    }
+    <ng-container *ngIf="message$ | async as msg">
+      <div *ngIf="msg" style="color:#d32f2f;text-align:center;">{{ msg }}</div>
+    </ng-container>
     <hr />
     <h2 style="color:#1976d2;text-align:center;margin-bottom:1rem;">Create Account</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()" style="max-width:350px; width:100%; margin-left:auto; margin-right:auto;">
@@ -28,7 +29,8 @@
         <span style="display:flex; align-items:center;">
           <input [type]="showRegisterPassword ? 'text' : 'password'" formControlName="password" class="login-input" />
           <button type="button" (click)="toggleRegisterPassword()"
-            [ngStyle]="showRegisterPassword ? {'background':'#ffeb3b','color':'#333'} : {}"
+            [style.background]="showRegisterPassword ? '#ffeb3b' : null"
+            [style.color]="showRegisterPassword ? '#333' : null"
             style="margin-left:0.5rem; white-space:nowrap;">
             {{ showRegisterPassword ? 'Hide' : 'Show' }}
           </button>

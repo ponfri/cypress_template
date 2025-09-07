@@ -1,12 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
 import { DataService, User } from '../services/data.service';
-
+import { MessageService } from '../services/message.service';
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
@@ -14,9 +14,9 @@ export class UsersComponent implements OnInit {
   users: User[] = [];
   username = '';
   password = '';
-  error = '';
-  success = '';
   dataService = inject(DataService);
+  messageService = inject(MessageService);
+  message$ = this.messageService.message$;
   isAdmin = typeof window !== 'undefined' && localStorage.getItem('role') === 'admin';
 
   ngOnInit(): void {
@@ -26,33 +26,34 @@ export class UsersComponent implements OnInit {
   loadUsers() {
     this.dataService.getUsers().subscribe({
       next: (users: User[]) => { this.users = users; },
-      error: () => { this.error = 'Failed to load users.'; }
+      error: () => { this.messageService.showMessage('Failed to load users.'); }
     });
   }
 
   deleteUser(username: string) {
     this.dataService.deleteUser(username).subscribe({
-      next: () => { this.success = 'User deleted.'; this.loadUsers(); },
-      error: () => { this.error = 'Delete failed.'; }
+      next: () => {
+        this.messageService.showMessage('User deleted.');
+        this.loadUsers();
+      },
+      error: () => { this.messageService.showMessage('Delete failed.'); }
     });
   }
 
   registerUser() {
     if (!this.username || !this.password) {
-      this.error = 'Username and password required.';
+      this.messageService.showMessage('Username and password required.');
       return;
     }
     this.dataService.registerUser(this.username, this.password).subscribe({
       next: () => {
-        this.success = 'User registered.';
-        this.error = '';
+        this.messageService.showMessage('User registered.');
         this.username = '';
         this.password = '';
         this.loadUsers();
       },
-  error: (err: { error?: { message?: string } }) => {
-        this.error = err?.error?.message || 'Registration failed.';
-        this.success = '';
+      error: (err: { error?: { message?: string } }) => {
+        this.messageService.showMessage(err?.error?.message || 'Registration failed.');
       }
     });
   }

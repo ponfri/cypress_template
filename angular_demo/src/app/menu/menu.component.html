@@ -8,27 +8,33 @@
       <button type="button" class="dropdown-label menu-link menu-playgrounds" (click)="showPlaygroundsDropdown = !showPlaygroundsDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
         <span class="menu-icon">🧪</span> <span class="menu-text">Playgrounds ▼</span>
       </button>
-      <div class="dropdown-content" *ngIf="showPlaygroundsDropdown" (mouseleave)="showPlaygroundsDropdown = false">
-        <a routerLink="/playground"><span class="menu-icon">🧪</span> <span class="menu-text">Playground</span></a>
-        <a routerLink="/testing-playground" data-cy="nav-testing-playground"><span class="menu-icon">🧪</span> <span class="menu-text">Testing Playground</span></a>
-      </div>
+      @if (showPlaygroundsDropdown) {
+        <div class="dropdown-content" (mouseleave)="showPlaygroundsDropdown = false">
+          <a routerLink="/playground"><span class="menu-icon">🧪</span> <span class="menu-text">Playground</span></a>
+          <a routerLink="/testing-playground" data-cy="nav-testing-playground"><span class="menu-icon">🧪</span> <span class="menu-text">Testing Playground</span></a>
+        </div>
+      }
     </div>
     <div class="dropdown" tabindex="0">
       <button type="button" class="dropdown-label menu-link menu-demos" (click)="showDropdown = !showDropdown" style="display:inline-flex;align-items:center;gap:0.3em;background:none;border:none;cursor:pointer;padding:0.15rem 0.3rem;">
         <span class="menu-icon">🧩</span> <span class="menu-text">Demos ▼</span>
       </button>
-      <div class="dropdown-content" *ngIf="showDropdown" (mouseleave)="showDropdown = false">
-        <a routerLink="/error-demo"><span class="menu-icon">❗</span> <span class="menu-text">Error Demo</span></a>
-        <a routerLink="/testing-demo"><span class="menu-icon">🧪</span> <span class="menu-text">Testing Demo</span></a>
-        <a routerLink="/api-demo"><span class="menu-icon">🔗</span> <span class="menu-text">API Demo</span></a>
-        <a routerLink="/angular20-demo"><span class="menu-icon">✨</span> <span class="menu-text">Angular 20 Demo</span></a>
-      </div>
+      @if (showDropdown) {
+        <div class="dropdown-content" (mouseleave)="showDropdown = false">
+          <a routerLink="/error-demo"><span class="menu-icon">❗</span> <span class="menu-text">Error Demo</span></a>
+          <a routerLink="/testing-demo"><span class="menu-icon">🧪</span> <span class="menu-text">Testing Demo</span></a>
+          <a routerLink="/api-demo"><span class="menu-icon">🔗</span> <span class="menu-text">API Demo</span></a>
+          <a routerLink="/angular20-demo"><span class="menu-icon">✨</span> <span class="menu-text">Angular 20 Demo</span></a>
+        </div>
+      }
     </div>
     <a routerLink="/animations-demo" class="menu-link"><span class="menu-icon">🎬</span> <span class="menu-text">Animations</span></a>
     <a routerLink="/accessibility-demo" class="menu-link"><span class="menu-icon">♿</span> <span class="menu-text">Accessibility</span></a>
     <a routerLink="/glossary" class="menu-link"><span class="menu-icon">📖</span> <span class="menu-text">Glossary</span></a>
     <a routerLink="/challenges" class="menu-link"><span class="menu-icon">🏆</span> <span class="menu-text">Challenges</span></a>
-    <a *ngIf="isAdmin" routerLink="/admin" class="menu-link"><span class="menu-icon">🔒</span> <span class="menu-text">Admin</span></a>
+    @if (isAdmin) {
+      <a routerLink="/admin" class="menu-link"><span class="menu-icon">🔒</span> <span class="menu-text">Admin</span></a>
+    }
   </div>
   <button class="logout-btn" (click)="logout()"><span class="menu-icon">🚪</span> Logout</button>
 </nav>

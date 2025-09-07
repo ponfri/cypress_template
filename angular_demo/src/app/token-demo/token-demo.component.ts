@@ -4,7 +4,7 @@ import { DEMO_TOKEN } from './token-demo.token';
 
 @Component({
   selector: 'app-token-demo',
-  standalone: true,
+  // ...existing code...
   imports: [CommonModule],
   providers: [
     { provide: DEMO_TOKEN, useValue: 'Injected value from DEMO_TOKEN!' }

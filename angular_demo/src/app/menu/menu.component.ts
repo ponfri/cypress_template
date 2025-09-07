@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -14,11 +14,17 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent {
-  @Input() isAdmin = false;
   showDropdown = false;
   showPlaygroundsDropdown = false;
   router = inject(Router);
-  // Removed empty constructor
+
+  get isAdmin(): boolean {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return localStorage.getItem('currentUserRole') === 'admin';
+    }
+    return false;
+  }
+
   logout() {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       localStorage.removeItem('currentUser');

@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+// ...existing code...
+// ...existing code...
 
-@NgModule({
-  imports: [
-    HttpClientModule,
-  ],
-  providers: [],
-})
 export class MockApiModule {}
+// MCP refactor: NgModule removed. Convert to standalone providers or import in main.ts/app.config.ts
+// ...existing code...
+export const MockApiProviders = [
+  // Add your providers here
+];

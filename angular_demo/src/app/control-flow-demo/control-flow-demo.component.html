@@ -1,12 +1,13 @@
 <div>
-  <ng-container *ngIf="show; else elseBlock">
+  @if (show) {
     <p>*ngIf syntax works! (show = true)</p>
-  </ng-container>
-  <ng-template #elseBlock>
+  } @else {
     <p>*ngIf syntax works! (show = false)</p>
-  </ng-template>
+  }
   <button (click)="show = !show">Toggle</button>
   <ul>
-    <li *ngFor="let item of items">{{ item }}</li>
+    @for (item of items; track item) {
+      <li>{{ item }}</li>
+    }
   </ul>
 </div>

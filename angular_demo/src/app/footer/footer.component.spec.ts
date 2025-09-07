@@ -13,4 +13,11 @@ describe('FooterComponent', () => {
     const comp = fixture.componentInstance;
     expect(comp).toBeTruthy();
   });
+
+  it('should render static HTML', () => {
+    const fixture = TestBed.createComponent(FooterComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toBeTruthy();
+  });
 });

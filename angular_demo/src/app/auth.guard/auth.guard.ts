@@ -7,6 +7,10 @@ export class AuthGuardService {
 }
 
 export const authGuard: CanActivateFn = () => {
-  // Simulate authentication check
-  return Math.random() > 0.5;
+  // Allow navigation if any user is present in localStorage
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    const currentUser = localStorage.getItem('currentUser');
+    return !!currentUser;
+  }
+  return false;
 };

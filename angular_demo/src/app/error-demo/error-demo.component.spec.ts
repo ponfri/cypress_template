@@ -14,4 +14,13 @@ describe('ErrorDemoComponent', () => {
     const comp = fixture.componentInstance;
     expect(comp).toBeTruthy();
   });
+
+  it('should call ErrorHandler when throwError is called', () => {
+    const fixture = TestBed.createComponent(ErrorDemoComponent);
+    const comp = fixture.componentInstance;
+    const errorHandler = comp['errorHandler'];
+    spyOn(errorHandler, 'handleError');
+    comp.throwError();
+    expect(errorHandler.handleError).toHaveBeenCalled();
+  });
 });

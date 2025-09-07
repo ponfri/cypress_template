@@ -14,4 +14,27 @@ describe('SignalServiceDemoComponent', () => {
     const comp = fixture.componentInstance;
     expect(comp).toBeTruthy();
   });
+
+  it('should increment, decrement, and reset the counter', () => {
+    const fixture = TestBed.createComponent(SignalServiceDemoComponent);
+    const comp = fixture.componentInstance;
+    const counter = comp['counter'];
+    spyOn(counter, 'increment').and.callThrough();
+    spyOn(counter, 'decrement').and.callThrough();
+    spyOn(counter, 'reset').and.callThrough();
+    comp.inc();
+    expect(counter.increment).toHaveBeenCalled();
+    comp.dec();
+    expect(counter.decrement).toHaveBeenCalled();
+    comp.reset();
+    expect(counter.reset).toHaveBeenCalled();
+  });
+
+  it('should update count value', () => {
+    const fixture = TestBed.createComponent(SignalServiceDemoComponent);
+    const comp = fixture.componentInstance;
+    const counter = comp['counter'];
+    spyOn(counter, 'count').and.returnValue(42);
+    expect(comp.count()).toBe(42);
+  });
 });

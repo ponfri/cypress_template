@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+// ...existing code...
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { UsersComponent } from '../users/users.component';
@@ -12,8 +12,6 @@ const routes: Routes = [
   { path: 'forms', component: FormsDemoComponent },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
 export class AppRoutingModule {}
+// MCP refactor: NgModule removed. Use standalone route configuration in app.routes.ts
+export const AppRoutes = RouterModule.forRoot(routes);

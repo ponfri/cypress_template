@@ -17,4 +17,5 @@ describe('AnimationsDemoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  // No additional logic to test
 });

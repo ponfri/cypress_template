@@ -14,4 +14,5 @@ describe('FeatureDemoComponent', () => {
     const comp = fixture.componentInstance;
     expect(comp).toBeTruthy();
   });
+  // No additional logic to test
 });

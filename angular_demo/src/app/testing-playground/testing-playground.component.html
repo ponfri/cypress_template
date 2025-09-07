@@ -3,7 +3,15 @@
 
   <!-- Dynamic Modal -->
   <button (click)="openModal()" data-cy="open-modal-btn">Open Modal</button>
-  <div class="modal" *ngIf="showModal" data-cy="modal">
+  @if (showModal) {
+    <div class="modal" data-cy="modal">
+      <div class="modal-content">
+        <h3>Modal Title</h3>
+        <p>This modal appears and disappears.</p>
+        <button (click)="closeModal()" data-cy="close-modal-btn">Close</button>
+      </div>
+    </div>
+  }
     <div class="modal-content">
       <h3>Modal Title</h3>
       <p>This modal appears and disappears.</p>
@@ -21,7 +29,9 @@
   <!-- Drag and Drop -->
   <div class="drag-area" (drop)="onDrop($event)" (dragover)="onDragOver($event)" data-cy="drag-area">
     <div draggable="true" class="draggable" data-cy="draggable">Drag me</div>
-    <div *ngIf="dropped" class="dropped" data-cy="dropped">Dropped!</div>
+    @if (dropped) {
+      <div class="dropped" data-cy="dropped">Dropped!</div>
+    }
   </div>
 
   <!-- Custom Dropdown -->
@@ -29,7 +39,9 @@
     <button (click)="selectDropdown('Option 1')">Option 1</button>
     <button (click)="selectDropdown('Option 2')">Option 2</button>
     <button (click)="selectDropdown('Option 3')">Option 3</button>
-    <div *ngIf="selectedDropdown">Selected: {{ selectedDropdown }}</div>
+    @if (selectedDropdown) {
+      <div>Selected: {{ selectedDropdown }}</div>
+    }
   </div>
 
   <!-- Pagination -->
@@ -38,17 +50,23 @@
     <span>Page {{ currentPage }}</span>
     <button (click)="nextPage()" [disabled]="currentPage === 3">Next</button>
     <ul>
-      <li *ngFor="let item of items.slice((currentPage-1)*5, currentPage*5)">{{ item }}</li>
+      @for (item of items.slice((currentPage-1)*5, currentPage*5); track item) {
+        <li>{{ item }}</li>
+      }
     </ul>
   </div>
 
   <!-- Toast Notification -->
   <button (click)="showNotification()" data-cy="toast-btn">Show Toast</button>
-  <div class="toast" *ngIf="showToast" data-cy="toast">This is a toast notification!</div>
+  @if (showToast) {
+    <div class="toast" data-cy="toast">This is a toast notification!</div>
+  }
 
   <!-- Date Picker -->
   <input type="date" (change)="setDate($event)" data-cy="date-picker" />
-  <div *ngIf="selectedDate">Selected Date: {{ selectedDate }}</div>
+  @if (selectedDate) {
+    <div>Selected Date: {{ selectedDate }}</div>
+  }
 
   <!-- Shadow DOM Web Component -->
   <test-shadow-el data-cy="shadow-el"></test-shadow-el>
@@ -60,4 +78,4 @@
 
   <!-- Hidden Element -->
   <div class="hidden-el" style="display:none;" data-cy="hidden-el">You shouldn't see me!</div>
-</div>
+<!-- ...existing code... -->

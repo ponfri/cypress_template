@@ -15,11 +15,8 @@
     <input [(ngModel)]="username" placeholder="Username" style="margin-right:1rem;" />
     <input [(ngModel)]="password" type="password" placeholder="Password" style="margin-right:1rem;" />
     <button class="login-btn" (click)="registerUser()">Register</button>
-    @if (error) {
-      <div style="color:#d32f2f;margin-top:1rem;">{{ error }}</div>
-    }
-    @if (success) {
-      <div style="color:#388e3c;margin-top:1rem;">{{ success }}</div>
-    }
+    <ng-container *ngIf="message$ | async as msg">
+      <div *ngIf="msg" style="color:#388e3c;margin-top:1rem;">{{ msg }}</div>
+    </ng-container>
   </div>
 </div>

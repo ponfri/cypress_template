@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 
 import { HighlightDirective } from './highlight.directive';
 @Component({
-  standalone: true,
+  selector: 'app-test-cmp',
   imports: [HighlightDirective],
   template: `<span appHighlight>Test</span>`
 })
@@ -22,5 +22,35 @@ describe('HighlightDirective', () => {
     const fixture = TestBed.createComponent(TestComponent);
     const directive = fixture.debugElement.query(By.directive(HighlightDirective));
     expect(directive).toBeTruthy();
+  });
+
+  it('should highlight on mouseenter and reset on mouseleave', () => {
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+    const span = fixture.nativeElement.querySelector('span');
+    // Simulate mouseenter
+    span.dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+    expect(span.style.backgroundColor).toBe('rgb(255, 238, 186)'); // #ffeeba
+    // Simulate mouseleave
+    span.dispatchEvent(new Event('mouseleave'));
+    fixture.detectChanges();
+    expect(span.style.backgroundColor).toBe('');
+  });
+
+  it('should use input color for highlight', () => {
+    @Component({
+  selector: 'app-color-test-cmp',
+      imports: [HighlightDirective],
+      template: `<span [appHighlight]="'#00ff00'">Test</span>`
+    })
+    class ColorTestComponent {}
+    TestBed.configureTestingModule({ imports: [ColorTestComponent] });
+    const fixture = TestBed.createComponent(ColorTestComponent);
+    fixture.detectChanges();
+    const span = fixture.nativeElement.querySelector('span');
+    span.dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+    expect(span.style.backgroundColor).toBe('rgb(0, 255, 0)');
   });
 });

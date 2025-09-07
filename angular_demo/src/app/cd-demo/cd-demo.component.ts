@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-cd-demo',
@@ -6,16 +6,18 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   template: `
     <div style="border:1px dashed #1976d2;padding:1rem;margin:1rem 0;">
       <h4>Change Detection Demo</h4>
-      <p>Current value: {{ value }}</p>
+  <p>Current value: {{ value() }}</p>
       <button (click)="updateValue()">Update Value</button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CdDemoComponent {
-  @Input() value = 0;
+  value = input(0);
+
+  valueChanged = output<number>();
 
   updateValue() {
-    this.value++;
+    this.valueChanged.emit(this.value() + 1);
   }
 }

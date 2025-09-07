@@ -1,7 +1,11 @@
 <div>
   <button (click)="toggle()">Toggle View</button>
   <div [@fadeInOut]="state">
-    <p *ngIf="state">View A</p>
-    <p *ngIf="!state">View B</p>
+    @if (state) {
+      <p>View A</p>
+    }
+    @if (!state) {
+      <p>View B</p>
+    }
   </div>
 </div>

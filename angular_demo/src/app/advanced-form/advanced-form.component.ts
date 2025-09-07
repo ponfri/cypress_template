@@ -4,7 +4,7 @@ import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-advanced-form',
-  standalone: true,
+  // ...existing code...
   imports: [CommonModule, ReactiveFormsModule, JsonPipe],
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()" style="margin:1rem 0;">

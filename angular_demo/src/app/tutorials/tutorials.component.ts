@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tutorials',
-  standalone: true,
+  // ...existing code...
   templateUrl: './tutorials.component.html',
   styleUrls: ['./tutorials.component.scss']
 })

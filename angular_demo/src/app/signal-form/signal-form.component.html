@@ -3,4 +3,6 @@
   <input formControlName="email" placeholder="Email" />
   <button type="submit">Submit</button>
 </form>
-<div *ngIf="form.valid">Form is valid!</div>
+@if (form.valid) {
+  <div>Form is valid!</div>
+}

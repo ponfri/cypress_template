@@ -1,25 +1,162 @@
-<div style="max-width:600px;margin:2rem auto;padding:2rem;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);">
-  <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
-  <div class="page-container">
-    <h2 style="color:#1976d2;text-align:center;margin-bottom:2rem;">Admin Panel</h2>
-    <h3 style="color:#1976d2; text-align:center; margin-bottom:1.5rem;">Delete User Accounts</h3>
-    <ul style="list-style:none; padding:0; text-align:center;">
-      @for (user of users; track user) {
-  <li style="margin-bottom:1.5rem; display:flex; flex-direction:column; align-items:center; background:#f5f5f5; border-radius:12px; box-shadow:0 2px 8px rgba(25,118,210,0.10); padding:1.5rem;">
-          <div style="margin-bottom:0.5rem;">
-            {{ user.username }} <span style="color:gray;">[{{ user.role || 'user' }}]</span>
-          </div>
-          @if (canDelete(user)) {
-            <button (click)="deleteUser(user)" class="login-btn" style="margin-top:0.5rem; min-width:120px; transition:box-shadow 0.2s; box-shadow:0 1px 4px rgba(25,118,210,0.10);">Delete</button>
-          }
-          @if (!canDelete(user)) {
-            <span style="color:gray; margin-top:0.5rem;">(cannot delete this account)</span>
-          }
-        </li>
+@if (isAdmin) {
+  <div style="max-width:1400px;margin:2rem auto;padding:2rem;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);">
+    <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
+  <div class="page-container" style="max-width:1200px; margin:0 auto;">
+      <h2 style="color:#1976d2;text-align:center;margin-bottom:2rem;">Admin Panel</h2>
+      <h3 style="color:#1976d2; text-align:center; margin-bottom:1.5rem;">Add New Account</h3>
+      <form (submit)="addUser(); $event.preventDefault();" style="display:flex; flex-direction:column; align-items:center; margin-bottom:2rem;">
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-bottom:1rem;">
+          <input type="text" placeholder="Username" [(ngModel)]="newUser.username" name="username" style="padding:0.5rem; border-radius:6px; border:1px solid #ccc;" />
+          <input type="password" placeholder="Password" [(ngModel)]="newUser.password" name="password" style="padding:0.5rem; border-radius:6px; border:1px solid #ccc;" />
+          <select [(ngModel)]="newUser.role" name="role" style="padding:0.5rem; border-radius:6px; border:1px solid #ccc;">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div style="display:flex; gap:1rem; justify-content:center;">
+          <button type="submit" class="login-btn" style="min-width:90px; padding:0.35rem 1rem; font-size:0.95rem; border-radius:6px; background:#1976d2; color:#fff; border:none;">Add</button>
+        </div>
+      </form>
+      <ng-container *ngIf="message$ | async as msg">
+        <div *ngIf="msg" style="color:#388e3c;">{{ msg }}</div>
+      </ng-container>
+
+      <h3 style="color:#1976d2; text-align:center; margin-bottom:1.5rem;">Query Account Information</h3>
+      <form (submit)="queryUser(); $event.preventDefault();" style="display:flex; flex-direction:column; align-items:center; margin-bottom:2rem;">
+  <input type="text" placeholder="Enter username or 'all'" [(ngModel)]="queryUsername" name="queryUsername" (input)="onQueryInput()" style="padding:0.5rem; border-radius:6px; border:1px solid #ccc; margin-bottom:1rem; width:300px;" />
+        <div style="display:flex; gap:1rem; justify-content:center;">
+          <button type="submit" class="login-btn" style="min-width:70px; padding:0.25rem 0.7rem; font-size:0.85rem; border-radius:6px; background:#1976d2; color:#fff; border:none;">Query</button>
+          <button type="button" (click)="showAllUsers()" class="login-btn" style="min-width:70px; padding:0.25rem 0.7rem; font-size:0.85rem; border-radius:6px; background:#1976d2; color:#fff; border:none;">Show All Users</button>
+          <button type="button" (click)="clearQuery()" class="login-btn" style="min-width:70px; padding:0.25rem 0.7rem; font-size:0.85rem; border-radius:6px; background:#1976d2; color:#fff; border:none;">Clear Query</button>
+        </div>
+      </form>
+  <!-- All feedback messages now use MessageService -->
+
+      <h3 style="color:#1976d2; text-align:center; margin-bottom:1.5rem;">Accounts</h3>
+      @if (filteredUsers.length > 0) {
+        <!-- Bulk actions above table for clarity -->
+        <div style="display:flex; gap:1.5rem; margin-bottom:1.5rem; flex-wrap:wrap; justify-content:flex-start;">
+          <button (click)="bulkDelete()" style="padding:0.5rem 1.5rem; border-radius:6px; background:#d32f2f; color:#fff; border:none; min-width:120px;"><i class="fa fa-trash"></i> Bulk Delete</button>
+          <button (click)="bulkLock(true)" style="padding:0.5rem 1.5rem; border-radius:6px; background:#1976d2; color:#fff; border:none; min-width:120px;"><i class="fa fa-lock"></i> Bulk Lock</button>
+          <button (click)="bulkLock(false)" style="padding:0.5rem 1.5rem; border-radius:6px; background:#388e3c; color:#fff; border:none; min-width:120px;"><i class="fa fa-unlock"></i> Bulk Unlock</button>
+          <button (click)="exportUsers()" style="padding:0.5rem 1.5rem; border-radius:6px; background:#90caf9; color:#1976d2; border:none; min-width:120px;"><i class="fa fa-download"></i> Export</button>
+          <label style="padding:0.5rem 1.5rem; border-radius:6px; background:#90caf9; color:#1976d2; border:none; min-width:120px; cursor:pointer; display:inline-block;">
+            <i class="fa fa-upload"></i> Import
+            <input type="file" (change)="($event.target.files && $event.target.files[0]) ? importUsers($event.target.files[0]) : null" style="display:none;" />
+          </label>
+        </div>
+  <table style="width:100%; min-width:900px; max-width:900px; margin:0 auto; border-collapse:collapse; margin-bottom:3.5rem;">
+          <thead>
+            <tr style="background:#e3f2fd;">
+              <th style="padding:0.5rem; border:1px solid #90caf9;"><input type="checkbox" (change)="toggleBulkAll($event.target.checked)" /></th>
+              <th style="padding:0.5rem; border:1px solid #90caf9;">Username</th>
+              <th style="padding:0.5rem; border:1px solid #90caf9;">Role</th>
+              <th style="padding:0.5rem; border:1px solid #90caf9;">Verified</th>
+              <th style="padding:0.5rem; border:1px solid #90caf9;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (user of filteredUsers; track user.username) {
+              <tr style="background:#f5f5f5;">
+                <td style="padding:0.5rem; border:1px solid #90caf9;"><input type="checkbox" [checked]="bulkSelected.has(user.username)" (change)="toggleBulk(user.username, $event.target.checked)" /></td>
+                <td style="padding:0.5rem; border:1px solid #90caf9;">{{ user.username }}</td>
+                <td style="padding:0.5rem; border:1px solid #90caf9;">
+                  <select [(ngModel)]="user.role" (change)="updateRole(user, user.role || 'user')" style="padding:0.2rem; border-radius:4px; border:1px solid #ccc; min-width:70px;">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <button (click)="resetPassword(user)" style="margin-left:0.5rem; padding:0.2rem 0.7rem; border-radius:4px; background:#ffb300; color:#fff; border:none; font-size:0.8rem;">Reset Password</button>
+                  <button (click)="toggleLock(user)" style="margin-left:0.5rem; padding:0.2rem 0.7rem; border-radius:4px; background:#6d4c41; color:#fff; border:none; font-size:0.8rem;">{{ user.locked ? 'Unlock' : 'Lock' }}</button>
+                </td>
+                <td style="padding:0.5rem; border:1px solid #90caf9;">
+                  <button (click)="toggleVerify(user)" style="padding:0.2rem 0.5rem; border-radius:4px; background:#1976d2; color:#fff; border:none; font-size:0.8rem;">{{ user.verified ? 'Verified' : 'Unverified' }}</button>
+                </td>
+                <td style="padding:0.5rem; border:1px solid #90caf9;">
+                  <div style="display:flex; flex-direction:row; gap:1rem; align-items:center; flex-wrap:wrap;">
+                    <!-- Per-user actions grouped and spaced -->
+                    <div style="display:flex; flex-direction:row; gap:0.7rem; align-items:center;">
+                      @if (canDelete(user)) {
+                        <button (click)="deleteUser(user)" class="login-btn" style="min-width:90px; padding:0.3rem 0.7rem; font-size:0.95rem; border-radius:5px; background:#d32f2f; color:#fff; border:none;" title="Delete">
+                          <i class="fa fa-trash" style="margin-right:6px;"></i> Delete
+                        </button>
+                      }
+                      @if (!canDelete(user)) {
+                        <span style="color:gray; font-size:0.8rem;">(cannot delete)</span>
+                      }
+                      <button (click)="viewProfile(user)" style="min-width:90px; padding:0.3rem 0.7rem; font-size:0.95rem; border-radius:5px; background:#90caf9; color:#1976d2; border:none;" title="Profile">
+                        <i class="fa fa-user" style="margin-right:6px;"></i> Profile
+                      </button>
+                      <button (click)="startEdit(user)" style="min-width:90px; padding:0.3rem 0.7rem; font-size:0.95rem; border-radius:5px; background:#1976d2; color:#fff; border:none;" title="Edit">
+                        <i class="fa fa-edit" style="margin-right:6px;"></i> Edit
+                      </button>
+                    </div>
+                  </div>
+                  @if (editUser) {
+                    <div style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; z-index:1000;">
+                      <div style="background:#fff; padding:2rem; border-radius:12px; min-width:320px; box-shadow:0 2px 16px rgba(25,118,210,0.18);">
+                        <h3 style="color:#1976d2;">Edit User</h3>
+                        <div><b>Username:</b> <input [(ngModel)]="editUser!.username" style="padding:0.3rem; border-radius:6px; border:1px solid #ccc;" readonly /></div>
+                        <div><b>Password:</b> <input [(ngModel)]="editUser!.password" style="padding:0.3rem; border-radius:6px; border:1px solid #ccc;" /></div>
+                        <div><b>Role:</b> <select [(ngModel)]="editUser!.role" style="padding:0.3rem; border-radius:6px; border:1px solid #ccc;">
+                          <option value="user">User</option>
+                          <option value="admin">Admin</option>
+                        </select></div>
+                        <div style="margin-top:1rem; display:flex; gap:1rem;">
+                          <button (click)="saveEdit()" style="padding:0.5rem 1.5rem; border-radius:6px; background:#1976d2; color:#fff; border:none;">Save</button>
+                          <button (click)="cancelEdit()" style="padding:0.5rem 1.5rem; border-radius:6px; background:#d32f2f; color:#fff; border:none;">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  <!-- Edit feedback now uses MessageService -->
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
       }
-    </ul>
-    @if (deleteMsg) {
-      <div style="color:#388e3c;">{{ deleteMsg }}</div>
-    }
+      @if (filteredUsers.length === 0 && queryUsername && querySubmitted) {
+        <div style="color:#d32f2f; text-align:center; margin:2rem 0; font-size:1.2rem;">No users found or failed to load users. Please check your connection or try again.</div>
+      }
+      <!-- Restore Audit Log section below table, using @if/@else and track expression -->
+  <div style="margin-top:3.5rem; width:900px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <h3 style="color:#1976d2; margin:0; font-size:2rem;">Audit Log</h3>
+      <div style="margin-top:1rem; display:flex; justify-content:center; gap:1.5rem;">
+        <button (click)="loadAuditLog()" style="padding:0.4rem 1.2rem; border-radius:6px; background:#1976d2; color:#fff; border:none; font-size:1rem;">Show Audit Log</button>
+        <button (click)="clearAuditLog()" style="padding:0.4rem 1.2rem; border-radius:6px; background:#d32f2f; color:#fff; border:none; font-size:1rem;">Clear Audit Log</button>
+      </div>
+    </div>
+  @if (auditLog && auditLog.length > 0 && auditLogVisible) {
+          <div style="max-height:300px; overflow-y:auto; background:#f5f5f5; border-radius:8px; padding:1rem;">
+              <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                  <tr style="background:#e3f2fd;">
+                    <th style="padding:0.5rem; border:1px solid #90caf9;">Audit Log Entry</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (log of auditLog; track log) {
+                    <tr>
+                      <td style="padding:0.5rem; border:1px solid #90caf9; white-space:pre-line;">{{ log }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+          </div>
+        }
+        @else if (auditLogVisible) {
+          <div style="color:#d32f2f; text-align:center;">No audit log entries found.</div>
+        }
+      </div>
+  <!-- Bulk and reset feedback now use MessageService -->
+    </div>
   </div>
-</div>
+}
+@else {
+  <div style="max-width:600px;margin:2rem auto;padding:2rem;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(25,118,210,0.08);text-align:center;">
+    <img src="assets/img/angular-icon-logo.png" alt="Angular Logo" class="app-logo" />
+    <h2 style="color:#1976d2;margin-bottom:2rem;">Admin Panel</h2>
+    <div style="color:#d32f2f;font-size:1.2rem;">You do not have permission to view or perform admin actions.</div>
+  </div>
+}

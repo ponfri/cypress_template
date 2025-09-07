@@ -1,4 +1,4 @@
-import { Component, signal, EventEmitter, Input, Output, OnInit, inject, computed, effect } from '@angular/core';
+import { Component, signal, input, output, OnInit, inject, computed, effect } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -58,9 +58,9 @@ export class AsyncPipeDemoComponent {
   templateUrl: '../signal-child/signal-child.component.html'
 })
 export class SignalChildComponent {
-  @Input() count = 0;
-  @Output() countChanged = new EventEmitter<number>();
-  notifyParent() { this.countChanged.emit(this.count); }
+  count = input(0);
+  countChanged = output<number>();
+  notifyParent() { this.countChanged.emit(this.count()); }
 }
 
 // --- ModelDemoComponent ---

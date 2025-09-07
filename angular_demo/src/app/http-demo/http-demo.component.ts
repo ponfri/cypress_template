@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-http-demo',
-  standalone: true,
+  // ...existing code...
   imports: [CommonModule, HttpClientModule],
   template: `
     <section>

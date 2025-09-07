@@ -25,4 +25,18 @@ describe('MyIfDirective', () => {
     expect(div).toBeTruthy();
     expect(div.nativeElement.textContent).toContain('Visible');
   });
+
+  it('should not render content when condition is false', () => {
+    @Component({
+      standalone: true,
+      imports: [MyIfDirective],
+      template: `<div *appMyIf="false">Hidden</div>`
+    })
+    class FalseTestComponent {}
+    TestBed.configureTestingModule({ imports: [FalseTestComponent] });
+    const fixture = TestBed.createComponent(FalseTestComponent);
+    fixture.detectChanges();
+    const div = fixture.debugElement.query(By.css('div'));
+    expect(div).toBeNull();
+  });
 });

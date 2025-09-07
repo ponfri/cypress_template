@@ -29,6 +29,65 @@ describe('TestingPlaygroundComponent', () => {
 
   it('should open and close modal', () => {
     component.openModal();
+    expect(component.showModal).toBeTrue();
+    component.closeModal();
+    expect(component.showModal).toBeFalse();
+  });
+
+  it('should toggle disabled state', () => {
+    const initial = component.isDisabled;
+    component.toggleDisabled();
+    expect(component.isDisabled).toBe(!initial);
+  });
+
+  it('should show and hide toast notification', (done) => {
+    component.showNotification();
+    expect(component.showToast).toBeTrue();
+    setTimeout(() => {
+      expect(component.showToast).toBeFalse();
+      done();
+    }, 2100);
+  });
+
+  it('should paginate next and previous', () => {
+    component.currentPage = 1;
+    component.nextPage();
+    expect(component.currentPage).toBe(2);
+    component.nextPage();
+    expect(component.currentPage).toBe(3);
+    component.nextPage();
+    expect(component.currentPage).toBe(3);
+    component.prevPage();
+    expect(component.currentPage).toBe(2);
+    component.prevPage();
+    expect(component.currentPage).toBe(1);
+    component.prevPage();
+    expect(component.currentPage).toBe(1);
+  });
+
+  it('should select dropdown value', () => {
+    component.selectDropdown('A');
+    expect(component.selectedDropdown).toBe('A');
+  });
+
+  it('should set date from input event', () => {
+    const event = { target: { value: '2025-09-07' } } as unknown as Event;
+    component.setDate(event);
+    expect(component.selectedDate).toBe('2025-09-07');
+  });
+
+  it('should handle drag and drop', () => {
+  const dropEvent = { preventDefault: () => undefined } as DragEvent;
+    component.dropped = false;
+    component.onDrop(dropEvent);
+    expect(component.dropped).toBeTrue();
+  const dragOverEvent = { preventDefault: () => undefined } as DragEvent;
+    component.onDragOver(dragOverEvent);
+    // No error expected
+  });
+
+  it('should open and close modal', () => {
+    component.openModal();
     fixture.detectChanges();
     expect(component.showModal).toBeTrue();
     component.closeModal();

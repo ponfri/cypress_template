@@ -13,4 +13,10 @@ describe('TokenDemoComponent', () => {
     const comp = fixture.componentInstance;
     expect(comp).toBeTruthy();
   });
+
+  it('should inject the correct token value', () => {
+    const fixture = TestBed.createComponent(TokenDemoComponent);
+    const comp = fixture.componentInstance;
+    expect(comp.value).toBe('Injected value from DEMO_TOKEN!');
+  });
 });

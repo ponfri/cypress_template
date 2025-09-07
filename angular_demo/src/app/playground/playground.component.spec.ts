@@ -23,4 +23,13 @@ describe('PlaygroundComponent', () => {
     component.code = '<h1>Hello</h1>';
     expect(component.code).toContain('Hello');
   });
+
+  it('should bind input value to code property', () => {
+  fixture.detectChanges();
+  const textarea: HTMLTextAreaElement = fixture.nativeElement.querySelector('textarea');
+  textarea.value = '<p>Test</p>';
+  textarea.dispatchEvent(new Event('input'));
+  fixture.detectChanges();
+  expect(component.code).toBe('<p>Test</p>');
+  });
 });

@@ -1,5 +1,6 @@
 
 import { Component, inject } from '@angular/core';
+import { MessageService } from '../services/message.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,11 +8,13 @@ import { LoginService } from '../login.service/login.service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
+  // ...existing code...
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
+  messageService = inject(MessageService);
+  message$ = this.messageService.message$;
   showLoginPassword = false;
   showRegisterPassword = false;
   loginForm = new FormGroup({
@@ -47,14 +50,14 @@ export class LoginComponent {
     this.loginService.login(username, password).subscribe({
       next: (res) => {
         console.log('[LOGIN SUCCESS]', res);
-        this.loginError = '';
+        this.messageService.clearMessage();
         localStorage.setItem('currentUser', res.user.username);
         localStorage.setItem('currentUserRole', res.user.role || 'user');
         this.router.navigate(['/home']);
       },
       error: (err) => {
         console.error('[LOGIN ERROR]', err);
-        this.loginError = err?.error?.message || 'Invalid username or password.';
+        this.messageService.showMessage(err?.error?.message || 'Invalid username or password.', 5000);
       }
     });
   }
@@ -65,8 +68,7 @@ export class LoginComponent {
     const role = this.registerForm.value.role || 'user';
     this.loginService.register(username, password, role).subscribe({
       next: () => {
-        this.registerError = '';
-        this.registerSuccess = true;
+        this.messageService.clearMessage();
         // Automatically log in after registration
         this.loginService.login(username, password).subscribe({
           next: (res) => {
@@ -75,13 +77,12 @@ export class LoginComponent {
             this.router.navigate(['/home']);
           },
           error: (err) => {
-            this.loginError = err?.error?.message || 'Login failed after registration.';
+            this.messageService.showMessage(err?.error?.message || 'Login failed after registration.', 5000);
           }
         });
       },
       error: (err) => {
-        this.registerError = err?.error?.message || 'Registration failed.';
-        this.registerSuccess = false;
+        this.messageService.showMessage(err?.error?.message || 'Registration failed.', 5000);
       }
     });
   }

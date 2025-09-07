@@ -15,4 +15,17 @@ describe('CustomFormDemoComponent', () => {
     const comp = fixture.componentInstance;
     expect(comp).toBeTruthy();
   });
+
+  it('should have initial form value', () => {
+    const fixture = TestBed.createComponent(CustomFormDemoComponent);
+    const comp = fixture.componentInstance;
+    expect(comp.form.value).toEqual({ custom: '' });
+  });
+
+  it('should update form value', () => {
+    const fixture = TestBed.createComponent(CustomFormDemoComponent);
+    const comp = fixture.componentInstance;
+    comp.form.controls.custom.setValue('test value');
+    expect(comp.form.value).toEqual({ custom: 'test value' });
+  });
 });

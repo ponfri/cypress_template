@@ -6,7 +6,7 @@ import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-host-binding-demo',
-  standalone: true,
+  // ...existing code...
   imports: [CommonModule, HostDemoDirective, HeaderComponent, MenuComponent],
   templateUrl: './host-binding-demo.component.html',
   styles: [`.active { border: 2px solid #ff9800 !important; }`]

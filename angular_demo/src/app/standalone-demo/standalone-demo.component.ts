@@ -5,8 +5,8 @@ import { HighlightDirective } from '../highlight.directive/highlight.directive';
 
 @Component({
   selector: 'app-standalone-demo',
-  standalone: true,
-  imports: [CommonModule, UppercasePipe, HighlightDirective],
+  // ...existing code...
+  imports: [CommonModule, HighlightDirective, UppercasePipe],
   template: `
     <section>
       <h3>Standalone Pipe Demo</h3>

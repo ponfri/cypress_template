@@ -6,7 +6,7 @@ import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-signal-service-demo',
-  standalone: true,
+  // ...existing code...
   imports: [CommonModule, HeaderComponent, MenuComponent],
   templateUrl: './signal-service-demo.component.html'
 })
