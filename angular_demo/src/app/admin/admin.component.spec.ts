@@ -32,7 +32,7 @@ describe('AdminComponent', () => {
     spyOn(comp.dataService, 'addUser').and.returnValue(of({ success: true }));
     comp.newUser = { username: 'test', password: 'pass', role: 'user' };
     comp.addUser();
-  expect(comp.messageService.currentMessage).toBe('User added.');
+    expect(comp.messageService.currentMessage).toBe('User added: test');
   });
 
   it('should not add user with missing fields', () => {

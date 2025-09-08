@@ -284,7 +284,7 @@ export class AdminComponent implements OnInit {
       this.newUser.role
     ).subscribe({
       next: (res) => {
-        this.messageService.showMessage(res.success ? 'User added.' : 'Add failed.');
+        this.messageService.showMessage(res.success ? `User added: ${this.newUser.username}` : 'Add failed.');
         this.loadUsers(); // Update user list immediately, do not reload page/component
       },
       error: () => {
