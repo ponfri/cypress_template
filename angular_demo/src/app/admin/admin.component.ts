@@ -2,7 +2,7 @@
 
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { DataService, User } from '../services/data.service';
 import { Router } from '@angular/router';
 import { MessageService } from '../services/message.service';

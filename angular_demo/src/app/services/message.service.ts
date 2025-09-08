@@ -39,7 +39,7 @@ export class MessageService {
   message$ = this.messageSubject.asObservable();
   visible$ = this.visibleSubject.asObservable();
 
-  private messageTimer: any;
+  private messageTimer: ReturnType<typeof setTimeout> | null = null;
 
   showMessage(msg: string, durationMs = 5000) {
     console.log('[MessageService] showMessage:', msg, 'duration:', durationMs);

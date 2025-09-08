@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { inject, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../services/message.service';
 
@@ -11,7 +11,7 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./toaster.component.scss']
 })
 export class ToasterComponent {
+  private messageService = inject(MessageService);
   public message$ = this.messageService.message$;
   public visible$ = this.messageService.visible$;
-  constructor(private messageService: MessageService) {}
 }
