@@ -1,0 +1,8 @@
+2025-09-08T00:01:40.274Z | register user | testuser3143143324
+2025-09-08T00:09:10.282Z | register user | user19876765
+2025-09-08T00:11:51.851Z | register user | testuser3543536535243
+2025-09-08T00:12:31.033Z | bulk delete | admin
+2025-09-08T00:12:41.550Z | register user | user154543
+2025-09-08T00:13:30.661Z | delete user | user154543
+2025-09-08T00:14:30.683Z | register user | user1
+2025-09-08T00:17:38.028Z | delete user | user1

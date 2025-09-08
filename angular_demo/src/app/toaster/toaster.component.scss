@@ -1,0 +1,44 @@
+
+
+
+
+
+.toaster-banner {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 9999;
+  width: 260px;
+  height: 36px;
+  background: #2ecc40;
+  color: #222;
+  padding: 0 1em;
+  border-radius: 0 18px 18px 0 / 0 36px 36px 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  overflow: hidden;
+}
+.toaster-icon {
+  font-size: 1.1em;
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+  color: #222;
+  background: none;
+}
+.toaster-text {
+  display: block;
+  color: #222;
+  font-size: 1em;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toaster-banner.visible {
+  opacity: 1;
+  pointer-events: auto;
+}

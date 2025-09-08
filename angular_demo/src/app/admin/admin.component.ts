@@ -10,7 +10,7 @@ import { MessageService } from '../services/message.service';
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [FormsModule, AsyncPipe, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './admin.component.html'
 })
 export class AdminComponent implements OnInit {
@@ -72,8 +72,7 @@ export class AdminComponent implements OnInit {
   }
 
   startEdit(user: User) {
-    this.editUser = { ...user };
-    this.messageService.clearMessage();
+  this.editUser = { ...user };
   }
 
   viewProfile(user: User) {
@@ -225,8 +224,7 @@ export class AdminComponent implements OnInit {
   }
 
   cancelEdit() {
-    this.editUser = null;
-    this.messageService.clearMessage();
+  this.editUser = null;
   }
 
   resetPassword(user: User) {
@@ -253,10 +251,9 @@ export class AdminComponent implements OnInit {
   }
 
   clearQuery() {
-    this.queryUsername = '';
-    this.filteredUsers = [];
-    this.querySubmitted = false;
-    this.messageService.clearMessage();
+  this.queryUsername = '';
+  this.filteredUsers = [];
+  this.querySubmitted = false;
   }
 
   loadUsers() {
@@ -288,7 +285,7 @@ export class AdminComponent implements OnInit {
     ).subscribe({
       next: (res) => {
         this.messageService.showMessage(res.success ? 'User added.' : 'Add failed.');
-        this.loadUsers();
+        this.loadUsers(); // Update user list immediately, do not reload page/component
       },
       error: () => {
         this.messageService.showMessage('Add failed.');
@@ -325,8 +322,7 @@ export class AdminComponent implements OnInit {
   }
 
   onQueryInput() {
-    this.querySubmitted = false;
-    this.messageService.clearMessage();
+  this.querySubmitted = false;
   }
 
   canDelete(user: User): boolean {

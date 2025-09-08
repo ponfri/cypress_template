@@ -1,0 +1,4 @@
+<div class="toaster-banner visible" *ngIf="(visible$ | async)">
+  <span class="toaster-icon">✔</span>
+  <span class="toaster-text">{{ message$ | async }}</span>
+</div>
