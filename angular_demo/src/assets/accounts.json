@@ -5,11 +5,6 @@
       "password": "admin123",
       "role": "admin",
       "undeletable": true
-    },
-    {
-      "username": "user1",
-      "password": "gdsgds",
-      "role": "user"
     }
   ]
 }
