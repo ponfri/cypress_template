@@ -11,36 +11,6 @@
       "password": "testaccount",
       "role": "user",
       "undeletable": true
-    },
-    {
-      "username": "user_1759869109642",
-      "password": "pass_1759869109642",
-      "role": "user"
-    },
-    {
-      "username": "user1_1759869111782",
-      "password": "pass1_1759869111782",
-      "role": "user"
-    },
-    {
-      "username": "admin1_1759869113202",
-      "password": "pass2_1759869113202",
-      "role": "admin"
-    },
-    {
-      "username": "user_1759869742563",
-      "password": "pass_1759869742563",
-      "role": "user"
-    },
-    {
-      "username": "user1_1759869744678",
-      "password": "pass1_1759869744678",
-      "role": "user"
-    },
-    {
-      "username": "admin1_1759869746082",
-      "password": "pass2_1759869746082",
-      "role": "admin"
     }
   ]
 }
