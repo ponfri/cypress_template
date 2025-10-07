@@ -2,33 +2,44 @@
   "users": [
     {
       "username": "admin",
-      "password": "admin123",
+      "password": "testaccount",
       "role": "admin",
       "undeletable": true
     },
     {
-      "username": "newuser",
-      "password": "newpass",
-      "role": "admin"
-    },
-    {
-      "username": "newuser1",
-      "password": "newpass1",
-      "role": "admin"
-    },
-    {
       "username": "user",
-      "password": "pass",
+      "password": "testaccount",
+      "role": "user",
+      "undeletable": true
+    },
+    {
+      "username": "user_1759869109642",
+      "password": "pass_1759869109642",
       "role": "user"
     },
     {
-      "username": "user1",
-      "password": "pass1",
+      "username": "user1_1759869111782",
+      "password": "pass1_1759869111782",
       "role": "user"
     },
     {
-      "username": "admin1",
-      "password": "pass2",
+      "username": "admin1_1759869113202",
+      "password": "pass2_1759869113202",
+      "role": "admin"
+    },
+    {
+      "username": "user_1759869742563",
+      "password": "pass_1759869742563",
+      "role": "user"
+    },
+    {
+      "username": "user1_1759869744678",
+      "password": "pass1_1759869744678",
+      "role": "user"
+    },
+    {
+      "username": "admin1_1759869746082",
+      "password": "pass2_1759869746082",
       "role": "admin"
     }
   ]

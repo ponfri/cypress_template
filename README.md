@@ -72,12 +72,21 @@ This project uses several configuration files to organize and manage different a
    npm install
    ```
 3. **Configure environment data:**
-   Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Example:
-   ```json
-   {
-     "env": { "name": "dev" },
-     "apiBaseUrl": { "dev": "http://localhost:3000/api" },
-     "accounts": { "admin": { "username": "admin_user", "password": "admin_pass" } }
+  Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Example:
+  ```json
+  {
+    "env": { "name": "dev" },
+    "apiBaseUrl": { "dev": "http://localhost:3000/api" },
+    "accounts": { "admin": { "username": "admin_user", "password": "admin_pass" } }
+  }
+  ```
+
+4. **Run tests with tag-based filtering (cypress-grep):**
+  To run only tests or suites with a specific tag (e.g. `@po_regression`), use:
+  ```bash
+  npx cypress run --env grep=@po_regression --env grepFilterSpecs=true
+  ```
+  This is required for suite-level tags to work with cypress-grep.
    }
    ```
 4. **Start the server and client:**

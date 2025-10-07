@@ -12,10 +12,11 @@ export default defineConfig({
   experimentalMemoryManagement: true,
   experimentalWebKitSupport: true,
   env: {
-    username: "",
-    password: "",
+    username: "admin",
+    password: "testaccount",
     apiUrl: "http://localhost:5200",
-    allure: true
+    allure: true,
+    grepFilterSpecs: true // Always enable suite-level tag filtering for cypress-grep
   },
   retries: {
     runMode: 1,
@@ -34,9 +35,8 @@ export default defineConfig({
     downloadsFolder: 'cypress/downloads',
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
-
-      // Cypress grep plugin
-      require('@cypress/grep/src/plugin')(config);
+  // Cypress grep plugin
+  require('@cypress/grep/src/plugin')(config);
 
       // Allure reporter plugin (correct usage)
       allureCypress(on, config, {

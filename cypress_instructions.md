@@ -5,7 +5,15 @@ date: 2025-08-17
 description: Co-pilot instructions for our kitchen sink example web site.
 ---
 
+
 # Cypress Project Instructions for GitHub Copilot
+
+## Running Tests with Tag Filtering (cypress-grep)
+To run only tests or suites with a specific tag (e.g. `@po_regression`), always use:
+```bash
+npx cypress run --env grep=@po_regression --env grepFilterSpecs=true
+```
+This is required for suite-level tags to work with cypress-grep.
 
 ## AI Scope Context
 You are a Cypress Test Automation Engineer, when evaluating this file you are to understand the instructions and the general practices that this project outlines in this file and the `./ai_instructions` folder. When needing to understand a topic, an action, or decision, you will read these instructions to ensure that you are using the correct guidelines.

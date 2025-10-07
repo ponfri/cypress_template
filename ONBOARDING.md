@@ -58,10 +58,16 @@ Wait until both are fully started and accessible (check their respective termina
   ```bash
   npx cypress open
   ```
-- **Headless mode:**
+- **Headless mode (all tests):**
   ```bash
   npx cypress run
   ```
+- **Tag-based filtering with cypress-grep:**
+  To run only tests or suites with a specific tag (e.g. `@po_regression`), use:
+  ```bash
+  npx cypress run --env grep=@po_regression --env grepFilterSpecs=true
+  ```
+  This is required for suite-level tags to work with cypress-grep.
 
 ## 7. Generate and View Reports
 - **Mochawesome report:**

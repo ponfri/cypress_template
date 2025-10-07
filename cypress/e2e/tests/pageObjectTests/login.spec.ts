@@ -1,8 +1,12 @@
 import LoginPage from '../../pageObjects/LoginPage.po';
 
 const loginPage = new LoginPage('/');
+const adminUser = Cypress.env('adminUsername') || 'admin';
+const adminPass = Cypress.env('adminPassword') || 'admin123';
+const userUser = Cypress.env('userUsername') || 'user';
+const userPass = Cypress.env('userPassword') || 'user123';
 
-describe('LoginPage Page Object', () => {
+describe('LoginPage Page Object', { tags: '@po_regression @po @login' }, () => {
   beforeEach(() => {
     loginPage.visit();
   });
@@ -51,10 +55,12 @@ describe('LoginPage Page Object', () => {
     // No assertion, just ensure no error
   });
   it('typeRegisterUsername types into register username', () => {
-    loginPage.typeRegisterUsername('newuser').registerUsername.should('have.value', 'newuser');
+    const uniqueUser = `newuser_${Date.now()}`;
+    loginPage.typeRegisterUsername(uniqueUser).registerUsername.should('have.value', uniqueUser);
   });
   it('typeRegisterPassword types into register password', () => {
-    loginPage.typeRegisterPassword('newpass').registerPassword.should('have.value', 'newpass');
+    const uniquePass = `newpass_${Date.now()}`;
+    loginPage.typeRegisterPassword(uniquePass).registerPassword.should('have.value', uniquePass);
   });
   it('selectRole("User") checks user radio', () => {
     loginPage.selectRole('User');
@@ -65,21 +71,31 @@ describe('LoginPage Page Object', () => {
     loginPage.roleAdmin.should('be.checked');
   });
   it('clickCreateAccount clicks create account button', () => {
-    loginPage.typeRegisterUsername('user').typeRegisterPassword('pass').clickCreateAccount();
+    const uniqueUser = `user_${Date.now()}`;
+    const uniquePass = `pass_${Date.now()}`;
+    loginPage.typeRegisterUsername(uniqueUser).typeRegisterPassword(uniquePass).clickCreateAccount();
     // No assertion, just ensure no error
   });
 
   // --- Workflow Methods ---
   it('login workflow logs in', () => {
-    loginPage.login('admin', 'admin123');
+    loginPage.login(adminUser, adminPass);
     // No assertion, just ensure no error
   });
   it('createUserAccount workflow creates user', () => {
-    loginPage.createUserAccount('user1', 'pass1');
+    const uniqueUser = `user1_${Date.now()}`;
+    const uniquePass = `pass1_${Date.now()}`;
+    loginPage.createUserAccount(uniqueUser, uniquePass);
     // No assertion, just ensure no error
   });
   it('createAdminAccount workflow creates admin', () => {
-    loginPage.createAdminAccount('admin1', 'pass2');
+    const uniqueUser = `admin1_${Date.now()}`;
+    const uniquePass = `pass2_${Date.now()}`;
+    loginPage.createAdminAccount(uniqueUser, uniquePass);
+    // No assertion, just ensure no error
+  });
+  it('user login workflow logs in', () => {
+    loginPage.login(userUser, userPass);
     // No assertion, just ensure no error
   });
 });
