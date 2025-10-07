@@ -80,7 +80,18 @@ This project uses several configuration files to organize and manage different a
      "accounts": { "admin": { "username": "admin_user", "password": "admin_pass" } }
    }
    ```
-4. **Run tests:**
+4. **Start the server and client:**
+   Before running the tests, make sure both the server and the client applications are running:
+   - **Start the server:**
+     ```bash
+     npm run server
+     ```
+   - **Start the client:**
+     ```bash
+     npm run client
+     ```
+   Wait until both are fully started and accessible (check their respective terminal outputs for successful startup messages).
+5. **Run tests:**
    - **Interactive mode:**
      ```bash
      npx cypress open
@@ -91,7 +102,7 @@ This project uses several configuration files to organize and manage different a
      npx cypress run
      ```
      Runs all tests in the terminal (useful for CI).
-5. **Generate and view reports:**
+6. **Generate and view reports:**
    - **Mochawesome report:**
      - Run: `npm run run:report`
      - Open: [http://localhost:8080/mochawesome.html](http://localhost:8080/mochawesome.html)

@@ -29,7 +29,21 @@ Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Exa
 }
 ```
 
-## 5. Run Tests
+## 5. Start the Server and Client
+Before running the tests, make sure both the server and the client applications are running:
+
+- **Start the server:**
+  ```bash
+  npm run server
+  ```
+- **Start the client:**
+  ```bash
+  npm run client
+  ```
+
+Wait until both are fully started and accessible (check their respective terminal outputs for successful startup messages).
+
+## 6. Run Tests
 - **Interactive mode:**
   ```bash
   npx cypress open
@@ -39,7 +53,7 @@ Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Exa
   npx cypress run
   ```
 
-## 6. Generate and View Reports
+## 7. Generate and View Reports
 - **Mochawesome report:**
   - Run: `npm run run:report`
   - Open: [http://localhost:8080/mochawesome.html](http://localhost:8080/mochawesome.html)
@@ -47,14 +61,14 @@ Edit `cypress.env.json` to set API URLs, test accounts, and other variables. Exa
   - Run: `npm run allure:generate-serve`
   - Open: [http://localhost:3000](http://localhost:3000)
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 - **Missing dependencies:** Run `npm install` again.
 - **Port already in use:** Use `npm run kill:port` to free up port 8080.
 - **Tests not found:** Make sure your spec files are in `cypress/e2e/tests/` and use `.spec.ts` extension.
 - **Environment variables not loaded:** Double-check your `cypress.env.json` format and values.
 - **More help:** See [Environment Usage Instructions](ai_instructions/env_usage.md) and [Fixtures Documentation](ai_instructions/fixtures.md).
 
-## 8. Useful Documentation
+## 9. Useful Documentation
 - [Custom Commands Documentation](ai_instructions/custom_commands.md)
 - [Page Objects Documentation](ai_instructions/page_objects.md)
 - [Environment Usage Instructions](ai_instructions/env_usage.md)
