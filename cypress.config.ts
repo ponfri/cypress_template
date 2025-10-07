@@ -14,7 +14,7 @@ export default defineConfig({
   env: {
     username: "",
     password: "",
-    apiUrl: "https://localhost:5200",
+    apiUrl: "http://localhost:5200",
     allure: true
   },
   retries: {
@@ -26,7 +26,7 @@ export default defineConfig({
     configFile: 'reporter-config.json',
   },
   e2e: {
-    baseUrl: 'https://localhost:5200',
+    baseUrl: 'http://localhost:5200',
     excludeSpecPattern: ['**/1-getting-started', '**/2-advanced-examples'],
     specPattern: 'cypress/e2e/tests/**/*.{ts,js}',
     screenshotsFolder: 'cypress/screenshots',

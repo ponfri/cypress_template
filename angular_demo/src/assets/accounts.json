@@ -5,6 +5,31 @@
       "password": "admin123",
       "role": "admin",
       "undeletable": true
+    },
+    {
+      "username": "newuser",
+      "password": "newpass",
+      "role": "admin"
+    },
+    {
+      "username": "newuser1",
+      "password": "newpass1",
+      "role": "admin"
+    },
+    {
+      "username": "user",
+      "password": "pass",
+      "role": "user"
+    },
+    {
+      "username": "user1",
+      "password": "pass1",
+      "role": "user"
+    },
+    {
+      "username": "admin1",
+      "password": "pass2",
+      "role": "admin"
     }
   ]
 }

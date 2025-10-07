@@ -81,16 +81,25 @@ This project uses several configuration files to organize and manage different a
    }
    ```
 4. **Start the server and client:**
-   Before running the tests, make sure both the server and the client applications are running:
-   - **Start the server:**
+   Before running the tests, you must start both the backend server and the Angular client. Both are located in the `angular_demo/` directory:
+
+   - **Start the backend server:**
+     Open a terminal and run:
      ```bash
-     npm run server
+     cd angular_demo
+     node server.js
      ```
-   - **Start the client:**
+     The backend API will be available at [http://localhost:3200](http://localhost:3200).
+
+   - **Start the Angular client:**
+     Open a new terminal and run:
      ```bash
-     npm run client
+     cd angular_demo
+     npm install
+     npm start
      ```
-   Wait until both are fully started and accessible (check their respective terminal outputs for successful startup messages).
+     The Angular app will be available at [http://localhost:5200](http://localhost:5200).
+   Wait until both are fully started and accessible (check the terminal output for successful startup messages).
 5. **Run tests:**
    - **Interactive mode:**
      ```bash
